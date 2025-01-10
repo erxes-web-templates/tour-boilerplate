@@ -4,12 +4,12 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
-
+import data from "../data/configs.json";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Adventure Tours",
-  description: "Explore the world with our exciting tour packages",
+  title: data.meta.title,
+  description: data.meta.description,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

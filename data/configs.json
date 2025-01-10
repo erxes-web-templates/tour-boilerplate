@@ -1,0 +1,90 @@
+{
+  "template": "tour",
+  "templateId": "tour-1",
+  "meta": {
+    "title": "Tour 1",
+    "description": "Tour 1",
+    "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+    "favicon": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+    "keywords": "Tour 1, Tour 1, Tour 1",
+    "coverImage": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+    "author": "erxes",
+    "url": "https://www.tour-1.com"
+  },
+  "appearance": {
+    "theme": "light",
+    "baseFont": "Roboto, sans-serif",
+    "headingFont": "Roboto, sans-serif",
+    "baseColor": "#3f51b5",
+    "backgroundColor": "#f5f5f5"
+  },
+  "menus": {
+    "main": [
+      {
+        "label": "Home",
+        "url": "/",
+        "icon": "dashboard",
+        "parentId": ""
+      },
+      {
+        "label": "About",
+        "url": "/about",
+        "icon": "about",
+        "parentId": ""
+      },
+      {
+        "label": "Contact",
+        "url": "/contact",
+        "icon": "contact",
+        "parentId": ""
+      }
+    ],
+    "footerMenu": [
+      {
+        "title": "Dashboard",
+        "url": "/dashboard",
+        "icon": "dashboard"
+      },
+      {
+        "title": "Language",
+        "url": "/dashboard/language",
+        "icon": "language"
+      },
+      {
+        "title": "about",
+        "url": "/dashboard/about",
+        "icon": "about"
+      }
+    ]
+  },
+  "additional": {
+    "copyright": {
+      "text": "© 2019 erxes Inc. All rights reserved.",
+      "url": "https://www.erxes.io"
+    },
+    "social": [
+      {
+        "name": "facebook",
+        "url": "https://www.facebook.com/erxes.io"
+      },
+      {
+        "name": "twitter",
+        "url": "https://twitter.com/erxesio"
+      },
+      {
+        "name": "linkedin",
+        "url": "https://www.linkedin.com/company/erxes"
+      },
+      {
+        "name": "youtube",
+        "url": "https://www.youtube.com/channel/UCJ1bNel6mOz8Kv1b0eIc5kg"
+      }
+    ],
+    "integrations": {
+      "googleAnalytics": "UA-XXXXX-X",
+      "facebookPixel": "1234567890",
+      "GTM": "GTM-XXXXX",
+      "messengerId": "Your CRM API Key"
+    }
+  }
+}

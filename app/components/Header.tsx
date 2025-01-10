@@ -6,7 +6,7 @@ export default function Header() {
     <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          Adventure Tours
+          Adventure Tours.
         </Link>
         <div className="space-x-4">
           <Link href="/" className="hover:underline">

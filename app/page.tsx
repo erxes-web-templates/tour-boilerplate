@@ -3,6 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import data from "@/data/configs.json";
+
+export const metadata = {
+  title: data.meta.title,
+  description: data.meta.description,
+};
 
 export default function Home() {
   const featuredTours = [
@@ -11,20 +17,20 @@ export default function Home() {
       title: "Mountain Trek",
       description: "Experience the thrill of mountain climbing",
       price: "$999",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/placeholder.svg",
     },
-    { id: 2, title: "Beach Getaway", description: "Relax on pristine beaches", price: "$799", image: "/placeholder.svg?height=200&width=300" },
-    { id: 3, title: "City Explorer", description: "Discover vibrant city cultures", price: "$899", image: "/placeholder.svg?height=200&width=300" },
+    { id: 2, title: "Beach Getaway", description: "Relax on pristine beaches", price: "$799", image: "/placeholder.svg" },
+    { id: 3, title: "City Explorer", description: "Discover vibrant city cultures", price: "$899", image: "/placeholder.svg" },
   ];
 
   return (
     <div>
       {/* Hero Section */}
       <section className="relative h-[600px]">
-        <Image src="/placeholder.svg?height=600&width=1200" alt="Beautiful landscape" layout="fill" objectFit="cover" />
+        <Image src="/placeholder.svg" alt="Beautiful landscape" layout="fill" objectFit="cover" />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="text-center text-white">
-            <h1 className="text-5xl font-bold mb-4">Discover Your Next Adventure</h1>
+            <h1 className="text-5xl font-bold mb-4">Discover Your Next Adventure.</h1>
             <p className="text-xl mb-8">Explore the world with our exciting tour packages</p>
             <Button size="lg" variant="secondary">
               Book Now
@@ -63,7 +69,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-8 text-center">About Us</h2>
           <div className="flex flex-wrap items-center">
             <div className="w-full md:w-1/2 mb-8 md:mb-0">
-              <Image src="/placeholder.svg?height=400&width=600" alt="About us" width={600} height={400} className="rounded-lg" />
+              <Image src="/placeholder.svg" alt="About us" width={600} height={400} className="rounded-lg" />
             </div>
             <div className="w-full md:w-1/2 md:pl-8">
               <p className="text-lg mb-4">
