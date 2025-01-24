@@ -33,7 +33,7 @@ export default function LoginForm() {
         },
       });
       if (data?.login) {
-        router.push("/dashboard");
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
