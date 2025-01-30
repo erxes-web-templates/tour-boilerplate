@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { CmsMenuList } from "@/types/cms";
 
 export default function Header({ menuList }: { menuList: CmsMenuList[] }) {
