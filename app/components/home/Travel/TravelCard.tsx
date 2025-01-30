@@ -15,7 +15,7 @@ export default function TravelCard({ image, title, description }: TravelCardProp
         className="relative h-96 w-full overflow-hidden transition-transform duration-500 ease-in-out"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-      >
+        >
         <div className="relative h-full">
           <div className="absolute inset-0">
             <Image

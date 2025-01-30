@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="bg-black text-white py-16">
       <div className="container max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-          {/* Newsletter Section */}
+          {/* Contact section */}
           <div className="lg:col-span-6">
             <div className="mb-8">
               <Image src="/Erxes-logo.png" alt="Erxes" width={97} height={47}/>
