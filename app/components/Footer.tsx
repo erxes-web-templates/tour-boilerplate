@@ -18,7 +18,7 @@ export default function Footer() {
               <Image src="/Erxes-logo.png" alt="Erxes" width={97} height={47}/>
             </div>
             <h2 className="text-2xl font-extralight mb-4">Find your next adventure</h2>
-            <p className="text-sm font-light text-gray-400 mb-8">A&K's newsletter is packed with inspiration for your next trip.</p>
+            <p className="text-sm font-light text-gray-400 mb-8">A&K&apos;s newsletter is packed with inspiration for your next trip.</p>
             <form className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <Input type="text" placeholder="First Name*" className="bg-white text-black" />

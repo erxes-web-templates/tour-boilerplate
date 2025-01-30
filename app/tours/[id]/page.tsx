@@ -1,6 +1,10 @@
 import { fetchBmTourDetail } from "@/lib/fetchTours";
 
-export default async function TourDetailPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: Promise<{ id: string }>
+}
+
+export default async function TourDetailPage({ params }: PageProps) {
   const { id } = await params;
   const tour = await fetchBmTourDetail(id);
 

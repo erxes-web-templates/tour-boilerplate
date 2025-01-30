@@ -1,10 +1,12 @@
 'use client'
 
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import type { TravelCard, TravelCardProps } from '@/types/travel';
 
-export default function TravelCard({ image, title, description }) {
+export default function TravelCard({ image, title, description }: TravelCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -16,9 +18,11 @@ export default function TravelCard({ image, title, description }) {
       >
         <div className="relative h-full">
           <div className="absolute inset-0">
-            <img
+            <Image
               src={image}
               alt={title}
+              width={236}
+              height={334}
               className="h-full w-full object-cover"
             />
           </div>

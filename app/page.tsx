@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
 import TravelCardGrid from "./components/TravelCardGrid";
+import JourneyCardGrid from "./components/JourneyCardGrid";
 import data from "@/data/configs.json";
 
 export const metadata = {
@@ -91,6 +90,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Journey section */}
+      <JourneyCardGrid/>
       
       {/* Trending Tours */}
       <section className="py-16 bg-[#FAF7F2]">
@@ -123,12 +125,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+    
       {/* Why travel section*/}
       <TravelCardGrid/>
 
       {/* About Section */}
-      <section className="bg-[#FAF7F2] grid grid-cols-1 lg:grid-cols-2">
+      <section className="bg-[#FAF7F2] grid grid-cols-1 lg:grid-cols-2 mb-12">
         <div className="relative h-[600px] lg:h-auto">
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="https://cdn.abercrombiekent.com/files/bsiop5ln/production/bf8abe3ec1b71c32d3310d070755321c1d3553dd.mov" type="video/mp4" />
@@ -146,13 +148,13 @@ export default function Home() {
               <p>
                 We believe travel should be a force for good. In the 1960s, our founder Geoffrey Kent and Jorie Butler
                 Kent pioneered the community-first approach to conservation. Today, we still believe that the best way to
-                protect our planet's remaining wilderness is to invest in the communities who live there.
+                protect our planet&apos;s remaining wilderness is to invest in the communities who live there.
               </p>
 
               <p>
                 Every trip you book with us benefits grassroots community and conservation initiatives led by our
                 nonprofit arm, A&K Philanthropy (AKP). We now support 55 projects in 25 countries, helping preserve some
-                of the world's most precious ecosystems, and ensuring that the people in the places where we travel are
+                of the world&apos;s most precious ecosystems, and ensuring that the people in the places where we travel are
                 benefitting directly from tourism.
               </p>
 
@@ -170,29 +172,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Contact Form
-      <section id="contact" className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Contact Us</h2>
-          <div className="max-w-md mx-auto">
-            <form>
-              <div className="mb-4">
-                <Input type="text" placeholder="Your Name" />
-              </div>
-              <div className="mb-4">
-                <Input type="email" placeholder="Your Email" />
-              </div>
-              <div className="mb-4">
-                <Textarea placeholder="Your Message" />
-              </div>
-              <Button type="submit" className="w-full" variant="secondary">
-                Send Message
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 }

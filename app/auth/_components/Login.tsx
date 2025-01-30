@@ -45,7 +45,7 @@ export default function LoginForm() {
       <div>
         {/* <h2 className="text-center mb-6 text-4xl font-bold">BMS LOGO</h2> */}
         <div className="flex mb-6 justify-between">
-          <Image src="/images/erxes-logo.svg" alt="logo" width={160} height={160} />
+          <Image src="/Erxes-logo.png" alt="logo" width={160} height={160} />
           <Image src="/images/travel-logo.svg" alt="logo" width={160} height={160} className="ml-3" />
         </div>
         <Card className="w-full max-w-md">

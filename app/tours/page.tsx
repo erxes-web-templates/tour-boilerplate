@@ -3,7 +3,8 @@ import Link from "next/link";
 import React from "react";
 
 const page = async () => {
-  const { total, list } = await fetchBmTours();
+  // const { total, list } = await fetchBmTours();
+  const { list } = await fetchBmTours();
 
   console.log(list, " list");
   return (
