@@ -1,38 +1,33 @@
 "use client";
 
-import { ApolloLink, HttpLink } from "@apollo/client";
-import { NextSSRInMemoryCache, NextSSRApolloClient } from "@apollo/experimental-nextjs-app-support/ssr";
-import { ApolloNextAppProvider, SSRMultipartLink } from "@apollo/experimental-nextjs-app-support";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import { AuthProvider } from "./AuthContext";
 
+// Create the Apollo Client instance
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: process.env.ERXES_API_URL,
+    uri: process.env.ERXES_API_URL, // Your GraphQL API endpoint
     credentials: "include", // Include cookies
     headers: {
-      "Access-Control-Allow-Origin": process.env.ERXES_URL || "",
+      "Access-Control-Allow-Origin": process.env.ERXES_URL || "", // CORS header
     },
-    fetchOptions: { cache: "no-store" },
+    fetchOptions: { cache: "no-store" }, // Disable caching for now
   });
 
-  return new NextSSRApolloClient({
-    cache: new NextSSRInMemoryCache(),
-    link:
-      typeof window === "undefined"
-        ? ApolloLink.from([
-            new SSRMultipartLink({
-              stripDefer: true,
-            }),
-            httpLink,
-          ])
-        : httpLink,
+  return new ApolloClient({
+    cache: new InMemoryCache(), // Use InMemoryCache for client-side caching
+    link: httpLink, // Use the HttpLink for client-side requests
   });
 }
 
+// ApolloWrapper component to provide the Apollo Client to the app
 export function ApolloWrapper({ children }: React.PropsWithChildren) {
+  const client = makeClient(); // Create the Apollo Client instance
+
   return (
-    <ApolloNextAppProvider makeClient={makeClient}>
+    <ApolloProvider client={client}>
       <AuthProvider>{children}</AuthProvider>
-    </ApolloNextAppProvider>
+    </ApolloProvider>
   );
 }

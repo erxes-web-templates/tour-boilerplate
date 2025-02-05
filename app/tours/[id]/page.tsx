@@ -1,16 +1,9 @@
-import { fetchBmTourDetail } from "@/lib/fetchTours";
+"use client";
 
-export default async function TourDetailPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
-  const tour = await fetchBmTourDetail(id);
-
-  if (!tour) {
-    return <div>Tour not found</div>;
-  }
-
+export default async function TourDetailPage() {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
+      {/* <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <p>
@@ -33,7 +26,7 @@ export default async function TourDetailPage({ params }: { params: { id: string 
           <h2 className="text-xl font-semibold mb-2">Description</h2>
           <p>{tour.content}</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

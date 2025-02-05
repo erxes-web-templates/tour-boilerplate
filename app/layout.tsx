@@ -1,29 +1,22 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { ApolloWrapper } from "@/lib/apollo-wrapper";
-import data from "../data/configs.json";
-import { fetchMenuList } from "@/lib/fetchCms";
-const inter = Inter({ subsets: ["latin"] });
+"use client";
 
-export const metadata: Metadata = {
-  title: data.meta.title,
-  description: data.meta.description,
-};
+// import "./globals.css";
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const menuList = await fetchMenuList("gmi68tMTXYCD7oLgHQ-tv", "main");
-  console.log(menuList, "menuList");
+export default async function TourBoilerplateLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // const menuList = await fetchMenuList("gmi68tMTXYCD7oLgHQ-tv", "main");
+  // console.log(menuList, "menuList");
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ApolloWrapper>
-          <Header menuList={menuList} />
-          <main>{children}</main>
-          <Footer />
-        </ApolloWrapper>
+      <body>
+        {/* <ApolloWrapper> */}
+        {/* <Header menuList={menuList} /> */}
+        <main>{children}</main>
+        {/* <Footer /> */}
+        {/* </ApolloWrapper> */}
       </body>
     </html>
   );

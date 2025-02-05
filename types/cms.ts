@@ -15,4 +15,27 @@ interface CmsMenuListVariables {
   kind: string;
 }
 
-export type { CmsMenuList, CmsMenuListVariables };
+type MenuItem = {
+  _id: string;
+  label: string;
+  url: string;
+};
+
+type CPDetail = {
+  _id: string;
+  name: string;
+  description: string;
+  copyright: string;
+  styles: {
+    baseColor: string;
+    backgroundColor: string;
+    headingFont: string;
+    baseFont: string;
+  };
+  externalLinks: {
+    phones: string[];
+    emails: string[];
+  };
+};
+
+export type { CmsMenuList, CmsMenuListVariables, MenuItem, CPDetail };
