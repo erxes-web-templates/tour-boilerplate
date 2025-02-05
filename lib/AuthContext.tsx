@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
 
@@ -48,23 +54,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     fetchPolicy: "network-only",
   });
 
-  useEffect(() => {
-    if (error) {
-      router.push("/auth/login");
-    }
+  // useEffect(() => {
+  //   if (error) {
+  //     router.push("/auth/login");
+  //   }
 
-    if (!loading && !data?.currentUser) {
-      router.push("/auth/login");
-    } else if (data?.currentUser) {
-      setUser(data.currentUser);
-    }
-  }, [data, error, loading, router]);
+  //   if (!loading && !data?.currentUser) {
+  //     router.push("/auth/login");
+  //   } else if (data?.currentUser) {
+  //     setUser(data.currentUser);
+  //   }
+  // }, [data, error, loading, router]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+  );
 };
 
 // Export the context for use in other files
