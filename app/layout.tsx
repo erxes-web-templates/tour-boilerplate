@@ -13,13 +13,18 @@ export const metadata: Metadata = {
   description: data.meta.description,
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const menuList = await fetchMenuList("gmi68tMTXYCD7oLgHQ-tv", "main");
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const menuList = (await fetchMenuList("gmi68tMTXYCD7oLgHQ-tv", "main")) || [];
   console.log(menuList, "menuList");
   return (
     <html lang="en">
       <body className={inter.className}>
         <ApolloWrapper>
+          {/* @ts-expect-error ts-migrate(7006) FIXME: Parameter 'menuList' implicitly has an 'any' type. */}
           <Header menuList={menuList} />
           <main>{children}</main>
           <Footer />

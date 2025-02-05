@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, ReactNode, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 interface User {
   _id: string;
@@ -30,8 +24,8 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
+  const [user] = useState<User | null>(null);
+  // const router = useRouter();
 
   const ME_QUERY = gql`
     query me {
@@ -50,21 +44,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   `;
 
-  const { data, loading, error } = useQuery(ME_QUERY, {
+  const { data, loading } = useQuery(ME_QUERY, {
     fetchPolicy: "network-only",
   });
 
-  // useEffect(() => {
-  //   if (error) {
-  //     router.push("/auth/login");
-  //   }
+  const currentUser = data?.currentUser;
 
-  //   if (!loading && !data?.currentUser) {
-  //     router.push("/auth/login");
-  //   } else if (data?.currentUser) {
-  //     setUser(data.currentUser);
-  //   }
-  // }, [data, error, loading, router]);
+  console.log(currentUser, "currentUser");
 
   if (loading) {
     return <div>Loading...</div>;

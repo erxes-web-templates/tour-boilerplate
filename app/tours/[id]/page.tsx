@@ -1,7 +1,7 @@
 import { fetchBmTourDetail } from "@/lib/fetchTours";
-
-export default async function TourDetailPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
+type Params = Promise<{ id: string }>;
+export default async function TourDetailPage(props: { params: Params }) {
+  const { id } = await props.params;
   const tour = await fetchBmTourDetail(id);
 
   if (!tour) {
@@ -20,7 +20,8 @@ export default async function TourDetailPage({ params }: { params: { id: string 
             <strong>Status:</strong> {tour.status}
           </p>
           <p>
-            <strong>Start Date:</strong> {new Date(tour.startDate).toLocaleDateString()}
+            <strong>Start Date:</strong>{" "}
+            {new Date(tour.startDate).toLocaleDateString()}
           </p>
           <p>
             <strong>Cost:</strong> ${tour.cost.toLocaleString()}
