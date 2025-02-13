@@ -1,7 +1,7 @@
 import { fetchBmTourDetail } from "@/lib/fetchTours";
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }
 
 export default async function TourDetailPage({ params }: PageProps) {
@@ -24,7 +24,8 @@ export default async function TourDetailPage({ params }: PageProps) {
             <strong>Status:</strong> {tour.status}
           </p>
           <p>
-            <strong>Start Date:</strong> {new Date(tour.startDate).toLocaleDateString()}
+            <strong>Start Date:</strong>{" "}
+            {new Date(tour.startDate).toLocaleDateString()}
           </p>
           <p>
             <strong>Cost:</strong> ${tour.cost.toLocaleString()}

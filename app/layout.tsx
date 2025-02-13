@@ -13,7 +13,11 @@ export const metadata: Metadata = {
   description: data.meta.description,
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   // const menuList = await fetchMenuList("gmi68tMTXYCD7oLgHQ-tv", "main");
   // console.log(menuList, "menuList");
   return (
@@ -21,8 +25,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={inter.className}>
         <ApolloWrapper>
           {/* <Header menuList={menuList} /> */}
-          <Header/>
-            <main>{children}</main>
+          <Header />
+          <main>{children}</main>
           <Footer />
         </ApolloWrapper>
       </body>
