@@ -7,9 +7,11 @@ import { getFileUrl, templateUrl } from "../../../../../../../lib/utils";
 const HeroSection = ({ section }: { section: Section }) => {
   return (
     <section className="relative h-[600px]">
-      {section.config.image.url && (
+      {section.config.image && (
         <Image
-          src={getFileUrl(section.config.image.url)}
+          src={
+            getFileUrl(section.config.image.url) || section.config.image.initUrl
+          }
           alt="Beautiful landscape"
           layout="fill"
           objectFit="cover"

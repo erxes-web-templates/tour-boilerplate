@@ -15,9 +15,12 @@ const AboutSection = ({ section }: { section: Section }) => {
         </h2>
         <div className="flex flex-wrap items-center">
           <div className="w-full md:w-1/2 mb-8 md:mb-0">
-            {section.config.image.url && (
+            {section.config.image && (
               <Image
-                src={getFileUrl(section.config.image.url)}
+                src={
+                  getFileUrl(section.config.image.url) ||
+                  section.config.image.initUrl
+                }
                 alt="Beautiful landscape"
                 width={600}
                 height={600}
