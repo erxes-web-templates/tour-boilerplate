@@ -26,6 +26,7 @@ type CPDetail = {
   name: string;
   description: string;
   copyright: string;
+  logo?: string;
   styles: {
     baseColor: string;
     backgroundColor: string;

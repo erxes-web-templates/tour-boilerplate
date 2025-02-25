@@ -2,7 +2,7 @@ import { CPDetail, MenuItem } from "../../types/cms";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { GET_MENUS } from "../../../../projects/_graphql/queries";
-import { templateUrl } from "../../lib/utils";
+import { templateUrl } from "../../../../../../lib/utils";
 
 export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
   const { data } = useQuery(GET_MENUS, {
@@ -37,7 +37,7 @@ export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
               {menus.map((menu: MenuItem) => (
                 <li key={menu._id}>
                   <Link
-                    href={templateUrl(menu.label, menu.url)}
+                    href={templateUrl(menu.url)}
                     className="hover:underline"
                   >
                     {menu.label}

@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const TOURS_QUERY = gql`
-  query BmTours {
-    bmTours {
+  query BmTours($page: Int, $perPage: Int) {
+    bmTours(page: $page, perPage: $perPage) {
       total
       list {
         _id
@@ -13,12 +13,14 @@ export const TOURS_QUERY = gql`
         viewCount
         name
         itineraryId
+        itinerary {
+          images
+        }
         refNumber
       }
     }
   }
 `;
-
 export const TOUR_DETAIL_QUERY = gql`
   query BmTourDetail($id: String!, $branchId: String) {
     bmTourDetail(_id: $id, branchId: $branchId) {
@@ -156,8 +158,8 @@ export const CP_GET_CONFIG = gql`
 `;
 
 export const GET_CMS_PAGE = gql`
-  query CmsPage($id: String!) {
-    cmsPage(_id: $id) {
+  query CmsPage($id: String!, $slug: String) {
+    cmsPage(_id: $id, slug: $slug) {
       _id
       name
       content

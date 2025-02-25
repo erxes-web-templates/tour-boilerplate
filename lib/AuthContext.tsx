@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // }, [data, error, loading, router]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...123</div>;
   }
 
   return (

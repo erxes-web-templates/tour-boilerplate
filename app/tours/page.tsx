@@ -1,24 +1,63 @@
-// import { fetchBmTours } from "@/lib/fetchTours";
 "use client";
 
+import { TOURS_QUERY } from "../../graphql/queries";
+import { useQuery } from "@apollo/client";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+  CardDescription,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { getFileUrl, templateUrl } from "../../../../../../lib/utils";
+const ToursPage = () => {
+  const { data, loading } = useQuery(TOURS_QUERY);
 
-const page = () => {
-  // const { list } = await fetchBmTours();
+  const tours = data?.bmTours?.list || [];
 
-  // console.log(list, " list");
+  if (loading) {
+    return "Loading ...";
+  }
+
   return (
     <>
-      <ul>
-        {/* {list.map((tour) => (
-          <li key={tour._id}>
-            <Link href={`/tours/${tour._id}`}>{tour.name}</Link>
-          </li>
-        ))} */}
-      </ul>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {tours.map((tour: any) => (
+          <Card key={tour._id} className="mb-2">
+            <CardHeader>
+              {tour.itinerary?.images[0] && (
+                <Image
+                  src={getFileUrl(tour.itinerary.images[0])}
+                  alt={tour.name}
+                  width={300}
+                  height={200}
+                  className="rounded-t-lg"
+                />
+              )}
+            </CardHeader>
+            <CardContent>
+              <CardTitle>{tour.name}</CardTitle>
+              <CardDescription>
+                <p dangerouslySetInnerHTML={{ __html: tour.content }} />
+              </CardDescription>
+            </CardContent>
+            <CardFooter className="flex justify-between items-center">
+              <span className="text-lg font-bold">{tour.cost}</span>
+              <Link href={templateUrl(`/tour&tourId=${tour._id}`)}>
+                {" "}
+                <Button>Read more</Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
     </>
   );
 };
 
-export default page;
+export default ToursPage;
