@@ -1,23 +1,65 @@
 {
-  "title": "Hom title",
-  "description": "This is the home page",
-  "coverImage": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+  "title": "home",
+  "description": "home",
   "pageItems": [
     {
-      "config": {},
       "type": "hero",
-      "content": "",
+      "content": "Welcome to Adventure Awaits!",
       "order": 0,
-      "contentType": "cms:posts",
-      "contentTypeId": "5d9b1b3b1c9d440000f3f3b4"
+      "contentType": "imageText",
+      "contentTypeId": "",
+      "config": {
+        "image": {
+          "file": {
+            "name": "hero.jpg",
+            "size": 0,
+            "type": "image/jpeg"
+          },
+          "initUrl": "/images/hero.jpg"
+        },
+        "title": "Discover Your Next Great Adventure",
+        "description": "Explore breathtaking destinations and unforgettable experiences.",
+        "primaryCta": "Explore Tours",
+        "primaryCtaUrl": "/tours"
+      }
     },
     {
-      "config": {},
-      "type": "content",
-      "content": "",
+      "type": "imageText",
+      "content": "About Us",
       "order": 1,
-      "contentType": "cms:page",
-      "contentTypeId": "5d9b1b3b1c9d440000f3f3b4"
+      "contentType": "imageText",
+      "contentTypeId": "",
+      "config": {
+        "image": {
+          "file": {
+            "name": "hero.jpg",
+            "size": 0,
+            "type": "image/jpeg"
+          },
+          "initUrl": "/images/about.jpg"
+        },
+        "title": "Who We Are",
+        "description": "At Adventure Awaits, we are passionate about crafting unforgettable travel experiences. With years of expertise, we specialize in curating unique tours that connect you with culture, nature, and adventure.",
+        "primaryCta": "Learn More",
+        "primaryCtaUrl": "/about"
+      }
+    },
+    {
+      "type": "tours",
+      "content": "Featured Tours",
+      "order": 2,
+      "contentType": "bms:tours",
+      "contentTypeId": ""
+    },
+    {
+      "type": "youtube",
+      "content": "",
+      "order": 3,
+      "contentType": "youtube",
+      "contentTypeId": "",
+      "config": {
+        "videoUrl": "https://www.youtube.com/watch?v=iTB3mCIBWMA"
+      }
     }
   ]
 }

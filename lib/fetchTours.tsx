@@ -1,13 +1,22 @@
 import { TOUR_DETAIL_QUERY, TOURS_QUERY } from "@/graphql/queries";
 import { getClient } from "./client";
-import { BmTourDetail, BmTourDetailVariables, BmToursData } from "@/types/tours";
+import {
+  BmTourDetail,
+  BmTourDetailVariables,
+  BmToursData,
+} from "@/types/tours";
 
-export async function fetchBmTours() {
+export async function fetchBmTours(
+  page: number,
+  perPage: number,
+  config?: any
+) {
   const client = getClient();
 
   try {
     const { data } = await client.query<BmToursData>({
       query: TOURS_QUERY,
+      variables: { page, perPage, ...config },
     });
 
     return data.bmTours;
@@ -21,7 +30,10 @@ export async function fetchBmTourDetail(id: string, branchId?: string) {
   const client = getClient();
 
   try {
-    const { data } = await client.query<{ bmTourDetail: BmTourDetail }, BmTourDetailVariables>({
+    const { data } = await client.query<
+      { bmTourDetail: BmTourDetail },
+      BmTourDetailVariables
+    >({
       query: TOUR_DETAIL_QUERY,
       variables: { id, branchId },
     });

@@ -1,8 +1,20 @@
 import { gql } from "@apollo/client";
 
 export const TOURS_QUERY = gql`
-  query BmTours {
-    bmTours {
+  query BmTours(
+    $page: Int
+    $perPage: Int
+    $status: STATUS_TOUR
+    $tags: [String]
+    $branchId: String
+  ) {
+    bmTours(
+      page: $page
+      perPage: $perPage
+      status: $status
+      tags: $tags
+      branchId: $branchId
+    ) {
       total
       list {
         _id
@@ -13,6 +25,9 @@ export const TOURS_QUERY = gql`
         viewCount
         name
         itineraryId
+        itinerary {
+          images
+        }
         refNumber
       }
     }

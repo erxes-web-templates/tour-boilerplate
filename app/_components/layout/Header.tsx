@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { CmsMenuList } from "@/types/cms";
+import { menus } from "@/data/configs.json";
 
-export default function Header({ menuList }: { menuList: CmsMenuList[] }) {
+export default function Header() {
   return (
     <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
@@ -9,8 +10,8 @@ export default function Header({ menuList }: { menuList: CmsMenuList[] }) {
           Adventure Tours.
         </Link>
         <div className="space-x-4">
-          {menuList.map((menu) => (
-            <Link key={menu._id} href={menu.url} className="hover:underline">
+          {menus.main.map((menu) => (
+            <Link key={menu.url} href={menu.url} className="hover:underline">
               {menu.label}
             </Link>
           ))}
