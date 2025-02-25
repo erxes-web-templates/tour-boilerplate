@@ -12,7 +12,7 @@ interface Section {
   order: number;
   content?: string;
   contentType?: string;
-  contentTypeId?: string;
+  contentTypeId?: string | null;
 }
 
 // Props for the render function

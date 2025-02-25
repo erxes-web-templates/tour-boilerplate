@@ -1,13 +1,13 @@
 {
   "template": "tour",
-  "templateId": "tour-1",
+  "templateId": "tour-boilerplate",
   "meta": {
-    "title": "Test",
-    "description": "Test",
+    "title": "ProjectBoiler",
+    "description": "ProjectBoiler",
     "logo": "",
     "favicon": "",
     "keywords": "",
-    "author": "tourism"
+    "author": "localhost"
   },
   "appearance": {
     "theme": "light",
@@ -27,6 +27,6 @@
   "additional": {
     "copyright": { "text": "All rights reserved." },
     "social": [],
-    "integrations": { "messengerId": "rEITI2ljNomvdJdWkp-Zt" }
+    "integrations": { "messengerId": null }
   }
 }

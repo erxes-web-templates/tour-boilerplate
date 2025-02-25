@@ -5,7 +5,7 @@ interface Section {
   order: number;
   content?: string;
   contentType?: string;
-  contentTypeId?: string;
+  contentTypeId?: string | null;
 }
 
 export type { Section };

@@ -1,16 +1,26 @@
 import Link from "next/link";
-import { CmsMenuList } from "@/types/cms";
-import { menus } from "@/data/configs.json";
+import data from "@/data/configs.json";
+import Image from "next/image";
+import { getFileUrl } from "@/lib/utils";
 
 export default function Header() {
   return (
     <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          Adventure Tours.
+          {data.meta.logo ? (
+            <Image
+              alt="logo"
+              src={getFileUrl(data.meta.logo)}
+              width={50}
+              height={30}
+            />
+          ) : (
+            data.meta.title
+          )}
         </Link>
         <div className="space-x-4">
-          {menus.main.map((menu) => (
+          {data.menus.main.map((menu) => (
             <Link key={menu.url} href={menu.url} className="hover:underline">
               {menu.label}
             </Link>
