@@ -5,7 +5,7 @@ import Header from "./_components/layout/Header";
 import Footer from "./_components/layout/Footer";
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
 import data from "../data/configs.json";
-import { fetchMenuList } from "@/lib/fetchCms";
+// import { fetchMenuList } from "@/lib/fetchCms";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

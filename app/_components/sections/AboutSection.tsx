@@ -27,7 +27,7 @@ const AboutSection = () => {
               providing you with top-notch service, ensuring every aspect of
               your journey is carefully planned and executed to perfection.
             </p>
-            <Button variant="outline">Learn More</Button>
+            <Button>Learn More</Button>
           </div>
         </div>
       </div>
