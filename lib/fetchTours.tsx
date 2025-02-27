@@ -17,6 +17,11 @@ export async function fetchBmTours(
     const { data } = await client.query<BmToursData>({
       query: TOURS_QUERY,
       variables: { page, perPage, ...config },
+      context: {
+        headers: {
+          "erxes-app-token": process.env.ERXES_APP_TOKEN,
+        },
+      },
     });
 
     return data.bmTours;
@@ -36,6 +41,11 @@ export async function fetchBmTourDetail(id: string, branchId?: string) {
     >({
       query: TOUR_DETAIL_QUERY,
       variables: { id, branchId },
+      context: {
+        headers: {
+          "erxes-app-token": process.env.ERXES_APP_TOKEN,
+        },
+      },
     });
 
     return data.bmTourDetail;

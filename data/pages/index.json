@@ -7,17 +7,14 @@
       "content": "Welcome to Adventure Awaits!",
       "order": 0,
       "contentType": "imageText",
-      "contentTypeId": null,
+      "contentTypeId": "",
       "config": {
         "image": {
-          "file": {
-            "path": "./pexels-egos68-17805369.jpg",
-            "relativePath": "./pexels-egos68-17805369.jpg"
-          },
-          "url": "AufLyHHwLdknaYz9FaryWpexels-egos68-17805369.jpg"
+          "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" },
+          "initUrl": "/images/hero.jpg"
         },
         "title": "Discover Your Next Great Adventure",
-        "description": "<p>Explore breathtaking destinations and unforgettable experiences. 213</p>",
+        "description": "Explore breathtaking destinations and unforgettable experiences.",
         "primaryCta": "Explore Tours",
         "primaryCtaUrl": "/tours"
       }
@@ -27,7 +24,7 @@
       "content": "About Us",
       "order": 1,
       "contentType": "imageText",
-      "contentTypeId": null,
+      "contentTypeId": "",
       "config": {
         "image": {
           "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" },
@@ -44,8 +41,7 @@
       "content": "Featured Tours",
       "order": 2,
       "contentType": "bms:tours",
-      "contentTypeId": null,
-      "config": null
+      "contentTypeId": ""
     },
     {
       "type": "youtube",
@@ -53,9 +49,7 @@
       "order": 3,
       "contentType": "youtube",
       "contentTypeId": "",
-      "config": {
-        "videoUrl": "https://www.youtube.com/watch?v=iTB3mCIBWMA"
-      }
+      "config": { "videoUrl": "https://www.youtube.com/watch?v=iTB3mCIBWMA" }
     }
   ]
 }
