@@ -3,11 +3,14 @@ import { Section } from "@/types/section";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { getFileUrl } from "@/lib/utils";
 const HeroSection = ({ section }: { section: Section }) => {
   return (
     <section className="relative h-[600px]">
       <Image
-        src="/placeholder.svg"
+        src={
+          getFileUrl(section.config.image.url) || section.config.image.initUrl
+        }
         alt="Beautiful landscape"
         layout="fill"
         objectFit="cover"

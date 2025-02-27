@@ -2,22 +2,5 @@
   "title": "About | Home title",
   "description": "This is the about page",
   "coverImage": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-  "pageItems": [
-    {
-      "config": {},
-      "type": "hero",
-      "content": "",
-      "order": 0,
-      "contentType": "cms:posts",
-      "contentTypeId": "5d9b1b3b1c9d440000f3f3b4"
-    },
-    {
-      "config": {},
-      "type": "youtube",
-      "content": "",
-      "order": 1,
-      "contentType": "cms:page",
-      "contentTypeId": "5d9b1b3b1c9d440000f3f3b4"
-    }
-  ]
+  "pageItems": []
 }

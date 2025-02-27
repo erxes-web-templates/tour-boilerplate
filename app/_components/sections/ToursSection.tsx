@@ -11,9 +11,10 @@ import React from "react";
 import Image from "next/image";
 import { fetchBmTours } from "@/lib/fetchTours";
 import Link from "next/link";
+import { getFileUrl } from "@/lib/utils";
 
 const ToursSection = async () => {
-  const tours = await fetchBmTours(1, 3);
+  const tours = await fetchBmTours(1, 4);
   console.log(tours, "tours");
 
   return (
@@ -26,7 +27,7 @@ const ToursSection = async () => {
               <CardHeader>
                 {tour.itinerary?.images[0] && (
                   <Image
-                    src={tour.itinerary.images[0].url}
+                    src={getFileUrl(tour.itinerary.images[0])}
                     alt={tour.name}
                     width={300}
                     height={200}

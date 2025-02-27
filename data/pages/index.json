@@ -46,6 +46,16 @@
       "contentType": "bms:tours",
       "contentTypeId": null,
       "config": null
+    },
+    {
+      "type": "youtube",
+      "content": "",
+      "order": 3,
+      "contentType": "youtube",
+      "contentTypeId": "",
+      "config": {
+        "videoUrl": "https://www.youtube.com/watch?v=iTB3mCIBWMA"
+      }
     }
   ]
 }
