@@ -14,13 +14,11 @@ export async function fetchBmTours(
   const client = getClient();
 
   console.log(
-    `[BM Tours] Fetching page ${page}, items per page: ${perPage}, config:`,
-    config
+    `[BM Tours] Request params - page: ${page}, perPage: ${perPage}, config:`,
+    JSON.stringify(config)
   );
 
   try {
-    const startTime = performance.now();
-
     const { data } = await client.query<BmToursData>({
       query: TOURS_QUERY,
       variables: { page, perPage, ...config },
@@ -31,29 +29,27 @@ export async function fetchBmTours(
       },
     });
 
-    const duration = performance.now() - startTime;
-    console.log(
-      `[BM Tours] Successfully fetched ${
-        data.bmTours.list.length
-      } items in ${duration.toFixed(2)}ms`
-    );
-
     return data.bmTours;
   } catch (error) {
     console.error("[BM Tours] Error fetching data:", error);
 
-    // More detailed error information
-    if (error instanceof Error) {
-      if ((error as any).networkError) {
+    // Log more detailed error information
+    if ((error as any).graphQLErrors) {
+      console.error(
+        "[BM Tours] GraphQL errors:",
+        JSON.stringify((error as any).graphQLErrors)
+      );
+    }
+    if ((error as any).networkError) {
+      console.error(
+        "[BM Tours] Network error details:",
+        (error as any).networkError
+      );
+      // For 400 errors, the response might contain more information
+      if ((error as any).networkError.result) {
         console.error(
-          "[BM Tours] Network error details:",
-          (error as any).networkError
-        );
-      }
-      if ((error as any).graphQLErrors) {
-        console.error(
-          "[BM Tours] GraphQL errors:",
-          (error as any).graphQLErrors
+          "[BM Tours] Error response:",
+          JSON.stringify((error as any).networkError.result)
         );
       }
     }
