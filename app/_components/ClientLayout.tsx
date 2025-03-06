@@ -11,6 +11,7 @@ import AboutPage from "../about/page";
 import LoginPage from "../auth/login/page";
 import RegisterPage from "../auth/register/page";
 import ContactPage from "../contact/page";
+import LegalPage from "../legal/page";
 
 const featuredTours = [
   {
@@ -58,6 +59,16 @@ export default function ClientBoilerplateLayout() {
         return <RegisterPage />;
       case "contact":
         return <ContactPage />;
+      case "terms":
+        return <LegalPage active="terms" />;
+      case "privacy":
+        return <LegalPage active="privacy" />;
+      case "profile":
+        return <div>Profile</div>;
+      // case "checkout":
+      //   return <div>Checkout</div>;
+      // case "confirmation":
+      //   return <div>Confirmation</div>;
       default:
         return;
     }
