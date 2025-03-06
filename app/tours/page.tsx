@@ -5,14 +5,7 @@ import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getFileUrl, templateUrl } from "../../../../../../lib/utils";
 const ToursPage = () => {
@@ -31,13 +24,7 @@ const ToursPage = () => {
           <Card key={tour._id} className="mb-2">
             <CardHeader>
               {tour.itinerary?.images[0] && (
-                <Image
-                  src={getFileUrl(tour.itinerary.images[0])}
-                  alt={tour.name}
-                  width={300}
-                  height={200}
-                  className="rounded-t-lg"
-                />
+                <Image src={getFileUrl(tour.itinerary.images[0])} alt={tour.name} width={300} height={200} className="rounded-t-lg" />
               )}
             </CardHeader>
             <CardContent>

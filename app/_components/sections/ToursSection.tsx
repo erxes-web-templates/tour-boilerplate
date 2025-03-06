@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +11,7 @@ import { Section } from "@/types/sections";
 const ToursSection = ({ section }: { section: Section }) => {
   const { data } = useQuery(TOURS_QUERY, {
     variables: {
-      perPage: 4,
+      perPage: 6,
       page: 1,
     },
   });
@@ -34,13 +27,7 @@ const ToursSection = ({ section }: { section: Section }) => {
             <Card key={tour._id}>
               <CardHeader>
                 {tour.itinerary?.images[0] && (
-                  <Image
-                    src={getFileUrl(tour.itinerary.images[0])}
-                    alt={tour.name}
-                    width={300}
-                    height={200}
-                    className="rounded-t-lg"
-                  />
+                  <Image src={getFileUrl(tour.itinerary.images[0])} alt={tour.name} width={300} height={200} className="rounded-t-lg" />
                 )}
               </CardHeader>
               <CardContent>
@@ -60,7 +47,7 @@ const ToursSection = ({ section }: { section: Section }) => {
           ))}
         </div>
         <div className=" text-center mt-6 ">
-          <Link className="underline" href="/tours">
+          <Link className="underline" href={templateUrl("/tours")}>
             Show All tours
           </Link>
         </div>

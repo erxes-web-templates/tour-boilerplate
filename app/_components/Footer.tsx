@@ -12,23 +12,16 @@ export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
     },
   });
 
-  // const templateUrl = (slug: string) => {
-  //   // http://localhost:3400/dashboard/projects/nfwq9JHMZz7Kfa7M2iN_f?template=tour-boilerplate&pageName=home&style=3
-
-  //   const url = window.location.href;
-  //   const newUrl = new URL(url);
-  //   const template = newUrl.searchParams.get("template");
-  //   return `/dashboard/projects/${cpDetail._id}?template=${template}&pageName=${slug}`;
-  // };
-
   const menus = data?.cmsMenuList || [];
-  console.log(menus, "menus at footer");
+
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h3 className="text-xl font-bold mb-2">{cpDetail?.name}</h3>
+            <h3 className="text-xl font-bold mb-2">
+              <Link href={templateUrl("/")}>{cpDetail?.name}</Link>
+            </h3>
             <p>{cpDetail?.description}</p>
           </div>
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
@@ -36,10 +29,7 @@ export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
             <ul>
               {menus.map((menu: MenuItem) => (
                 <li key={menu._id}>
-                  <Link
-                    href={templateUrl(menu.url)}
-                    className="hover:underline"
-                  >
+                  <Link href={templateUrl(menu.url)} className="hover:underline">
                     {menu.label}
                   </Link>
                 </li>

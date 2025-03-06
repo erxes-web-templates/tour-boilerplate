@@ -27,7 +27,7 @@ const usePage = (slug: string | null) => {
 
   const sections = pageData?.cmsPage?.pageItems || [];
 
-  console.log(slug, sections, "pageData");
+  console.log("slug --------------- glus", slug);
 
   const renderSection = (section: Section) => {
     switch (section.type) {
@@ -52,11 +52,7 @@ const usePage = (slug: string | null) => {
     }
     return (
       <Suspense fallback={<CircleLoader />}>
-        {sections &&
-          sections.length > 0 &&
-          sections.map((section: Section, index: number) => (
-            <div key={index}>{renderSection(section)}</div>
-          ))}
+        {sections && sections.length > 0 && sections.map((section: Section, index: number) => <div key={index}>{renderSection(section)}</div>)}
       </Suspense>
     );
   };

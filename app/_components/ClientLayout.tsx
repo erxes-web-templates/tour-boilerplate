@@ -7,6 +7,10 @@ import useClientPortal from "../../../../../../hooks/useClientPortal";
 import TourBoilerPlateHome from "../page";
 import ToursPage from "../tours/page";
 import TourDetailPage from "../tours/[id]/page";
+import AboutPage from "../about/page";
+import LoginPage from "../auth/login/page";
+import RegisterPage from "../auth/register/page";
+import ContactPage from "../contact/page";
 
 const featuredTours = [
   {
@@ -46,6 +50,14 @@ export default function ClientBoilerplateLayout() {
         return <ToursPage />;
       case "tour":
         return <TourDetailPage />;
+      case "about":
+        return <AboutPage />;
+      case "login":
+        return <LoginPage />;
+      case "register":
+        return <RegisterPage />;
+      case "contact":
+        return <ContactPage />;
       default:
         return;
     }

@@ -20,25 +20,12 @@ export default function Header({ cpDetail }: { cpDetail: CPDetail }) {
   return (
     <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold">
-          {cpDetail.logo ? (
-            <Image
-              src={getFileUrl(cpDetail.logo)}
-              alt={cpDetail.name}
-              width={50}
-              height={50}
-            />
-          ) : (
-            cpDetail.name
-          )}
+        <Link href={templateUrl("/")} className="text-2xl font-bold">
+          {cpDetail.logo ? <Image src={getFileUrl(cpDetail.logo)} alt={cpDetail.name} width={50} height={50} /> : cpDetail.name}
         </Link>
         <div className="space-x-4">
           {menus.map((menu: MenuItem) => (
-            <Link
-              key={menu._id}
-              href={templateUrl(menu.url)}
-              className="hover:underline"
-            >
+            <Link key={menu._id} href={templateUrl(menu.url)} className="hover:underline">
               {menu.label}
             </Link>
           ))}

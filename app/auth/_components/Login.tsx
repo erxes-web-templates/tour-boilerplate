@@ -2,14 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -48,65 +41,28 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="flex min-h-[100dvh] items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+    <div className="flex min-h-[80dvh] items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
       <div>
-        {/* <h2 className="text-center mb-6 text-4xl font-bold">BMS LOGO</h2> */}
-        <div className="flex mb-6 justify-between">
-          <Image
-            src="/images/erxes-logo.svg"
-            alt="logo"
-            width={160}
-            height={160}
-          />
-          <Image
-            src="/images/travel-logo.svg"
-            alt="logo"
-            width={160}
-            height={160}
-            className="ml-3"
-          />
-        </div>
         <Card className="w-full max-w-md">
           <form onSubmit={handleSubmit}>
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl">
-                Sign in to your account
-              </CardTitle>
-              <CardDescription>
-                Enter your email and password below to access your account.
-              </CardDescription>{" "}
+              <CardTitle className="text-2xl">Sign in to your account</CardTitle>
+              <CardDescription>Enter your email and password below to access your account.</CardDescription>{" "}
             </CardHeader>
 
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <Input id="email" type="email" placeholder="m@example.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
-                  <Link
-                    href="#"
-                    className="text-sm underline underline-offset-4 hover:text-primary"
-                    prefetch={false}
-                  >
+                  <Link href="#" className="text-sm underline underline-offset-4 hover:text-primary" prefetch={false}>
                     Forgot password?
                   </Link>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
               {/* {error && (
                 <Alert>

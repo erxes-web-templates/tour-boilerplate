@@ -10,6 +10,7 @@ export default function TourBoilerPlateHome() {
   const pageName = searchParams.get("pageName"); //pageName = about, tours, contact etc
   const PageContent = usePage(pageName);
 
+  console.log("about", pageName);
   return (
     <div>
       <PageContent />
