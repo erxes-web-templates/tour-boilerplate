@@ -32,7 +32,7 @@ export default function ContactPage() {
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold tracking-tight mb-2">Contact Us</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Have questions or need assistance? We're here to help. Reach out to us using the form below or through our contact information.
+          {`          Have questions or need assistance? We're here to help. Reach out to us using the form below or through our contact information.`}{" "}
         </p>
       </div>
 
@@ -130,14 +130,12 @@ export default function ContactPage() {
           <Card>
             <CardHeader>
               <CardTitle>Send Us a Message</CardTitle>
-              <CardDescription>Fill out the form below and we'll get back to you as soon as possible</CardDescription>
             </CardHeader>
             <CardContent>
               {formSubmitted ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center">
                   <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
                   <h3 className="text-xl font-medium mb-2">Message Sent!</h3>
-                  <p className="text-muted-foreground">Thank you for reaching out. We'll get back to you shortly.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">

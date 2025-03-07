@@ -1,3 +1,5 @@
+"use client";
+
 import usePage from "../../lib/usePage";
 import { useSearchParams } from "next/navigation";
 import React from "react";

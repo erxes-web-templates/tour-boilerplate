@@ -8,7 +8,15 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getFileUrl, templateUrl } from "../../../../../../lib/utils";
+import { useSearchParams } from "next/navigation";
+import usePage from "../../lib/usePage";
 const ToursPage = () => {
+  const searchParams = useSearchParams();
+
+  const pageName = searchParams.get("pageName"); //pageName = about, tours, contact etc
+
+  const PageContent = usePage(pageName);
+
   const { data, loading } = useQuery(TOURS_QUERY);
 
   const tours = data?.bmTours?.list || [];
@@ -43,6 +51,7 @@ const ToursPage = () => {
           </Card>
         ))}
       </div>
+      <PageContent />
     </>
   );
 };

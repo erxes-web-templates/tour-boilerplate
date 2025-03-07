@@ -14,7 +14,7 @@ import CircleLoader from "../../../../../components/common/CircleLoader";
 import EmptyState from "../../../../../components/common/EmptyState";
 const usePage = (slug: string | null) => {
   const params = useParams<{ id: string }>();
-  const { data: pageData } = useQuery(GET_CMS_PAGE, {
+  const { data: pageData, loading } = useQuery(GET_CMS_PAGE, {
     variables: {
       slug: slug,
     },
@@ -49,6 +49,13 @@ const usePage = (slug: string | null) => {
   const PageContent = () => {
     if (!sections || sections.length === 0) {
       return <EmptyState title="No contents available" />;
+    }
+    if (loading) {
+      return (
+        <div>
+          <CircleLoader />
+        </div>
+      );
     }
     return (
       <Suspense fallback={<CircleLoader />}>

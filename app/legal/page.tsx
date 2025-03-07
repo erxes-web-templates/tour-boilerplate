@@ -4,14 +4,12 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowUp, FileText, Shield, AlertCircle, Cookie } from "lucide-react";
+import { ArrowUp, FileText, Shield, AlertCircle } from "lucide-react";
 
-export default function LegalPage({ active }: { active: string }) {
+export default function LegalPage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeTab, setActiveTab] = useState("terms");
 
-  console.log(active, "act");
-  // Handle scroll to show/hide the scroll to top button
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 400) {
@@ -97,10 +95,6 @@ export default function LegalPage({ active }: { active: string }) {
                 <h2 className="text-xl font-semibold mb-3">1. Introduction & Acceptance of Terms</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    Welcome to Adventure Tours ("Company", "we", "us", or "our"). These Terms and Conditions govern your use of our website, services,
-                    and tour packages.
-                  </p>
-                  <p>
                     By accessing our website, booking a tour, or using our services, you agree to be bound by these Terms and Conditions. If you
                     disagree with any part of these terms, you may not access our website or use our services.
                   </p>
@@ -111,17 +105,6 @@ export default function LegalPage({ active }: { active: string }) {
 
               <section id="definitions">
                 <h2 className="text-xl font-semibold mb-3">2. Definitions</h2>
-                <div className="space-y-3 text-muted-foreground">
-                  <p>
-                    <strong>"Customer"</strong> or <strong>"You"</strong> refers to the individual or entity booking or participating in our tours.
-                  </p>
-                  <p>
-                    <strong>"Tour"</strong> refers to any travel package, excursion, or service offered by Adventure Tours.
-                  </p>
-                  <p>
-                    <strong>"Booking"</strong> refers to the reservation of any tour or service provided by Adventure Tours.
-                  </p>
-                </div>
               </section>
 
               <Separator />
@@ -184,8 +167,9 @@ export default function LegalPage({ active }: { active: string }) {
                 <h2 className="text-xl font-semibold mb-3">5. Travel Documents & Requirements</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    <strong>5.1 Responsibility</strong>: It is the customer's responsibility to ensure they have valid passports, visas, permits, and
-                    meet all health requirements necessary for the tour.
+                    <strong>5.1 Responsibility</strong>:{" "}
+                    {`It is the customer's responsibility to ensure they have valid passports, visas, permits, and
+                      meet all health requirements necessary for the tour.`}
                   </p>
                   <p>
                     <strong>5.2 Documentation</strong>: We are not responsible for any consequences arising from insufficient or improper
@@ -410,8 +394,8 @@ export default function LegalPage({ active }: { active: string }) {
                 <h2 className="text-xl font-semibold mb-3">6. Changes to This Privacy Policy</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Last Updated" date and
-                    the updated version will be effective as soon as it is accessible.
+                    {`We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Last Updated" date and
+                    the updated version will be effective as soon as it is accessible.`}
                   </p>
                 </div>
               </section>

@@ -3,15 +3,15 @@
 import { useQuery } from "@apollo/client";
 import { useSearchParams } from "next/navigation";
 import { TOUR_DETAIL_QUERY } from "../../../graphql/queries";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import usePage from "../../../lib/usePage";
 
-export default async function TourDetailPage() {
+export default function TourDetailPage() {
   const searchParams = useSearchParams();
+
+  const pageName = searchParams.get("pageName"); //pageName = about, tours, contact etc
+
+  const PageContent = usePage(pageName);
 
   const tourId = searchParams.get("tourId");
 
@@ -36,8 +36,7 @@ export default async function TourDetailPage() {
             <strong>Status:</strong> {tour.status}
           </p>
           <p>
-            <strong>Start Date:</strong>{" "}
-            {new Date(tour.startDate).toLocaleDateString()}
+            <strong>Start Date:</strong> {new Date(tour.startDate).toLocaleDateString()}
           </p>
           <p>
             <strong>Cost:</strong> ${tour?.cost?.toLocaleString()}
@@ -60,6 +59,9 @@ export default async function TourDetailPage() {
           <h2 className="text-xl font-semibold mb-2">Description</h2>
           <p>{tour.content}</p>
         </div>
+      </div>
+      <div>
+        <PageContent />
       </div>
     </div>
   );

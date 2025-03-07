@@ -13,30 +13,6 @@ import RegisterPage from "../auth/register/page";
 import ContactPage from "../contact/page";
 import LegalPage from "../legal/page";
 
-const featuredTours = [
-  {
-    id: 1,
-    title: "Mountain Trek",
-    description: "Experience the thrill of mountain climbing",
-    price: "$999",
-    image: "/placeholder.svg",
-  },
-  {
-    id: 2,
-    title: "Beach Getaway",
-    description: "Relax on pristine beaches",
-    price: "$799",
-    image: "/placeholder.svg",
-  },
-  {
-    id: 3,
-    title: "City Explorer",
-    description: "Discover vibrant city cultures",
-    price: "$899",
-    image: "/placeholder.svg",
-  },
-];
-
 export default function ClientBoilerplateLayout() {
   const params = useParams<{ id: string }>();
   const searchParams = useSearchParams();
@@ -60,9 +36,9 @@ export default function ClientBoilerplateLayout() {
       case "contact":
         return <ContactPage />;
       case "terms":
-        return <LegalPage active="terms" />;
+        return <LegalPage />;
       case "privacy":
-        return <LegalPage active="privacy" />;
+        return <LegalPage />;
       case "profile":
         return <div>Profile</div>;
       // case "checkout":
