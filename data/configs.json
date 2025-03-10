@@ -1,14 +1,7 @@
 {
   "template": "tour",
-  "templateId": "tour-boilerplate",
-  "meta": {
-    "title": "ProjectBoiler",
-    "description": "ProjectBoiler",
-    "logo": "",
-    "favicon": "",
-    "keywords": "",
-    "author": "localhost"
-  },
+  "templateId": "tour-1",
+  "meta": { "title": "Suxtest", "description": "Suxtest", "logo": "", "favicon": "", "keywords": "", "author": "tourism" },
   "appearance": {
     "theme": "light",
     "baseFont": "Roboto, sans-serif",
@@ -22,11 +15,19 @@
       { "label": "About", "url": "/about", "parentId": null },
       { "label": "Contact", "url": "/contact", "parentId": null }
     ],
-    "footerMenu": []
+    "footer": []
   },
-  "additional": {
-    "copyright": { "text": "All rights reserved." },
-    "social": [],
-    "integrations": { "messengerId": null }
-  }
+  "copyright": "All rights reserved.",
+  "externalLinks": {
+    "facebook": "",
+    "twitter": "",
+    "instagram": "",
+    "linkedin": "",
+    "youtube": "",
+    "whatsapp": "",
+    "address": "",
+    "phones": ["123"],
+    "emails": [""]
+  },
+  "additional": { "copyright": { "text": "All rights reserved." }, "social": [], "integrations": {} }
 }

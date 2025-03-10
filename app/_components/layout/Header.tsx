@@ -8,16 +8,7 @@ export default function Header() {
     <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          {data.meta.logo ? (
-            <Image
-              alt="logo"
-              src={getFileUrl(data.meta.logo)}
-              width={50}
-              height={30}
-            />
-          ) : (
-            data.meta.title
-          )}
+          {data.meta.logo ? <Image alt={data.meta.title} src={getFileUrl(data.meta.logo)} width={50} height={30} /> : data.meta.title}
         </Link>
         <div className="space-x-4">
           {data.menus.main.map((menu) => (

@@ -5,6 +5,7 @@ import Header from "./_components/layout/Header";
 import Footer from "./_components/layout/Footer";
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
 import data from "../data/configs.json";
+import { getFileUrl } from "@/lib/utils";
 // import { fetchMenuList } from "@/lib/fetchCms";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,13 +14,14 @@ export const metadata: Metadata = {
   description: data.meta.description,
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="keywords" content={data.meta.keywords} />
+        {/* <link rel="icon" href={getFileUrl(data.meta.favicon)} /> */}
+        {/* <meta property="og:image" content={getFileUrl(data.meta.logo)} /> */}
+      </head>
       <body className={inter.className}>
         <ApolloWrapper>
           <Header />

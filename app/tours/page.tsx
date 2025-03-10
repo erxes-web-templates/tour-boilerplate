@@ -1,23 +1,21 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { fetchBmTours } from "@/lib/fetchTours";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
+import pageData from "@/data/pages/tours.json";
 import React from "react";
 import { getFileUrl } from "@/lib/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: pageData.title,
+  description: pageData.description,
+};
 
 const page = async () => {
   const { list } = await fetchBmTours(1, 4);
 
-  console.log(list, " list");
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -25,13 +23,7 @@ const page = async () => {
           <Card key={tour._id}>
             <CardHeader>
               {tour.itinerary?.images[0] && (
-                <Image
-                  src={getFileUrl(tour.itinerary.images[0])}
-                  alt={tour.name}
-                  width={300}
-                  height={200}
-                  className="rounded-t-lg"
-                />
+                <Image src={getFileUrl(tour.itinerary.images[0])} alt={tour.name} width={300} height={200} className="rounded-t-lg" />
               )}
             </CardHeader>
             <CardContent>

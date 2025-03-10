@@ -1,13 +1,41 @@
 import { fetchBmTourDetail } from "@/lib/fetchTours";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Itinerary } from "@/types/tours";
+import { Metadata } from "next";
+import { getFileUrl } from "@/lib/utils";
 
 type Params = Promise<{ id: string }>;
+
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const { id } = await params;
+
+  // fetch data
+  const tour = await fetchBmTourDetail(id);
+
+  if (!tour) {
+    return {
+      title: "Tour not found",
+      description: "",
+      openGraph: {
+        images: [],
+      },
+    };
+  }
+
+  return {
+    title: tour.name,
+    description: tour.content,
+    openGraph: {
+      images: [getFileUrl(tour.itinerary?.images[0])],
+    },
+  };
+}
 
 export default async function TourDetailPage(props: { params: Params }) {
   const { id } = await props.params;
@@ -29,8 +57,7 @@ export default async function TourDetailPage(props: { params: Params }) {
             <strong>Status:</strong> {tour.status}
           </p>
           <p>
-            <strong>Start Date:</strong>{" "}
-            {new Date(tour.startDate).toLocaleDateString()}
+            <strong>Start Date:</strong> {new Date(tour.startDate).toLocaleDateString()}
           </p>
           <p>
             <strong>Cost:</strong> ${tour.cost.toLocaleString()}

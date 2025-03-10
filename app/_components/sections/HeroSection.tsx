@@ -7,14 +7,15 @@ import { getFileUrl } from "@/lib/utils";
 const HeroSection = ({ section }: { section: Section }) => {
   return (
     <section className="relative h-[600px]">
-      <Image
-        src={
-          getFileUrl(section.config.image.url) || section.config.image.initUrl
-        }
-        alt="Beautiful landscape"
-        layout="fill"
-        objectFit="cover"
-      />
+      {section.config.image.url ||
+        (section.config.image.initUrl && (
+          <Image
+            src={getFileUrl(section.config.image?.url) || section.config.image?.initUrl}
+            alt="Beautiful landscape"
+            layout="fill"
+            objectFit="cover"
+          />
+        ))}
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-5xl font-bold mb-4">{section.config.title}</h1>

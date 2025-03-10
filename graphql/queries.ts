@@ -254,3 +254,29 @@ export const GET_CMS_POST = gql`
     }
   }
 `;
+
+export const GET_FORM_DETAIL = gql`
+  query FormDetail($id: String!) {
+    formDetail(_id: $id) {
+      _id
+      title
+      description
+      fields {
+        _id
+        code
+        field
+        column
+        text
+        validation
+        name
+        content
+        contentType
+        contentTypeId
+        order
+        options
+        optionsValues
+        type
+      }
+    }
+  }
+`;
