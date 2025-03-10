@@ -5,6 +5,7 @@ import AboutSection from "./_components/sections/AboutSection";
 import FormSection from "./_components/sections/FormSection";
 import YoutubeSection from "./_components/sections/YoutubeSection";
 import { renderSections } from "@/lib/renderSections";
+import { Section } from "@/types/section";
 
 export const metadata = {
   title: pageData.title,
@@ -22,7 +23,7 @@ export default function Home() {
 
   // Use the function to render sections
   const renderedSections = renderSections({
-    sections: pageData.pageItems,
+    sections: pageData.pageItems as Section[],
     components: sectionComponents,
   });
 

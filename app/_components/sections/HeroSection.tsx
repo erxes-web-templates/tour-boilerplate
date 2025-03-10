@@ -5,21 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { getFileUrl } from "@/lib/utils";
 const HeroSection = ({ section }: { section: Section }) => {
+  const renderImage = () => {
+    const { image } = section.config;
+
+    if (!image) return null;
+
+    const imageUrl = getFileUrl(image.url) || image.initUrl;
+
+    return imageUrl ? <Image src={imageUrl} alt="Beautiful landscape" layout="fill" objectFit="cover" /> : null;
+  };
+
   return (
     <section className="relative h-[600px]">
-      {section.config.image.url ||
-        (section.config.image.initUrl && (
-          <Image
-            src={getFileUrl(section.config.image?.url) || section.config.image?.initUrl}
-            alt="Beautiful landscape"
-            layout="fill"
-            objectFit="cover"
-          />
-        ))}
+      {renderImage()}
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-5xl font-bold mb-4">{section.config.title}</h1>
-          <p className="text-xl mb-8">{section.content} </p>
+          {section.content && <p className="text-xl mb-8" dangerouslySetInnerHTML={{ __html: section.content }}></p>}
           {section.config.primaryCtaUrl && (
             <Link href={section.config.primaryCtaUrl}>
               <Button size="lg" variant="secondary">

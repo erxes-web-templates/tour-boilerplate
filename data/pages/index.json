@@ -9,10 +9,7 @@
       "contentType": "imageText",
       "contentTypeId": "",
       "config": {
-        "image": {
-          "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" },
-          "initUrl": "/images/hero.jpg"
-        },
+        "image": { "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" }, "initUrl": "/images/hero.jpg" },
         "title": "Discover Your Next Great Adventure",
         "description": "Explore breathtaking destinations and unforgettable experiences.",
         "primaryCta": "Explore Tours",
@@ -26,30 +23,56 @@
       "contentType": "imageText",
       "contentTypeId": "",
       "config": {
-        "image": {
-          "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" },
-          "initUrl": "/images/about.jpg"
-        },
+        "image": { "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" }, "initUrl": "/images/about.jpg" },
         "title": "Who We Are",
-        "description": "At Adventure Awaits, we are passionate about crafting unforgettable travel experiences. With years of expertise, we specialize in curating unique tours that connect you with culture, nature, and adventure.",
+        "description": "<p>At 23 Adventure Awaits, we are passionate about crafting unforgettable travel experiences. With years of expertise, we specialize in curating unique tours that connect you with culture, nature, and adventure.</p>",
         "primaryCta": "Learn More",
         "primaryCtaUrl": "/about"
       }
     },
+    { "type": "tours", "content": "Featured Tours", "order": 2, "contentType": "bms:tours", "contentTypeId": "", "config": null },
     {
-      "type": "tours",
-      "content": "Featured Tours",
-      "order": 2,
-      "contentType": "bms:tours",
-      "contentTypeId": ""
+      "type": "imageText",
+      "content": "<p>This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!</p>",
+      "order": 3,
+      "contentType": "imageText",
+      "contentTypeId": "",
+      "config": {
+        "title": "About Tour",
+        "description": "<p>This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!</p>",
+        "primaryCta": "More info",
+        "primaryCtaUrl": "/about"
+      }
     },
+    { "type": "tours", "content": "tours", "order": 4, "contentType": "bm:tours", "contentTypeId": "bm:tours", "config": null },
     {
       "type": "youtube",
-      "content": "",
-      "order": 3,
+      "content": null,
+      "order": 5,
       "contentType": "youtube",
-      "contentTypeId": "",
-      "config": { "videoUrl": "https://www.youtube.com/watch?v=iTB3mCIBWMA" }
-    }
+      "contentTypeId": null,
+      "config": { "videoUrl": "https://www.youtube.com/watch?v=uUhpy1SLhRw&t=14s" }
+    },
+    {
+      "type": "imageText",
+      "content": "<p>Car buy</p>",
+      "order": 6,
+      "contentType": "imageText",
+      "contentTypeId": null,
+      "config": {
+        "image": {
+          "file": {
+            "path": "./0.7518240661812883f839a5ebae9c6b0ca08e71a2d061977f (1).jpeg",
+            "relativePath": "./0.7518240661812883f839a5ebae9c6b0ca08e71a2d061977f (1).jpeg"
+          },
+          "url": "erxes-saas/glHhLT1hu4VutMffLHJmt0.7518240661812883f839a5ebae9c6b0ca08e71a2d061977f (1).jpeg"
+        },
+        "title": "Car for",
+        "description": "<p>Car buy</p>",
+        "primaryCta": "Book your next journey",
+        "primaryCtaUrl": "/cars"
+      }
+    },
+    { "type": "form", "content": "", "order": 7, "contentType": "form", "contentTypeId": "7NrogRLFBH7dzMLLN" }
   ]
 }

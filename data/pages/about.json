@@ -1,6 +1,20 @@
 {
-  "title": "About | Home title",
-  "description": "This is the about page",
-  "coverImage": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-  "pageItems": []
+  "title": "about",
+  "description": "about",
+  "pageItems": [
+    {
+      "type": "hero",
+      "content": "<p>This is a sample text about your amazing brand. Include as many details as you need!</p><p>This is a sample text about your amazing brand. Include as many details as you need!</p><p>This is a sample text about your amazing brand. Include as many details as you need!</p><p>This is a sample text about your amazing brand. Include as many details as you need!</p>",
+      "order": 0,
+      "contentType": "hero",
+      "config": {
+        "title": "About Us",
+        "description": "<p>This is a sample text about your amazing brand. Include as many details as you need!</p><p>This is a sample text about your amazing brand. Include as many details as you need!</p><p>This is a sample text about your amazing brand. Include as many details as you need!</p><p>This is a sample text about your amazing brand. Include as many details as you need!</p>",
+        "primaryCta": "More info",
+        "primaryCtaUrl": "/Tour",
+        "secondaryCta": "Book tour",
+        "secondaryCtaUrl": "/Tour"
+      }
+    }
+  ]
 }
