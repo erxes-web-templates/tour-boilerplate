@@ -1,7 +1,14 @@
 {
   "template": "tour",
-  "templateId": "tour-1",
-  "meta": { "title": "Suxtest", "description": "Suxtest", "logo": "", "favicon": "", "keywords": "", "author": "tourism" },
+  "templateId": "tour-boilerplate",
+  "meta": {
+    "title": "Suxtest",
+    "description": "descr",
+    "logo": "erxes-saas/Tgo5XD3c4D3hQZdDw2sallogo-02-01.png",
+    "favicon": "erxes-saas/ZWIhSYPoDp2lZccH7Pvgglogo-02-01.png",
+    "keywords": "test, 23, next",
+    "author": "tourism"
+  },
   "appearance": {
     "theme": "light",
     "baseFont": "Roboto, sans-serif",
@@ -15,19 +22,18 @@
       { "label": "About", "url": "/about", "parentId": null },
       { "label": "Contact", "url": "/contact", "parentId": null }
     ],
-    "footer": []
+    "footerMenu": []
   },
-  "copyright": "All rights reserved.",
-  "externalLinks": {
-    "facebook": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "youtube": "",
-    "whatsapp": "",
-    "address": "",
-    "phones": ["123"],
-    "emails": [""]
-  },
-  "additional": { "copyright": { "text": "All rights reserved." }, "social": [], "integrations": {} }
+  "additional": {
+    "copyright": { "text": "Copyright © 2025 " },
+    "social": [
+      { "name": "instagram", "url": "https://instagram.com/uuganb4y4r" },
+      { "name": "facebook", "url": "https://facebook.com" },
+      { "name": "whatsapp", "url": "+976 88779603" },
+      { "name": "phones", "url": ["+ 976 11223344"] },
+      { "name": "emails", "url": ["info@erxes.io"] },
+      { "name": "address", "url": "address" }
+    ],
+    "integrations": { "messengerId": null }
+  }
 }
