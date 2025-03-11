@@ -8,34 +8,34 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { gql, useMutation } from "@apollo/client"; // import { Alert, AlertDescription } from "@/components/ui/alert";
+import { toast } from "sonner";
 
 import Image from "next/image";
+import { LOGIN_MUTATION } from "../_graphql/mutations";
 
-const login = gql`
-  mutation Login($password: String!, $email: String!) {
-    login(password: $password, email: $email)
-  }
-`;
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const [loginFunc, { loading }] = useMutation(login);
+  const [loginFunc, { loading }] = useMutation(LOGIN_MUTATION);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const { data } = await loginFunc({
         variables: {
-          email,
+          login: email,
+          clientPortalId: "JiQMw8-_uBQov_jVxwb82",
           password,
         },
       });
-      if (data?.login) {
-        router.push("/");
+      if (data?.clientPortalLogin) {
+        window.location.href = "/";
+        toast.success("Logged in successfully");
       }
-    } catch (error) {
+    } catch (error: any) {
+      toast.error(`Login failed: ${error.message} `);
       console.log(error);
     }
   };

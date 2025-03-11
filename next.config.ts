@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         hostname: "localhost",
         port: "4000",
       },
+      {
+        protocol: "https",
+        hostname: "tourism.app.erxes.io",
+      },
     ],
   },
 };

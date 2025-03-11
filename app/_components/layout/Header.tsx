@@ -1,9 +1,26 @@
+"use client";
 import Link from "next/link";
 import data from "@/data/configs.json";
 import Image from "next/image";
 import { getFileUrl } from "@/lib/utils";
+import { CURRENT_USER } from "@/app/auth/_graphql/queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { LOGOUT_MUTATION } from "@/app/auth/_graphql/mutations";
 
 export default function Header() {
+  const { data: userData } = useQuery(CURRENT_USER);
+
+  const currentUser = userData?.clientPortalCurrentUser;
+
+  console.log(currentUser, "cu");
+  const [logoutFunc] = useMutation(LOGOUT_MUTATION);
+
+  const logout = async () => {
+    await logoutFunc().then(() => {
+      window.location.href = "/";
+    });
+  };
+
   return (
     <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
@@ -16,6 +33,20 @@ export default function Header() {
               {menu.label}
             </Link>
           ))}
+          {currentUser ? (
+            <>
+              <Link href="/auth/profile" className="hover:underline">
+                Profile
+              </Link>
+              <span onClick={logout} className="hover:underline">
+                Logout
+              </span>
+            </>
+          ) : (
+            <Link href="/auth/login" className="hover:underline">
+              Login
+            </Link>
+          )}
         </div>
       </nav>
     </header>

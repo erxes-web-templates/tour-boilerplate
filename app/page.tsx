@@ -6,6 +6,7 @@ import FormSection from "./_components/sections/FormSection";
 import YoutubeSection from "./_components/sections/YoutubeSection";
 import { renderSections } from "@/lib/renderSections";
 import { Section } from "@/types/section";
+import CmsPostsSection from "./_components/sections/CmsPostsSection";
 
 export const metadata = {
   title: pageData.title,
@@ -19,6 +20,7 @@ export default function Home() {
     form: FormSection,
     tours: ToursSection,
     youtube: YoutubeSection,
+    cmsPosts: CmsPostsSection,
   };
 
   // Use the function to render sections

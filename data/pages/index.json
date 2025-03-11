@@ -73,6 +73,14 @@
         "primaryCtaUrl": "/cars"
       }
     },
+    {
+      "type": "cmsPosts",
+      "content": "Latest Posts",
+      "order": 7,
+      "contentType": "cms:posts",
+      "contentTypeId": "",
+      "config": {}
+    },
     { "type": "form", "content": "", "order": 7, "contentType": "form", "contentTypeId": "7NrogRLFBH7dzMLLN" }
   ]
 }

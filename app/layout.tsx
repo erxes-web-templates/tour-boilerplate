@@ -6,7 +6,7 @@ import Footer from "./_components/layout/Footer";
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
 import data from "../data/configs.json";
 import { getFileUrl } from "@/lib/utils";
-// import { fetchMenuList } from "@/lib/fetchCms";
+import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,6 +27,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Header />
           <main>{children}</main>
           <Footer />
+          <Toaster />
         </ApolloWrapper>
       </body>
     </html>

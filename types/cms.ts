@@ -15,4 +15,15 @@ interface CmsMenuListVariables {
   kind: string;
 }
 
-export type { CmsMenuList, CmsMenuListVariables };
+type CmsPost = {
+  _id: string;
+  slug: string;
+  title: string;
+  content: string;
+  thumbnail: {
+    url: string;
+    name: string;
+  };
+};
+
+export type { CmsMenuList, CmsMenuListVariables, CmsPost };

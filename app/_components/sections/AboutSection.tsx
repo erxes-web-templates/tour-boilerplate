@@ -23,6 +23,7 @@ const AboutSection = ({ section }: { section: Section }) => {
           <div className="w-full md:w-1/2 mb-8 md:mb-0">{renderImage()}</div>
           <div className="w-full md:w-1/2 md:pl-8">
             <p className="text-lg mb-4">{section.config.description}</p>
+            <p className="text-lg mb-4" dangerouslySetInnerHTML={{ __html: section.config.description }}></p>
             {section.config.primaryCtaUrl && (
               <Link href={section.config.primaryCtaUrl}>
                 <Button>{section.config.primaryCta}</Button>

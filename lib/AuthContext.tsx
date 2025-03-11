@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const ME_QUERY = gql`
     query me {
-      currentUser {
+      clientPortalCurrentUser {
         _id
         details {
           avatar
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     fetchPolicy: "network-only",
   });
 
-  const currentUser = data?.currentUser;
+  const currentUser = data?.clientPortalCurrentUser;
 
   console.log(currentUser, "currentUser");
 
@@ -56,9 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return <div>Loading...</div>;
   }
 
-  return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
 
 // Export the context for use in other files
