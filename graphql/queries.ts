@@ -229,27 +229,78 @@ export const GET_CMS_PAGES = gql`
 `;
 
 export const GET_CMS_POSTS = gql`
-  query CmsPosts($clientPortalId: String!) {
-    cmsPosts(clientPortalId: $clientPortalId) {
+  query CmsPosts(
+    $clientPortalId: String
+    $featured: Boolean
+    $categoryId: String
+    $searchValue: String
+    $status: PostStatus
+    $page: Int
+    $perPage: Int
+    $tagIds: [String]
+  ) {
+    cmsPosts(
+      clientPortalId: $clientPortalId
+      featured: $featured
+      categoryId: $categoryId
+      searchValue: $searchValue
+      status: $status
+      page: $page
+      perPage: $perPage
+      tagIds: $tagIds
+    ) {
       _id
-      name
-      type
+      authorKind
+      authorId
+      author {
+        ... on User {
+          details {
+            fullName
+          }
+        }
+      }
+      clientPortalId
+      title
       slug
       content
+      excerpt
+      categoryIds
+      status
+      tagIds
+      featured
+      thumbnail {
+        url
+        name
+      }
       createdAt
       updatedAt
+      categories {
+        _id
+        name
+      }
+      tags {
+        _id
+        name
+      }
     }
   }
 `;
 
 export const GET_CMS_POST = gql`
-  query CmsPost($id: String!) {
-    cmsPost(_id: $id) {
+  query CmsPost($slug: String, $id: String) {
+    cmsPost(slug: $slug, _id: $id) {
       _id
-      name
       content
-      createdAt
-      updatedAt
+      categories {
+        _id
+        name
+      }
+      title
+      featured
+      thumbnail {
+        url
+        name
+      }
     }
   }
 `;

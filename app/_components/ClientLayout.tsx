@@ -12,6 +12,8 @@ import LoginPage from "../auth/login/page";
 import RegisterPage from "../auth/register/page";
 import ContactPage from "../contact/page";
 import LegalPage from "../legal/page";
+import PostDetailPage from "../blog/[id]/page";
+import BlogsPage from "../blog/page";
 
 export default function ClientBoilerplateLayout() {
   const params = useParams<{ id: string }>();
@@ -39,8 +41,10 @@ export default function ClientBoilerplateLayout() {
         return <LegalPage />;
       case "privacy":
         return <LegalPage />;
-      case "profile":
-        return <div>Profile</div>;
+      case "blogs":
+        return <BlogsPage />;
+      case "post":
+        return <PostDetailPage />;
       // case "checkout":
       //   return <div>Checkout</div>;
       // case "confirmation":

@@ -46,4 +46,15 @@ type CPDetail = {
   };
 };
 
-export type { CmsMenuList, CmsMenuListVariables, MenuItem, CPDetail };
+type CmsPost = {
+  _id: string;
+  slug: string;
+  title: string;
+  content: string;
+  thumbnail: {
+    url: string;
+    name: string;
+  };
+};
+
+export type { CmsMenuList, CmsMenuListVariables, MenuItem, CPDetail, CmsPost };

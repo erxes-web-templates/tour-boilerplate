@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import { TOURS_QUERY } from "../../../graphql/queries";
 import { getFileUrl, templateUrl } from "../../../../../../../lib/utils";
-import { Section } from "@/types/sections";
+import { Section } from "../../../types/sections";
+import { BmTour } from "../../../types/tours";
 
 const ToursSection = ({ section }: { section: Section }) => {
   const { data } = useQuery(TOURS_QUERY, {
@@ -15,7 +16,7 @@ const ToursSection = ({ section }: { section: Section }) => {
       page: 1,
     },
   });
-
+  console.log(section, "section");
   const tours = data?.bmTours?.list || [];
 
   return (
@@ -23,7 +24,7 @@ const ToursSection = ({ section }: { section: Section }) => {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-center">Featured Tours</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tours.map((tour: any) => (
+          {tours.map((tour: BmTour) => (
             <Card key={tour._id}>
               <CardHeader>
                 {tour.itinerary?.images[0] && (

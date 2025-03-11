@@ -10,6 +10,7 @@ import ToursSection from "../app/_components/sections/ToursSection";
 import HeroSection from "../app/_components/sections/HeroSection";
 import FormSection from "../app/_components/sections/FormSection";
 import YoutubeSection from "../app/_components/sections/YoutubeSection";
+import CmsPostsSection from "../app/_components/sections/CmsPostsSection";
 import CircleLoader from "../../../../../components/common/CircleLoader";
 import EmptyState from "../../../../../components/common/EmptyState";
 const usePage = (slug: string | null) => {
@@ -41,6 +42,8 @@ const usePage = (slug: string | null) => {
         return <FormSection section={section} />;
       case "youtube":
         return <YoutubeSection section={section} />;
+      case "cmsPosts":
+        return <CmsPostsSection section={section} />;
       default:
         return null;
     }
