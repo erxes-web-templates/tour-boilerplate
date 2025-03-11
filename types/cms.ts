@@ -36,6 +36,13 @@ type CPDetail = {
   externalLinks: {
     phones: string[];
     emails: string[];
+    address: string;
+    twitter: string;
+    facebook: string;
+    linkedin: string;
+    whatsapp: string;
+    instagram: string;
+    youtube: string;
   };
 };
 

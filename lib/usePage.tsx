@@ -47,7 +47,7 @@ const usePage = (slug: string | null) => {
   };
 
   const PageContent = () => {
-    if (!sections || sections.length === 0) {
+    if (!sections || (sections.length === 0 && slug === "home") || (sections.length === 0 && slug === "about")) {
       return <EmptyState title="No contents available" />;
     }
     if (loading) {

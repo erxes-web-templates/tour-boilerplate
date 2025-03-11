@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { getFileUrl, templateUrl } from "../../../../../../lib/utils";
 import { useSearchParams } from "next/navigation";
 import usePage from "../../lib/usePage";
+import { BmTour } from "../../types/tours";
 const ToursPage = () => {
   const searchParams = useSearchParams();
 
@@ -28,7 +29,7 @@ const ToursPage = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {tours.map((tour: any) => (
+        {tours.map((tour: BmTour) => (
           <Card key={tour._id} className="mb-2">
             <CardHeader>
               {tour.itinerary?.images[0] && (

@@ -8,6 +8,9 @@ interface BmTour {
   name: string;
   itineraryId: string;
   refNumber: string;
+  itinerary?: {
+    images: string[];
+  };
 }
 
 interface BmToursData {

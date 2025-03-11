@@ -4,6 +4,7 @@ interface Section {
   contentType?: string;
   name: string;
   config?: any;
+  contentTypeId: string;
 }
 
 export type { Section };

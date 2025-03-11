@@ -158,7 +158,7 @@ export const CP_GET_CONFIG = gql`
 `;
 
 export const GET_CMS_PAGE = gql`
-  query CmsPage($id: String!, $slug: String) {
+  query CmsPage($id: String, $slug: String) {
     cmsPage(_id: $id, slug: $slug) {
       _id
       name
@@ -250,6 +250,32 @@ export const GET_CMS_POST = gql`
       content
       createdAt
       updatedAt
+    }
+  }
+`;
+
+export const GET_FORM_DETAIL = gql`
+  query FormDetail($id: String!) {
+    formDetail(_id: $id) {
+      _id
+      title
+      description
+      fields {
+        _id
+        code
+        field
+        column
+        text
+        validation
+        name
+        content
+        contentType
+        contentTypeId
+        order
+        options
+        optionsValues
+        type
+      }
     }
   }
 `;
