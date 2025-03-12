@@ -5,7 +5,6 @@
     {
       "type": "hero",
       "content": "Welcome to Adventure Awaits!",
-      "order": 0,
       "contentType": "imageText",
       "contentTypeId": "",
       "config": {
@@ -19,68 +18,37 @@
     {
       "type": "imageText",
       "content": "About Us",
-      "order": 1,
       "contentType": "imageText",
       "contentTypeId": "",
       "config": {
         "image": { "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" }, "initUrl": "/images/about.jpg" },
         "title": "Who We Are",
-        "description": "<p>At 23 Adventure Awaits, we are passionate about crafting unforgettable travel experiences. With years of expertise, we specialize in curating unique tours that connect you with culture, nature, and adventure.</p>",
+        "description": "At Adventure Awaits, we are passionate about crafting unforgettable travel experiences. With years of expertise, we specialize in curating unique tours that connect you with culture, nature, and adventure.",
         "primaryCta": "Learn More",
         "primaryCtaUrl": "/about"
       }
     },
-    { "type": "tours", "content": "Featured Tours", "order": 2, "contentType": "bms:tours", "contentTypeId": "", "config": null },
+    { "type": "tours", "content": "Featured Tours", "contentType": "bms:tours", "contentTypeId": "", "config": null },
     {
-      "type": "imageText",
-      "content": "<p>This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!</p>",
-      "order": 3,
-      "contentType": "imageText",
-      "contentTypeId": "",
-      "config": {
-        "title": "About Tour",
-        "description": "<p>This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!This is a sample text about your amazing brand. Include as many details as you need!</p>",
-        "primaryCta": "More info",
-        "primaryCtaUrl": "/about"
-      }
-    },
-    { "type": "tours", "content": "tours", "order": 4, "contentType": "bm:tours", "contentTypeId": "bm:tours", "config": null },
-    {
-      "type": "youtube",
-      "content": null,
-      "order": 5,
-      "contentType": "youtube",
-      "contentTypeId": null,
-      "config": { "videoUrl": "https://www.youtube.com/watch?v=uUhpy1SLhRw&t=14s" }
-    },
-    {
-      "type": "imageText",
-      "content": "<p>Car buy</p>",
-      "order": 6,
-      "contentType": "imageText",
+      "type": "gallery",
+      "content": "test",
+      "contentType": "hero",
       "contentTypeId": null,
       "config": {
-        "image": {
-          "file": {
-            "path": "./0.7518240661812883f839a5ebae9c6b0ca08e71a2d061977f (1).jpeg",
-            "relativePath": "./0.7518240661812883f839a5ebae9c6b0ca08e71a2d061977f (1).jpeg"
-          },
-          "url": "erxes-saas/glHhLT1hu4VutMffLHJmt0.7518240661812883f839a5ebae9c6b0ca08e71a2d061977f (1).jpeg"
-        },
-        "title": "Car for",
-        "description": "<p>Car buy</p>",
-        "primaryCta": "Book your next journey",
-        "primaryCtaUrl": "/cars"
+        "images": [
+          { "file": { "path": "./Frame 3.png", "relativePath": "./Frame 3.png" }, "url": "erxes-saas/mMxR2o81t2MUtNF7VkHXCFrame 3.png" },
+          { "file": { "path": "./Frame 4.png", "relativePath": "./Frame 4.png" }, "url": "erxes-saas/qDHcKcTgeiyVvR5xzUCDDFrame 4.png" },
+          { "file": { "path": "./Frame 5.png", "relativePath": "./Frame 5.png" }, "url": "erxes-saas/CV1vHnYUadAlVLfNJK7cVFrame 5.png" }
+        ],
+        "title": "Galley test ",
+        "description": "test"
       }
     },
     {
       "type": "cmsPosts",
-      "content": "Latest Posts",
-      "order": 7,
+      "content": "posts",
       "contentType": "cms:posts",
-      "contentTypeId": "",
-      "config": {}
-    },
-    { "type": "form", "content": "", "order": 7, "contentType": "form", "contentTypeId": "7NrogRLFBH7dzMLLN" }
+      "config": { "categoryId": "Fc6M--weiu2nNlKaQkqE9", "tagId": "", "title": "Latest blogs", "perPage": 10 }
+    }
   ]
 }
