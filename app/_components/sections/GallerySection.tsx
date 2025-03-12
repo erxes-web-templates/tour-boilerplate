@@ -36,7 +36,6 @@ const GallerySection = ({ section }: { section: Section }) => {
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-[4/3] w-full">
-                        {getFileUrl(image.url)}
                         <CustomImage src={getFileUrl(image.url)} alt="image" fill />
                       </div>
                       {/* <div className="p-4">
