@@ -542,12 +542,10 @@ export default function LegalPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Footer */}
       <div className="text-center text-sm text-muted-foreground mt-8 mb-8">
         <p>© {new Date().getFullYear()} Adventure Tours. All rights reserved.</p>
       </div>
 
-      {/* Scroll to top button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}

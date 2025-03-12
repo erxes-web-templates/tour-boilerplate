@@ -13,6 +13,7 @@ import YoutubeSection from "../app/_components/sections/YoutubeSection";
 import CmsPostsSection from "../app/_components/sections/CmsPostsSection";
 import CircleLoader from "../../../../../components/common/CircleLoader";
 import EmptyState from "../../../../../components/common/EmptyState";
+import GallerySection from "../app/_components/sections/GallerySection.tsx";
 const usePage = (slug: string | null) => {
   const params = useParams<{ id: string }>();
   const { data: pageData, loading } = useQuery(GET_CMS_PAGE, {
@@ -44,6 +45,8 @@ const usePage = (slug: string | null) => {
         return <YoutubeSection section={section} />;
       case "cmsPosts":
         return <CmsPostsSection section={section} />;
+      case "gallery":
+        return <GallerySection section={section} />;
       default:
         return null;
     }
