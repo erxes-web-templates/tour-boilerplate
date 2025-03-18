@@ -17,26 +17,11 @@
       }
     },
     {
-      "type": "imageText",
-      "content": "About Us",
-      "order": null,
-      "contentType": "imageText",
-      "contentTypeId": "",
-      "config": {
-        "image": { "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" }, "initUrl": "/images/about.jpg" },
-        "title": "Who We Are",
-        "description": "At Adventure Awaits, we are passionate about crafting unforgettable travel experiences. With years of expertise, we specialize in curating unique tours that connect you with culture, nature, and adventure.",
-        "primaryCta": "Learn More",
-        "primaryCtaUrl": "/about"
-      }
-    },
-    { "type": "tours", "content": "Featured Tours", "order": null, "contentType": "bms:tours", "contentTypeId": "", "config": null },
-    {
       "type": "gallery",
       "content": "test",
       "order": null,
       "contentType": "hero",
-      "contentTypeId": null,
+      "contentTypeId": "",
       "config": {
         "images": [
           {
@@ -61,12 +46,12 @@
       }
     },
     {
-      "type": "cmsPosts",
-      "content": "posts",
-      "order": null,
-      "contentType": "cms:posts",
+      "type": "contact",
+      "content": "You can ...",
+      "order": 2,
+      "contentType": "contact",
       "contentTypeId": null,
-      "config": { "categoryId": "Fc6M--weiu2nNlKaQkqE9", "tagId": "", "title": "Latest blogs", "perPage": 10 }
+      "config": { "title": "Contact us", "description": "You can ...", "formId": "89wZm3TEtBsh8NkvH" }
     }
   ]
 }

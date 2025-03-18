@@ -2,6 +2,7 @@
 
 import React from "react";
 import CustomImage from "@/components/common/CustomImage";
+import Image from "next/image";
 import { Section } from "@/types/section";
 import { getFileUrl } from "@/lib/utils";
 

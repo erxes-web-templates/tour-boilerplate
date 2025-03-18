@@ -85,6 +85,8 @@ const CustomImage: React.FC<CustomImageProps> = ({
     setHasError(true);
   };
 
+  console.log(hasError);
+
   // Handle image click with type safety
   const handleClick = (): void => {
     if (onImageClick) {
