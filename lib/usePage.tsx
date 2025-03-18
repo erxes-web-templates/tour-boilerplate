@@ -14,6 +14,7 @@ import CmsPostsSection from "../app/_components/sections/CmsPostsSection";
 import CircleLoader from "../../../../../components/common/CircleLoader";
 import EmptyState from "../../../../../components/common/EmptyState";
 import GallerySection from "../app/_components/sections/GallerySection.tsx";
+import ContactSection from "../app/_components/sections/ContactSection";
 const usePage = (slug: string | null) => {
   const params = useParams<{ id: string }>();
   const { data: pageData, loading } = useQuery(GET_CMS_PAGE, {
@@ -47,6 +48,8 @@ const usePage = (slug: string | null) => {
         return <CmsPostsSection section={section} />;
       case "gallery":
         return <GallerySection section={section} />;
+      case "contact":
+        return <ContactSection section={section} />;
       default:
         return null;
     }

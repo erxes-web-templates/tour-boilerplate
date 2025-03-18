@@ -13,71 +13,12 @@ const FormSection = ({ section }: { section: Section }) => {
   });
 
   console.log(data, "data");
-  // const formData = data?.formDetail || {};
+  const formData = data?.formDetail || {};
   const [submitForm] = useMutation(FORM_SUBMISSION, {
     onCompleted: (data) => {
       console.log(data);
     },
   });
-  const formData = {
-    _id: "9Ky945RMSDGhZ2vPP",
-    fields: [
-      {
-        _id: "9Ky945RMSDGhZ2vPP",
-        isRequired: true,
-        text: "Name",
-        options: [],
-        type: "input",
-        validation: null,
-        description: null,
-      },
-      {
-        _id: "XyKhD3ZL9FtcFyrzs",
-        isRequired: true,
-        text: "Phone",
-        options: [],
-        type: "phone",
-        validation: "phone",
-        description: null,
-      },
-      {
-        _id: "kNX8DzkXeSPh5XxDz",
-        isRequired: true,
-        text: "Email",
-        options: [],
-        type: "email",
-        validation: "email",
-        description: null,
-      },
-      {
-        _id: "wT7Ybiki8Tnfn3TZv",
-        isRequired: true,
-        text: "Organization name",
-        options: [],
-        type: "input",
-        validation: null,
-        description: null,
-      },
-      {
-        _id: "c2LbxD5PRvjCMkJxJ",
-        isRequired: true,
-        text: "Professional service type",
-        options: ["Premium Support", "Custom Onboarding", "Dedicated Implementation Services", "Migration Services"],
-        type: "check",
-        validation: null,
-        description: "",
-      },
-      {
-        _id: "LGYgbRDJ4L4SNNw7x",
-        isRequired: true,
-        text: "Message",
-        options: [],
-        type: "textarea",
-        validation: null,
-        description: null,
-      },
-    ],
-  };
 
   return (
     <section id="contact" className="py-16 bg-gray-100">
