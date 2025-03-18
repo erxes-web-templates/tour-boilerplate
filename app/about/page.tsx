@@ -6,6 +6,9 @@ import HeroSection from "../_components/sections/HeroSection";
 import AboutSection from "../_components/sections/AboutSection";
 import FormSection from "../_components/sections/FormSection";
 import YoutubeSection from "../_components/sections/YoutubeSection";
+import CmsPostsSection from "../_components/sections/CmsPostsSection";
+import GallerySection from "../_components/sections/GallerySection";
+import ContactSection from "../_components/sections/ContactSection";
 
 export const metadata = {
   title: pageData.title,
@@ -19,6 +22,9 @@ const page = () => {
     form: FormSection,
     tours: ToursSection,
     youtube: YoutubeSection,
+    cmsPosts: CmsPostsSection,
+    gallery: GallerySection,
+    contact: ContactSection,
   };
 
   // Use the function to render sections
