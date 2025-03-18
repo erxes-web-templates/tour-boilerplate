@@ -27,7 +27,7 @@ export default function Home() {
 
   // Use the function to render sections
   const renderedSections = renderSections({
-    sections: pageData.pageItems as Section[],
+    sections: pageData.pageItems as unknown as Section[],
     components: sectionComponents,
   });
 

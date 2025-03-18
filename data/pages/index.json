@@ -5,6 +5,7 @@
     {
       "type": "hero",
       "content": "Welcome to Adventure Awaits!",
+      "order": null,
       "contentType": "imageText",
       "contentTypeId": "",
       "config": {
@@ -18,6 +19,7 @@
     {
       "type": "imageText",
       "content": "About Us",
+      "order": null,
       "contentType": "imageText",
       "contentTypeId": "",
       "config": {
@@ -28,17 +30,31 @@
         "primaryCtaUrl": "/about"
       }
     },
-    { "type": "tours", "content": "Featured Tours", "contentType": "bms:tours", "contentTypeId": "", "config": null },
+    { "type": "tours", "content": "Featured Tours", "order": null, "contentType": "bms:tours", "contentTypeId": "", "config": null },
     {
       "type": "gallery",
       "content": "test",
+      "order": null,
       "contentType": "hero",
       "contentTypeId": null,
       "config": {
         "images": [
-          { "file": { "path": "./Frame 3.png", "relativePath": "./Frame 3.png" }, "url": "erxes-saas/mMxR2o81t2MUtNF7VkHXCFrame 3.png" },
-          { "file": { "path": "./Frame 4.png", "relativePath": "./Frame 4.png" }, "url": "erxes-saas/qDHcKcTgeiyVvR5xzUCDDFrame 4.png" },
-          { "file": { "path": "./Frame 5.png", "relativePath": "./Frame 5.png" }, "url": "erxes-saas/CV1vHnYUadAlVLfNJK7cVFrame 5.png" }
+          {
+            "file": { "path": "./pexels-pixabay-247599.jpg", "relativePath": "./pexels-pixabay-247599.jpg" },
+            "url": "erxes-saas/KczWEeTMfOKQGFw5WKrjApexels-pixabay-247599.jpg"
+          },
+          {
+            "file": { "path": "./pexels-bri-schneiter-28802-346529.jpg", "relativePath": "./pexels-bri-schneiter-28802-346529.jpg" },
+            "url": "erxes-saas/wFRb8Qca68gVqfn6GUVhspexels-bri-schneiter-28802-346529.jpg"
+          },
+          {
+            "file": { "path": "./pexels-apasaric-1285625.jpg", "relativePath": "./pexels-apasaric-1285625.jpg" },
+            "url": "erxes-saas/lKmw6FEj4GnmdWq9uwagvpexels-apasaric-1285625.jpg"
+          },
+          {
+            "file": { "path": "./pexels-wanderer-731217.jpg", "relativePath": "./pexels-wanderer-731217.jpg" },
+            "url": "erxes-saas/4fZ4yrsu94AmgAtALpbLIpexels-wanderer-731217.jpg"
+          }
         ],
         "title": "Galley test ",
         "description": "test"
@@ -47,7 +63,9 @@
     {
       "type": "cmsPosts",
       "content": "posts",
+      "order": null,
       "contentType": "cms:posts",
+      "contentTypeId": null,
       "config": { "categoryId": "Fc6M--weiu2nNlKaQkqE9", "tagId": "", "title": "Latest blogs", "perPage": 10 }
     }
   ]
