@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-  const { list } = await fetchBmTours(1, 6);
+  const { list } = await fetchBmTours(1, 100);
   const sectionComponents = {
     hero: HeroSection,
     imageText: AboutSection,

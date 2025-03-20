@@ -102,7 +102,7 @@ export default async function TourDetailPage(props: { params: Params }) {
           </p>
           <p>
             <strong>Cost:</strong> ${tour.cost.toLocaleString()}
-          </p>{" "}
+          </p>
           {tour.itinerary && (
             <div className="itineraries">
               <Accordion type="single" collapsible className="w-full">
