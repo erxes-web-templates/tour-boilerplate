@@ -19,7 +19,7 @@ const ToursPage = () => {
   const PageContent = usePage(pageName);
 
   const { data, loading } = useQuery(TOURS_QUERY, {
-    variables: { perPage: 100, page: 1, status: "both" },
+    variables: { perPage: 100, page: 1, status: "website" },
   });
 
   const tours = data?.bmTours?.list || [];

@@ -8,13 +8,14 @@ import { getFileUrl, templateUrl } from "../../../../../../../lib/utils";
 import { Section } from "../../../types/sections";
 import { BmTour } from "../../../types/tours";
 import Image from "next/image";
+import dayjs from "dayjs";
 
 const ToursSection = ({ section }: { section: Section }) => {
   const { data } = useQuery(TOURS_QUERY, {
     variables: {
-      perPage: 6,
+      perPage: section?.config?.limit || 6,
       page: 1,
-      status: "both",
+      status: "website",
     },
   });
 
@@ -42,6 +43,7 @@ const ToursSection = ({ section }: { section: Section }) => {
               </CardContent>
               <CardFooter className="flex justify-between items-center">
                 <span className="text-lg font-bold">{tour.cost}</span>
+                <span className="text-lg font-bold">{dayjs(tour.startDate).format("YYYY-MM-DD")}</span>
                 <Link href={templateUrl(`/tour&tourId=${tour._id}`)}>
                   {" "}
                   <Button>{`Book Now`}</Button>
