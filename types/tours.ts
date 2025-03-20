@@ -9,6 +9,8 @@ interface BmTour {
   itineraryId: string;
   itinerary: any;
   refNumber: string;
+  images: string[];
+  imageThumbnail: string;
 }
 
 interface BmToursData {
@@ -29,6 +31,8 @@ interface BmTourDetail {
   refNumber: string;
   viewCount: number;
   itinerary: any;
+  images: string[];
+  imageThumbnail: string;
 }
 
 interface BmTourDetailVariables {
@@ -57,10 +61,4 @@ interface Itinerary {
   personCost?: any;
 }
 
-export type {
-  BmTour,
-  BmToursData,
-  BmTourDetail,
-  BmTourDetailVariables,
-  Itinerary,
-};
+export type { BmTour, BmToursData, BmTourDetail, BmTourDetailVariables, Itinerary };

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-  const { list } = await fetchBmTours(1, 4);
+  const { list } = await fetchBmTours(1, 6);
   const sectionComponents = {
     hero: HeroSection,
     imageText: AboutSection,
@@ -48,8 +48,10 @@ const page = async () => {
         {list.map((tour) => (
           <Card key={tour._id}>
             <CardHeader>
-              {tour.itinerary?.images[0] && (
-                <Image src={getFileUrl(tour.itinerary.images[0])} alt={tour.name} width={300} height={200} className="rounded-t-lg" />
+              {tour.imageThumbnail && (
+                <div className="relative w-full h-[200px]">
+                  <Image src={getFileUrl(tour.imageThumbnail)} alt={tour.name} fill className="rounded-md h-[200px]" />
+                </div>
               )}
             </CardHeader>
             <CardContent>

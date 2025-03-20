@@ -2,7 +2,7 @@ import { fetchBmTourDetail } from "@/lib/fetchTours";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Itinerary } from "@/types/tours";
 import { Metadata } from "next";
-
+import Image from "next/image";
 import pageData from "@/data/pages/tour.json";
 import { getFileUrl } from "@/lib/utils";
 import { renderSections } from "@/lib/renderSections";
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: tour.name,
     description: tour.content,
     openGraph: {
-      images: [getFileUrl(tour.itinerary?.images[0])],
+      images: [getFileUrl(tour.imageThumbnail)],
     },
   };
 }
@@ -74,6 +74,20 @@ export default async function TourDetailPage(props: { params: Params }) {
 
   return (
     <div className="container mx-auto p-4">
+      {tour.imageThumbnail && (
+        <div className="relative w-full h-[500px]">
+          <Image src={getFileUrl(tour.imageThumbnail)} alt={tour.name} fill className="rounded-md " />
+        </div>
+      )}
+      <div className="flex gap-3 my-3">
+        {tour.images &&
+          tour.images.map((image: any, index: number) => (
+            <div key={index} className="relative w-[300px] h-[200px]">
+              <Image src={getFileUrl(image)} alt={tour.name} fill className="rounded-md " />
+            </div>
+          ))}
+      </div>
+
       <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
       <div className="grid md:grid-cols-2 gap-4">
         <div>

@@ -16,6 +16,8 @@ export const TOURS_QUERY = gql`
         itinerary {
           images
         }
+        imageThumbnail
+        images
         refNumber
       }
     }
@@ -33,6 +35,8 @@ export const TOUR_DETAIL_QUERY = gql`
       status
       startDate
       refNumber
+      images
+      imageThumbnail
       viewCount
     }
   }

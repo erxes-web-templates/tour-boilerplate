@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import Image from "next/image";
 import { fetchBmTours } from "@/lib/fetchTours";
@@ -25,14 +18,10 @@ const ToursSection = async () => {
           {tours.list.map((tour) => (
             <Card key={tour._id}>
               <CardHeader>
-                {tour.itinerary?.images[0] && (
-                  <Image
-                    src={getFileUrl(tour.itinerary.images[0])}
-                    alt={tour.name}
-                    width={300}
-                    height={200}
-                    className="rounded-t-lg"
-                  />
+                {tour.imageThumbnail && (
+                  <div className="relative w-full h-[200px]">
+                    <Image src={getFileUrl(tour.imageThumbnail)} alt={tour.name} fill className="rounded-md h-[200px]" />
+                  </div>
                 )}
               </CardHeader>
               <CardContent>
