@@ -11,6 +11,8 @@ interface BmTour {
   itinerary?: {
     images: string[];
   };
+  images: string[];
+  imageThumbnail: string;
 }
 
 interface BmToursData {

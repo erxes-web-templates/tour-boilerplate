@@ -19,7 +19,7 @@ const ToursPage = () => {
   const PageContent = usePage(pageName);
 
   const { data, loading } = useQuery(TOURS_QUERY, {
-    variables: { perPage: 100, page: 1 },
+    variables: { perPage: 100, page: 1, status: "both" },
   });
 
   const tours = data?.bmTours?.list || [];
@@ -34,8 +34,10 @@ const ToursPage = () => {
         {tours.map((tour: BmTour) => (
           <Card key={tour._id} className="mb-2">
             <CardHeader>
-              {tour.itinerary?.images[0] && (
-                <Image src={getFileUrl(tour.itinerary.images[0])} alt={tour.name} width={300} height={200} className="rounded-t-lg" />
+              {tour.imageThumbnail && (
+                <div className="relative w-full h-[200px]">
+                  <Image src={getFileUrl(tour.imageThumbnail)} alt={tour.name} fill className="rounded-md h-[200px]" />
+                </div>
               )}
             </CardHeader>
             <CardContent>
