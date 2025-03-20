@@ -33,7 +33,7 @@ export default function Header() {
               {menu.label}
             </Link>
           ))}
-          {currentUser ? (
+          {currentUser && (
             <>
               <Link href="/auth/profile" className="hover:underline">
                 Profile
@@ -42,10 +42,6 @@ export default function Header() {
                 Logout
               </span>
             </>
-          ) : (
-            <Link href="/auth/login" className="hover:underline">
-              Login
-            </Link>
           )}
         </div>
       </nav>

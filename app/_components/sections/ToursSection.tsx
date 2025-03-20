@@ -7,7 +7,7 @@ import Link from "next/link";
 import { getFileUrl } from "@/lib/utils";
 import { Section } from "@/types/section";
 const ToursSection = async ({ section }: { section: Section }) => {
-  const tours = await fetchBmTours(1, 6);
+  const tours = await fetchBmTours(1, section?.config?.limit || 6);
 
   return (
     <section className="py-16 bg-gray-100">

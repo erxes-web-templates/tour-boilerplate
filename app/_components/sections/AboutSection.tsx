@@ -6,6 +6,8 @@ import Link from "next/link";
 import { getFileUrl } from "@/lib/utils";
 
 const AboutSection = ({ section }: { section: Section }) => {
+  const isImageLeft = section.config.imagePosition === "left";
+
   const renderImage = () => {
     const { image } = section.config;
 
@@ -20,9 +22,8 @@ const AboutSection = ({ section }: { section: Section }) => {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-center">{section.config.title}</h2>
         <div className="flex flex-wrap items-center">
-          <div className="w-full md:w-1/2 mb-8 md:mb-0">{renderImage()}</div>
-          <div className="w-full md:w-1/2 md:pl-8">
-            <p className="text-lg mb-4">{section.config.description}</p>
+          {isImageLeft && <div className="w-full md:w-1/2 mb-8 md:mb-0">{renderImage()}</div>}
+          <div className={`w-full md:w-1/2 ${isImageLeft ? "md:pl-8" : "md:pr-8"}`}>
             <p className="text-lg mb-4" dangerouslySetInnerHTML={{ __html: section.config.description }}></p>
             {section.config.primaryCtaUrl && (
               <Link href={section.config.primaryCtaUrl}>
@@ -30,6 +31,7 @@ const AboutSection = ({ section }: { section: Section }) => {
               </Link>
             )}
           </div>
+          {!isImageLeft && <div className="w-full md:w-1/2 mb-8 md:mb-0">{renderImage()}</div>}
         </div>
       </div>
     </section>
