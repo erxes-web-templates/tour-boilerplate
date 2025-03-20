@@ -12,7 +12,7 @@ const ToursSection = async ({ section }: { section: Section }) => {
   return (
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">{section.config.title || "Featured Tours"}</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">{section?.config?.title || "Featured Tours"}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tours.list.map((tour) => (
             <Card key={tour._id}>
