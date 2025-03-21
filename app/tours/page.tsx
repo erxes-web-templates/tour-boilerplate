@@ -17,6 +17,7 @@ import YoutubeSection from "../_components/sections/YoutubeSection";
 import CmsPostsSection from "../_components/sections/CmsPostsSection";
 import GallerySection from "../_components/sections/GallerySection";
 import ContactSection from "../_components/sections/ContactSection";
+import TextSection from "../_components/sections/TextSection";
 
 export const metadata: Metadata = {
   title: pageData.title,
@@ -34,6 +35,7 @@ const page = async () => {
     cmsPosts: CmsPostsSection,
     gallery: GallerySection,
     contact: ContactSection,
+    text: TextSection,
   };
 
   // Use the function to render sections

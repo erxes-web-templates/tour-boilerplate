@@ -15,6 +15,7 @@ import YoutubeSection from "../../_components/sections/YoutubeSection";
 import CmsPostsSection from "../../_components/sections/CmsPostsSection";
 import GallerySection from "../../_components/sections/GallerySection";
 import ContactSection from "../../_components/sections/ContactSection";
+import TextSection from "@/app/_components/sections/TextSection";
 
 type Params = Promise<{ id: string }>;
 
@@ -61,6 +62,7 @@ export default async function TourDetailPage(props: { params: Params }) {
     cmsPosts: CmsPostsSection,
     gallery: GallerySection,
     contact: ContactSection,
+    text: TextSection,
   };
 
   // Use the function to render sections

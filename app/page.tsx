@@ -9,6 +9,7 @@ import { Section } from "@/types/section";
 import CmsPostsSection from "./_components/sections/CmsPostsSection";
 import GallerySection from "./_components/sections/GallerySection";
 import ContactSection from "./_components/sections/ContactSection";
+import TextSection from "./_components/sections/TextSection";
 
 export const metadata = {
   title: pageData.title,
@@ -25,6 +26,7 @@ export default function Home() {
     cmsPosts: CmsPostsSection,
     gallery: GallerySection,
     contact: ContactSection,
+    text: TextSection,
   };
 
   // Use the function to render sections
