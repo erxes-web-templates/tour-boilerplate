@@ -1,9 +1,11 @@
+"use client";
+
 import usePage from "../../lib/usePage";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
 interface CmsPageProps {
-  page: {
+  page?: {
     _id: string;
     name: string;
     type: string;

@@ -67,13 +67,18 @@ export default function ClientBoilerplateLayout() {
     setIsLoading(true);
 
     // Create a dynamic component to render the custom CMS page
-    // This could be a generic CMS page renderer component
     const loadCustomComponent = async () => {
       try {
-        // Use a generic CMS page renderer component
-        // You'll need to create this component separately
-        const Component = dynamic(() => import("../custom/page"));
-        setCustomPageComponent(() => (props) => <Component page={customPage} {...props} />);
+        // Load the CMS page renderer component
+        const DynamicCmsRenderer = dynamic(() => import("../custom/page"), { loading: () => <div>Loading custom page content...</div> });
+
+        // Create a wrapper component with a proper display name
+        const WrappedComponent = (props) => <DynamicCmsRenderer page={customPage} {...props} />;
+
+        // Set a display name for the component
+        WrappedComponent.displayName = `CmsPage_${customPage?.slug || "Unknown"}`;
+
+        setCustomPageComponent(() => WrappedComponent);
         setError(null);
       } catch (err) {
         console.error("Failed to load CMS page renderer:", err);
