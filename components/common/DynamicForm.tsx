@@ -160,6 +160,66 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ formData, submitForm }) => {
                       )}
                     />
                   );
+                case "firstName":
+                  return (
+                    <FormField
+                      key={_id}
+                      control={form.control}
+                      name={_id}
+                      render={({ field }: any) => (
+                        <FormItem>
+                          <FormLabel>
+                            {text} {isRequired && <span className="text-red-500">*</span>}
+                          </FormLabel>
+                          {description && <FormDescription>{description}</FormDescription>}
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  );
+                case "lastName":
+                  return (
+                    <FormField
+                      key={_id}
+                      control={form.control}
+                      name={_id}
+                      render={({ field }: any) => (
+                        <FormItem>
+                          <FormLabel>
+                            {text} {isRequired && <span className="text-red-500">*</span>}
+                          </FormLabel>
+                          {description && <FormDescription>{description}</FormDescription>}
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  );
+                case "company_primaryEmail":
+                  return (
+                    <FormField
+                      key={_id}
+                      control={form.control}
+                      name={_id}
+                      render={({ field }: any) => (
+                        <FormItem>
+                          <FormLabel>
+                            {text} {isRequired && <span className="text-red-500">*</span>}
+                          </FormLabel>
+                          {description && <FormDescription>{description}</FormDescription>}
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  );
 
                 case "email":
                   return (
