@@ -20,6 +20,7 @@ import { GET_CMS_PAGES } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import PageLoader from "../../../../../../components/common/PageLoader";
 
 const standardComponentRegistry = {
   home: TourBoilerPlateHome,
@@ -70,7 +71,7 @@ export default function ClientBoilerplateLayout() {
     const loadCustomComponent = async () => {
       try {
         // Load the CMS page renderer component
-        const DynamicCmsRenderer = dynamic(() => import("../custom/page"), { loading: () => <div>Loading custom page content...</div> });
+        const DynamicCmsRenderer = dynamic(() => import("../custom/page"), { loading: () => <PageLoader /> });
 
         // Create a wrapper component with a proper display name
         const WrappedComponent = (props) => <DynamicCmsRenderer page={customPage} {...props} />;
@@ -93,7 +94,7 @@ export default function ClientBoilerplateLayout() {
   }, [customPage, isCustomCmsPage, pageName]);
 
   const renderPageContent = () => {
-    if (loading) return <div>Loading pages...</div>;
+    if (loading) return <PageLoader />;
     if (!pageName) return null;
 
     // For standard pre-defined pages, use the registry
@@ -106,7 +107,7 @@ export default function ClientBoilerplateLayout() {
     // For custom CMS pages
     if (isCustomCmsPage) {
       if (isLoading) {
-        return <div>Loading custom page...</div>;
+        return <PageLoader />;
       }
 
       if (error) {
@@ -121,63 +122,6 @@ export default function ClientBoilerplateLayout() {
     // Page not found case
     return <div>Page not found</div>;
   };
-  // const renderPageContent = () => {
-  //   if (loading) return <div>Loading...</div>;
-  //   if (error) return <div>Error loading pages: {error.message}</div>;
-  //   if (!pageName) return <div>No page specified</div>;
-
-  //   const pageConfig = data?.cmsPages.find((page: any) => page.slug === pageName);
-
-  //   if (!pageConfig) {
-  //     // Handle 404 case - page not found or not active
-  //     return <div>Page not found</div>;
-  //   }
-
-  //   try {
-  //     // Dynamically import the component based on the path from GraphQL
-  //     const PageComponent = dynamic(() => import(`path/to/components/${pageConfig.componentPath}`), {
-  //       loading: () => <div>Loading page...</div>,
-  //       ssr: true, // Set to false if you don't want server-side rendering
-  //     });
-
-  //     return <PageComponent />;
-  //   } catch (e) {
-  //     return <div>Error loading component: {e.message}</div>;
-  //   }
-
-  //   console.log(pageConfig, "data");
-
-  //   switch (pageName) {
-  //     case "home":
-  //       return <TourBoilerPlateHome />;
-  //     case "tours":
-  //       return <ToursPage />;
-  //     case "tour":
-  //       return <TourDetailPage />;
-  //     case "about":
-  //       return <AboutPage />;
-  //     case "login":
-  //       return <LoginPage />;
-  //     case "register":
-  //       return <RegisterPage />;
-  //     case "contact":
-  //       return <ContactPage />;
-  //     case "terms":
-  //       return <LegalPage />;
-  //     case "privacy":
-  //       return <LegalPage />;
-  //     case "blogs":
-  //       return <BlogsPage />;
-  //     case "post":
-  //       return <PostDetailPage />;
-  //     // case "checkout":
-  //     //   return <div>Checkout</div>;
-  //     // case "confirmation":
-  //     //   return <div>Confirmation</div>;
-  //     default:
-  //       return;
-  //   }
-  // };
 
   return (
     <>
