@@ -1,0 +1,18 @@
+{
+  "title": "Tailormade",
+  "description": "Tailormade",
+  "pageItems": [
+    {
+      "type": "text",
+      "content": "<h6><strong><br></strong>Embark on a journey that’s uniquely yours with our tailor-made tours in Mongolia. Whether you're seeking a thrilling adventure, a cultural deep-dive, or a serene escape into nature, we design experiences around your personal interests and travel style.</h6><h6>From exploring the vast Gobi Desert and the rolling steppes to immersing yourself in nomadic traditions or savoring Mongolia's untouched wilderness, the possibilities are endless. Choose your destinations, activities, accommodation preferences, and pace—we'll handle the rest.</h6><h6>Perfect for individuals, couples, families, or small groups, our tailor-made tours ensure flexibility, comfort, and a truly unforgettable experience. Let us craft your dream journey to uncover the magic of Mongolia!</h6><h6>Contact us button or form&nbsp;</h6><h6><strong>Your Adventure, Your Way<br></strong><br><span style=\"color: var(--framer-blockquote-text-color, var(--framer-text-color, #000))\">Embark on an extraordinary journey with&nbsp;</span><strong>Khongor Expedition</strong><span style=\"color: var(--framer-blockquote-text-color, var(--framer-text-color, #000))\">, your trusted partner in exploring the heart of Mongolia. We specialize in creating unforgettable travel experiences, from the majestic dunes of the Gobi Desert to the serene beauty of Khuvsgul Lake.</span></h6>",
+      "order": 0,
+      "contentType": "text",
+      "config": {
+        "title": "Tailor-Made Tours in Mongolia",
+        "description": "<h6><strong><br></strong>Embark on a journey that’s uniquely yours with our tailor-made tours in Mongolia. Whether you're seeking a thrilling adventure, a cultural deep-dive, or a serene escape into nature, we design experiences around your personal interests and travel style.</h6><h6>From exploring the vast Gobi Desert and the rolling steppes to immersing yourself in nomadic traditions or savoring Mongolia's untouched wilderness, the possibilities are endless. Choose your destinations, activities, accommodation preferences, and pace—we'll handle the rest.</h6><h6>Perfect for individuals, couples, families, or small groups, our tailor-made tours ensure flexibility, comfort, and a truly unforgettable experience. Let us craft your dream journey to uncover the magic of Mongolia!</h6><h6>Contact us button or form&nbsp;</h6><h6><strong>Your Adventure, Your Way<br></strong><br><span style=\"color: var(--framer-blockquote-text-color, var(--framer-text-color, #000))\">Embark on an extraordinary journey with&nbsp;</span><strong>Khongor Expedition</strong><span style=\"color: var(--framer-blockquote-text-color, var(--framer-text-color, #000))\">, your trusted partner in exploring the heart of Mongolia. We specialize in creating unforgettable travel experiences, from the majestic dunes of the Gobi Desert to the serene beauty of Khuvsgul Lake.</span></h6>",
+        "primaryCta": "Speak to an Expert",
+        "primaryCtaUrl": "https://mail.google.com/mail/u/0/?to=khongorexpedition@gmail.com&su=SUBJECT&body=BODY&fs=1&tf=cm"
+      }
+    }
+  ]
+}
