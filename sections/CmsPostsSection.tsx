@@ -4,11 +4,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@apollo/client";
-import { GET_CMS_POSTS } from "../../../graphql/queries";
-import { getFileUrl, templateUrl } from "../../../../../../../lib/utils";
-import { Section } from "../../../types/sections";
+import { GET_CMS_POSTS } from "../graphql/queries";
+import { getFileUrl, templateUrl } from "../../../../../lib/utils";
+import { Section } from "../types/sections";
 import { useParams } from "next/navigation";
-import { CmsPost } from "../../../types/cms";
+import { CmsPost } from "../types/cms";
 
 const CmsPostsSection = ({ section }: { section: Section }) => {
   const params = useParams();

@@ -3,10 +3,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import React from "react";
 import Link from "next/link";
 import { useQuery } from "@apollo/client";
-import { TOURS_QUERY } from "../../../graphql/queries";
-import { getFileUrl, templateUrl } from "../../../../../../../lib/utils";
-import { Section } from "../../../types/sections";
-import { BmTour } from "../../../types/tours";
+import { TOURS_QUERY } from "../graphql/queries";
+import { getFileUrl, templateUrl } from "../../../../../lib/utils";
+import { Section } from "../types/sections";
+import { BmTour } from "../types/tours";
 import Image from "next/image";
 import dayjs from "dayjs";
 

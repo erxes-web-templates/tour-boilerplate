@@ -1,9 +1,9 @@
-import { GET_FORM_DETAIL } from "../../../graphql/queries";
-import { Section } from "../../../types/sections";
+import { GET_FORM_DETAIL } from "../graphql/queries";
+import { Section } from "../types/sections";
 import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import DynamicForm from "../../../components/common/DynamicForm";
-import { FORM_SUBMISSION } from "../../../graphql/mutations";
+import DynamicForm from "../components/common/DynamicForm";
+import { FORM_SUBMISSION } from "../graphql/mutations";
 
 const FormSection = ({ section }: { section: Section }) => {
   const { data } = useQuery(GET_FORM_DETAIL, {

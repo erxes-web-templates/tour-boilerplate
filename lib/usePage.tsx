@@ -5,17 +5,17 @@ import { GET_CMS_PAGE } from "../graphql/queries";
 import { useQuery } from "@apollo/client";
 import { useParams } from "next/navigation";
 import React, { Suspense } from "react";
-import AboutSection from "../app/_components/sections/AboutSection";
-import ToursSection from "../app/_components/sections/ToursSection";
-import HeroSection from "../app/_components/sections/HeroSection";
-import FormSection from "../app/_components/sections/FormSection";
-import TextSection from "../app/_components/sections/TextSection";
-import YoutubeSection from "../app/_components/sections/YoutubeSection";
-import CmsPostsSection from "../app/_components/sections/CmsPostsSection";
+import AboutSection from "../sections/AboutSection";
+import ToursSection from "../sections/ToursSection";
+import HeroSection from "../sections/HeroSection";
+import FormSection from "../sections/FormSection";
+import TextSection from "../sections/TextSection";
+import YoutubeSection from "../sections/YoutubeSection";
+import CmsPostsSection from "../sections/CmsPostsSection";
 import CircleLoader from "../../../../../components/common/CircleLoader";
 import EmptyState from "../../../../../components/common/EmptyState";
-import GallerySection from "../app/_components/sections/GallerySection.tsx";
-import ContactSection from "../app/_components/sections/ContactSection";
+import GallerySection from "../sections/GallerySection.tsx";
+import ContactSection from "../sections/ContactSection";
 const usePage = (slug: string | null) => {
   const params = useParams<{ id: string }>();
   const { data: pageData, loading } = useQuery(GET_CMS_PAGE, {

@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
-
+const path = require("path");
 const nextConfig: NextConfig = {
   env: {
+    NEXT_PUBLIC_BUILDER_MODE: "true",
     ERXES_API_URL: "http://localhost:4000/graphql",
     ERXES_URL: "http://localhost:4000",
     ERXES_FILE_URL: "http://localhost:4000/read-file?key=",

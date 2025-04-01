@@ -2,25 +2,25 @@
 
 "use client";
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 import { useParams, useSearchParams } from "next/navigation";
-import useClientPortal from "../../../../../../hooks/useClientPortal";
-import TourBoilerPlateHome from "../page";
-import ToursPage from "../tours/page";
-import TourDetailPage from "../tours/[id]/page";
-import AboutPage from "../about/page";
-import LoginPage from "../auth/login/page";
-import RegisterPage from "../auth/register/page";
-import ContactPage from "../contact/page";
-import LegalPage from "../legal/page";
-import PostDetailPage from "../blog/[id]/page";
-import BlogsPage from "../blog/page";
-import { GET_CMS_PAGES } from "../../graphql/queries";
+import useClientPortal from "../../../../../hooks/useClientPortal";
+import TourBoilerPlateHome from "../app/page";
+import ToursPage from "../app/tours/page";
+import TourDetailPage from "../app/tours/[id]/page";
+import AboutPage from "../app/about/page";
+import LoginPage from "../app/auth/login/page";
+import RegisterPage from "../app/auth/register/page";
+import ContactPage from "../app/contact/page";
+import LegalPage from "../app/legal/page";
+import PostDetailPage from "../app/blog/[id]/page";
+import BlogsPage from "../app/blog/page";
+import { GET_CMS_PAGES } from "../graphql/queries";
 import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import PageLoader from "../../../../../../components/common/PageLoader";
+import PageLoader from "../../../../../components/common/PageLoader";
 
 const standardComponentRegistry = {
   home: TourBoilerPlateHome,
@@ -39,6 +39,7 @@ const standardComponentRegistry = {
 export default function ClientBoilerplateLayout() {
   const params = useParams<{ id: string }>();
   const searchParams = useSearchParams();
+  const isBuilderMode = process.env.NEXT_PUBLIC_BUILDER_MODE === "true";
 
   const { cpDetail } = useClientPortal({ id: params.id });
   const pageName = searchParams.get("pageName");
@@ -71,7 +72,7 @@ export default function ClientBoilerplateLayout() {
     const loadCustomComponent = async () => {
       try {
         // Load the CMS page renderer component
-        const DynamicCmsRenderer = dynamic(() => import("../custom/page"), { loading: () => <PageLoader /> });
+        const DynamicCmsRenderer = dynamic(() => import("../app/custom/page"), { loading: () => <PageLoader /> });
 
         // Create a wrapper component with a proper display name
         const WrappedComponent = (props) => <DynamicCmsRenderer page={customPage} {...props} />;
@@ -124,10 +125,10 @@ export default function ClientBoilerplateLayout() {
   };
 
   return (
-    <>
+    <div className={isBuilderMode ? "builder-mode" : "production-mode"}>
       <Header cpDetail={cpDetail} />
       <main>{renderPageContent()}</main>
       <Footer cpDetail={cpDetail} />
-    </>
+    </div>
   );
 }

@@ -30,6 +30,7 @@ export function mapSocialLinks(externalLinks: any) {
   return filteredSocials;
 }
 
-// export const templateUrl = (projectId: string, slug: string) => {
-//   return `/dashboard/projects/${projectId}?template=tour-boilerplate&pageName=${slug}`;
-// };
+export const getFileUrl = (url: string) => {
+  if (!url) return "";
+  return `${process.env.ERXES_FILE_URL}${url}`;
+};
