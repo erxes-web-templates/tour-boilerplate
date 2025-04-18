@@ -7,7 +7,7 @@ import Image from "next/image";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getFileUrl, templateUrl } from "../../../../../../lib/utils";
+import { getFileUrl, templateUrl } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import usePage from "../../lib/usePage";
 import { BmTour } from "../../types/tours";

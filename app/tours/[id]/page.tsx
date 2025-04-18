@@ -6,7 +6,7 @@ import { TOUR_DETAIL_QUERY } from "../../../graphql/queries";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import usePage from "../../../lib/usePage";
 import Image from "next/image";
-import { getFileUrl } from "../../../../../../../lib/utils";
+import { getFileUrl } from "@/lib/utils";
 export default function TourDetailPage() {
   const searchParams = useSearchParams();
 

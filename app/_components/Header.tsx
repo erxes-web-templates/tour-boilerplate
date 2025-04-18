@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { CPDetail, MenuItem } from "../../types/cms";
 import { useQuery } from "@apollo/client";
-import { GET_MENUS } from "../../../../../dashboard/projects/_graphql/queries";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { getFileUrl, templateUrl } from "../../../../../../lib/utils";
+import { getFileUrl, templateUrl } from "@/lib/utils";
+import { GET_CMS_MENU_LIST } from "../../graphql/queries";
 
 export default function Header({ cpDetail }: { cpDetail: CPDetail }) {
   const params = useParams<{ id: string }>();
 
-  const { data } = useQuery(GET_MENUS, {
+  const { data } = useQuery(GET_CMS_MENU_LIST, {
     variables: {
       clientPortalId: params.id,
       kind: "main",

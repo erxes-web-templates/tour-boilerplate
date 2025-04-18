@@ -5,7 +5,7 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import { useParams, useSearchParams } from "next/navigation";
-import useClientPortal from "../../../../../../hooks/useClientPortal";
+import useClientPortal from "@/hooks/useClientPortal";
 import TourBoilerPlateHome from "../page";
 import ToursPage from "../tours/page";
 import TourDetailPage from "../tours/[id]/page";
@@ -20,7 +20,7 @@ import { GET_CMS_PAGES } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import PageLoader from "../../../../../../components/common/PageLoader";
+import PageLoader from "@/components/common/PageLoader";
 
 const standardComponentRegistry = {
   home: TourBoilerPlateHome,

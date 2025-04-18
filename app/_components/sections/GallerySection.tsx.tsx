@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import CustomImage from "../../../../../../../components/common/CustomImage";
+import CustomImage from "@/components/common/CustomImage";
 import { Section } from "../../../types/sections";
-import { getFileUrl } from "../../../../../../../lib/utils";
+import { getFileUrl } from "@/lib/utils";
 
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";

@@ -8,7 +8,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import Image from "next/image";
-import { getFileUrl, templateUrl } from "../../../../../../lib/utils";
+import { getFileUrl, templateUrl } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 

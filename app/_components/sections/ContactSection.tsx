@@ -6,7 +6,7 @@ import DynamicForm from "../../../components/common/DynamicForm";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_FORM_DETAIL } from "../../../graphql/queries";
 import { FORM_SUBMISSION } from "../../../graphql/mutations";
-import useClientPortal from "../../../../../../../hooks/useClientPortal";
+import useClientPortal from "@/hooks/useClientPortal";
 import { useParams } from "next/navigation";
 const ContactSection = ({ section }: { section: Section }) => {
   const params = useParams<{ id: string }>();
