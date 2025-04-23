@@ -21,6 +21,8 @@ import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import PageLoader from "../../../../../../components/common/PageLoader";
+import Script from "next/script";
+import { getEnv } from "../../../../../../lib/utils";
 
 const standardComponentRegistry = {
   home: TourBoilerPlateHome,
@@ -54,10 +56,18 @@ export default function ClientBoilerplateLayout() {
     },
   });
 
-  const customPage = data?.cmsPages?.find((page: any) => page.slug === pageName);
+  const customPage = data?.cmsPages?.find(
+    (page: any) => page.slug === pageName
+  );
 
+  const env = getEnv();
+  console.log(env.NEXT_PUBLIC_API_URL, "api");
+  const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin;
+  console.log(baseUrl, "base URL");
   // Check if this is a custom page that needs dynamic handling
-  const isCustomCmsPage = Boolean(customPage && !standardComponentRegistry[pageName]);
+  const isCustomCmsPage = Boolean(
+    customPage && !standardComponentRegistry[pageName]
+  );
 
   useEffect(() => {
     if (!isCustomCmsPage) {
@@ -71,13 +81,19 @@ export default function ClientBoilerplateLayout() {
     const loadCustomComponent = async () => {
       try {
         // Load the CMS page renderer component
-        const DynamicCmsRenderer = dynamic(() => import("../custom/page"), { loading: () => <PageLoader /> });
+        const DynamicCmsRenderer = dynamic(() => import("../custom/page"), {
+          loading: () => <PageLoader />,
+        });
 
         // Create a wrapper component with a proper display name
-        const WrappedComponent = (props) => <DynamicCmsRenderer page={customPage} {...props} />;
+        const WrappedComponent = (props) => (
+          <DynamicCmsRenderer page={customPage} {...props} />
+        );
 
         // Set a display name for the component
-        WrappedComponent.displayName = `CmsPage_${customPage?.slug || "Unknown"}`;
+        WrappedComponent.displayName = `CmsPage_${
+          customPage?.slug || "Unknown"
+        }`;
 
         setCustomPageComponent(() => WrappedComponent);
         setError(null);
@@ -125,6 +141,30 @@ export default function ClientBoilerplateLayout() {
 
   return (
     <>
+      {cpDetail?.messengerBrandCode && (
+        <Script
+          id="erxes"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+    window.erxesSettings = {
+      messenger: {
+        brand_id: "${cpDetail.messengerBrandCode}",
+      },
+    };
+    
+    (() => {
+      const script = document.createElement('script');
+      script.src = "${baseUrl}/widgets/build/messengerWidget.bundle.js";
+      script.async = true;
+
+      const entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    })();
+  `,
+          }}
+        />
+      )}
       <Header cpDetail={cpDetail} />
       <main>{renderPageContent()}</main>
       <Footer cpDetail={cpDetail} />
