@@ -1,10 +1,11 @@
 {
+  "cpId": "VH5eNRmKUGgiTMspRNzg6",
   "template": "tour",
   "templateId": "tour-boilerplate",
   "meta": {
-    "title": "Uuganaa",
-    "description": "dsecr",
-    "logo": "erxes-saas/qj8ZuTDW6JPaOYJ8FzRMNFrame 1.png",
+    "title": "Aylal-template-2",
+    "description": "Aylal-template-2",
+    "logo": "",
     "favicon": "",
     "keywords": "",
     "author": "tourism"
@@ -22,16 +23,11 @@
       { "label": "About", "url": "/about", "parentId": null },
       { "label": "Contact", "url": "/contact", "parentId": null }
     ],
-    "footerMenu": [{ "label": "Privacy", "url": "emMwSUHrEzchum2jsiJHu", "parentId": "" }]
+    "footerMenu": []
   },
   "additional": {
-    "copyright": { "text": "Copyright © 2025 " },
-    "social": [
-      { "name": "facebook", "url": "https://facebook.com/url" },
-      { "name": "phones", "url": ["+976 88779603"] },
-      { "name": "emails", "url": ["uuganbayar133@gmail.com"] },
-      { "name": "address", "url": "address" }
-    ],
-    "integrations": {}
+    "copyright": { "text": "All rights reserved." },
+    "social": [],
+    "integrations": { "messengerId": "3zfhNy" }
   }
 }
