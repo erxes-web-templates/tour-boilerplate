@@ -62,7 +62,10 @@ export default function ClientBoilerplateLayout() {
 
   const env = getEnv();
   console.log(env.NEXT_PUBLIC_API_URL, "api");
-  const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin;
+  const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin.replace(
+    ".api.",
+    ".app."
+  );
   console.log(baseUrl, "base URL");
   // Check if this is a custom page that needs dynamic handling
   const isCustomCmsPage = Boolean(
@@ -147,21 +150,21 @@ export default function ClientBoilerplateLayout() {
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-    window.erxesSettings = {
-      messenger: {
-        brand_id: "${cpDetail.messengerBrandCode}",
-      },
-    };
-    
-    (() => {
-      const script = document.createElement('script');
-      script.src = "${baseUrl}/widgets/build/messengerWidget.bundle.js";
-      script.async = true;
+              window.erxesSettings = {
+                messenger: {
+                  brand_id: "${cpDetail.messengerBrandCode}",
+                },
+              };
+              
+              (() => {
+                const script = document.createElement('script');
+                script.src = "${baseUrl}/widgets/build/messengerWidget.bundle.js";
+                script.async = true;
 
-      const entry = document.getElementsByTagName('script')[0];
-      entry.parentNode.insertBefore(script, entry);
-    })();
-  `,
+                const entry = document.getElementsByTagName('script')[0];
+                entry.parentNode.insertBefore(script, entry);
+              })();
+            `,
           }}
         />
       )}
