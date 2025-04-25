@@ -2,7 +2,7 @@
 
 import usePage from "../../lib/usePage";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 const AboutPage = () => {
   const searchParams = useSearchParams();
@@ -12,7 +12,9 @@ const AboutPage = () => {
   console.log("test", pageName);
   return (
     <div>
-      <PageContent />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PageContent />
+      </Suspense>
     </div>
   );
 };

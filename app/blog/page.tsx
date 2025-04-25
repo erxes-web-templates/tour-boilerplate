@@ -5,7 +5,7 @@ import usePage from "../../lib/usePage";
 import { CmsPost } from "../../types/cms";
 import { useQuery } from "@apollo/client";
 import { useParams, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import Image from "next/image";
 import { getFileUrl, templateUrl } from "@/lib/utils";
@@ -55,7 +55,9 @@ const BlogsPage = () => {
           </Card>
         ))}
       </div>
-      <PageContent />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PageContent />
+      </Suspense>
     </div>
   );
 };

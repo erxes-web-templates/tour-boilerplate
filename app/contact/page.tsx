@@ -3,6 +3,7 @@
 import type React from "react";
 import { useSearchParams } from "next/navigation";
 import usePage from "../../lib/usePage";
+import { Suspense } from "react";
 
 export default function ContactPage() {
   const searchParams = useSearchParams();
@@ -29,7 +30,9 @@ export default function ContactPage() {
           </div>
         </Card>
       </div> */}
-      <PageContent />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PageContent />
+      </Suspense>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { TOURS_QUERY } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getFileUrl, templateUrl } from "@/lib/utils";
@@ -56,7 +56,9 @@ const ToursPage = () => {
           </Card>
         ))}
       </div>
-      <PageContent />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PageContent />
+      </Suspense>
     </>
   );
 };

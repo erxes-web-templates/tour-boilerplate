@@ -19,7 +19,7 @@ import BlogsPage from "../blog/page";
 import { GET_CMS_PAGES } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import PageLoader from "@/components/common/PageLoader";
 
 const standardComponentRegistry = {
@@ -101,7 +101,11 @@ export default function ClientBoilerplateLayout() {
     const StandardComponent = standardComponentRegistry[pageName];
 
     if (StandardComponent) {
-      return <StandardComponent />;
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <StandardComponent />
+        </Suspense>
+      );
     }
 
     // For custom CMS pages
@@ -115,7 +119,11 @@ export default function ClientBoilerplateLayout() {
       }
 
       if (CustomPageComponent) {
-        return <CustomPageComponent />;
+        return (
+          <Suspense fallback={<PageLoader />}>
+            <CustomPageComponent />
+          </Suspense>
+        );
       }
     }
 

@@ -1,0 +1,26 @@
+
+[2K[1G[1myarn run v1.22.21[22m
+[2K[1G[2m$ next build[22m
+   [1m[38;2;173;127;168m▲ Next.js 15.1.2[39m[22m
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully
+[?25l [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m [31m[1m⨯[22m[39m ESLint: Config (unnamed): Unexpected non-object config at user-defined index 12.
+[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G[?25h [37m[1m [22m[39m Linting and checking validity of types     [32m[1m✓[22m[39m Linting and checking validity of types 
+[?25l [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m...[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data     [32m[1m✓[22m[39m Collecting page data 
+[?25l [37m[1m [22m[39m Generating static pages (0/12)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/12)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/12)  [36m[==  ][39m[2K[1G[?25h ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/contact". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at a (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/.next/server/chunks/403.js:1:3226)
+    at d (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/.next/server/chunks/403.js:1:19750)
+    at p (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/.next/server/app/contact/page.js:1:2152)
+    at nO (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:20:45959)
+    at nI (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:20:47734)
+    at nL (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:20:65533)
+    at nN (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:20:63164)
+    at n$ (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:20:46311)
+    at nI (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:20:47780)
+    at nI (/Users/uuganaa/work/my-turborepo/apps/templates/tour-boilerplate/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:20:62515)
+Error occurred prerendering page "/contact". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /contact/page: /contact, exiting the build.
+ [31m[1m⨯[22m[39m Static worker exited with code: 1 and signal: null
+[?25h[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
