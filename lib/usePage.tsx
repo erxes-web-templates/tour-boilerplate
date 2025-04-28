@@ -23,6 +23,7 @@ const usePage = (slug: string | null) => {
     variables: {
       slug: slug,
     },
+
     context: {
       headers: {
         "client-portal-id": params.id,

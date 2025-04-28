@@ -21,6 +21,7 @@ import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 import PageLoader from "@/components/common/PageLoader";
+import { ApolloWrapper } from "../../lib/apollo-wrapper";
 
 const standardComponentRegistry = {
   home: TourBoilerPlateHome,
@@ -102,9 +103,9 @@ export default function ClientBoilerplateLayout() {
 
     if (StandardComponent) {
       return (
-        <Suspense fallback={<PageLoader />}>
-          <StandardComponent />
-        </Suspense>
+        // <Suspense fallback={<PageLoader />}>
+        <StandardComponent />
+        // </Suspense>
       );
     }
 
@@ -120,9 +121,9 @@ export default function ClientBoilerplateLayout() {
 
       if (CustomPageComponent) {
         return (
-          <Suspense fallback={<PageLoader />}>
-            <CustomPageComponent />
-          </Suspense>
+          // <Suspense fallback={<PageLoader />}>
+          <CustomPageComponent />
+          // </Suspense>
         );
       }
     }
@@ -133,9 +134,11 @@ export default function ClientBoilerplateLayout() {
 
   return (
     <>
-      <Header cpDetail={cpDetail} />
-      <main>{renderPageContent()}</main>
-      <Footer cpDetail={cpDetail} />
+      <ApolloWrapper>
+        <Header cpDetail={cpDetail} />
+        <main>{renderPageContent()}</main>
+        <Footer cpDetail={cpDetail} />
+      </ApolloWrapper>
     </>
   );
 }

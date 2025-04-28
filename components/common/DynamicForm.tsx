@@ -195,6 +195,7 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ formData, submitForm }) => {
                           </FormLabel>
                           {description && <FormDescription>{description}</FormDescription>}
                           <FormControl>
+                            {/* @ts-ignore  */}
                             <PhoneInput
                               country={"us"}
                               value={field.value}
