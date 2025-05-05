@@ -16,9 +16,16 @@ interface CmsMenuListVariables {
 }
 
 type MenuItem = {
-  _id: string;
+  _id?: string;
   label: string;
-  url: string;
+  url?: string;
+  parentId?: string;
+  icon?: string;
+  kind: string;
+  contentType?: string;
+  contentTypeID?: string;
+  order: number;
+  clientPortalId: string;
 };
 
 type CPDetail = {
