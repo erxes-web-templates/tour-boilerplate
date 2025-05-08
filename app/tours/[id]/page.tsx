@@ -6,7 +6,9 @@ import { TOUR_DETAIL_QUERY } from "../../../graphql/queries";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import usePage from "../../../lib/usePage";
 import Image from "next/image";
-import { getFileUrl } from "../../../../../../../lib/utils";
+import { getFileUrl, templateUrl } from "../../../../../../../lib/utils";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function TourDetailPage() {
   const searchParams = useSearchParams();
 
@@ -39,7 +41,15 @@ export default function TourDetailPage() {
             </div>
           ))}
       </div>
-      <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
+        <div className="flex gap-3 justify-end">
+          <Button size="lg" variant={"secondary"}>
+            <Link href={templateUrl("/inquiry")}>Inquire now</Link>
+          </Button>
+          <Button size="lg">Inquire now</Button>
+        </div>
+      </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <p>

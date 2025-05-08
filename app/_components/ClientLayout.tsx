@@ -23,6 +23,8 @@ import { useEffect, useState } from "react";
 import PageLoader from "../../../../../../components/common/PageLoader";
 import Script from "next/script";
 import { getEnv } from "../../../../../../lib/utils";
+import InquiryPage from "../inquiry/page";
+import TourBookingPage from "../booking/page";
 
 const standardComponentRegistry = {
   home: TourBoilerPlateHome,
@@ -36,6 +38,8 @@ const standardComponentRegistry = {
   privacy: LegalPage,
   blogs: BlogsPage,
   post: PostDetailPage,
+  inquiry: InquiryPage,
+  booking: TourBookingPage,
 };
 
 export default function ClientBoilerplateLayout() {
@@ -56,21 +60,14 @@ export default function ClientBoilerplateLayout() {
     },
   });
 
-  const customPage = data?.cmsPages?.find(
-    (page: any) => page.slug === pageName
-  );
+  const customPage = data?.cmsPages?.find((page: any) => page.slug === pageName);
 
   const env = getEnv();
   console.log(env.NEXT_PUBLIC_API_URL, "api");
-  const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin.replace(
-    ".api.",
-    ".app."
-  );
+  const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin.replace(".api.", ".app.");
   console.log(baseUrl, "base URL");
   // Check if this is a custom page that needs dynamic handling
-  const isCustomCmsPage = Boolean(
-    customPage && !standardComponentRegistry[pageName]
-  );
+  const isCustomCmsPage = Boolean(customPage && !standardComponentRegistry[pageName]);
 
   useEffect(() => {
     if (!isCustomCmsPage) {
@@ -89,14 +86,10 @@ export default function ClientBoilerplateLayout() {
         });
 
         // Create a wrapper component with a proper display name
-        const WrappedComponent = (props) => (
-          <DynamicCmsRenderer page={customPage} {...props} />
-        );
+        const WrappedComponent = (props) => <DynamicCmsRenderer page={customPage} {...props} />;
 
         // Set a display name for the component
-        WrappedComponent.displayName = `CmsPage_${
-          customPage?.slug || "Unknown"
-        }`;
+        WrappedComponent.displayName = `CmsPage_${customPage?.slug || "Unknown"}`;
 
         setCustomPageComponent(() => WrappedComponent);
         setError(null);
