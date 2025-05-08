@@ -2,7 +2,34 @@ import Link from "next/link";
 import cpDetail from "@/data/configs.json";
 import { Twitter, Linkedin, Youtube, Instagram, Facebook, MessageCircle } from "lucide-react";
 
+interface SocialItem {
+  name: string;
+  url: string | string[];
+}
+
+interface AdditionalDetails {
+  social: SocialItem[];
+}
+
+interface CpDetail {
+  additional?: AdditionalDetails;
+}
+
 export default function Footer() {
+  const getSocialUrl = (name: string): string | undefined => {
+    const socialItems = cpDetail?.additional?.social as SocialItem[] | undefined;
+    const item = socialItems?.find((item) => item.name === name);
+    return Array.isArray(item?.url) ? item.url[0] : item?.url;
+  };
+
+  const socialLinks = [
+    { name: "facebook", icon: <Facebook /> },
+    { name: "twitter", icon: <Twitter /> },
+    { name: "linkedin", icon: <Linkedin /> },
+    { name: "youtube", icon: <Youtube /> },
+    { name: "instagram", icon: <Instagram /> },
+    { name: "whatsapp", icon: <MessageCircle /> },
+  ];
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
@@ -27,58 +54,20 @@ export default function Footer() {
           </div>
           <div className="w-full md:w-1/3">
             <h4 className="text-lg font-semibold mb-2">Contact Us</h4>
-            <p>Email: {cpDetail?.additional?.social.find((item) => item.name === "emails")?.url[0]}</p>
-            <p>Phone: {cpDetail?.additional?.social.find((item) => item.name === "phones")?.url[0]}</p>
-            <p>Address: {cpDetail?.additional?.social.find((item) => item.name === "address")?.url} </p>
+            <p>Email: {getSocialUrl("emails")}</p>
+            <p>Phone: {getSocialUrl("phones")}</p>
+            <p>Address: {getSocialUrl("address")}</p>
             <div className="flex space-x-4">
-              {cpDetail?.additional?.social.find((item) => item.name === "facebook")?.url && (
-                <a
-                  href={cpDetail?.additional?.social.find((item) => item.name === "facebook")?.url as string}
-                  className="text-white hover:text-gray-300 transition-colors duration-200"
-                >
-                  <Facebook />
-                </a>
-              )}
-              {cpDetail?.additional?.social.find((item) => item.name === "twitter")?.url && (
-                <a
-                  href={cpDetail?.additional?.social.find((item) => item.name === "twitter")?.url as string}
-                  className="text-white hover:text-gray-300 transition-colors duration-200"
-                >
-                  <Twitter />
-                </a>
-              )}
-              {cpDetail?.additional?.social.find((item) => item.name === "linkedin")?.url && (
-                <a
-                  href={cpDetail?.additional?.social.find((item) => item.name === "linkedin")?.url as string}
-                  className="text-white hover:text-gray-300 transition-colors duration-200"
-                >
-                  <Linkedin />
-                </a>
-              )}
-              {cpDetail?.additional?.social.find((item) => item.name === "youtube")?.url && (
-                <a
-                  href={cpDetail?.additional?.social.find((item) => item.name === "youtube")?.url as string}
-                  className="text-white hover:text-gray-300 transition-colors duration-200"
-                >
-                  <Youtube />
-                </a>
-              )}
-              {cpDetail?.additional?.social.find((item) => item.name === "instagram")?.url && (
-                <a
-                  href={cpDetail?.additional?.social.find((item) => item.name === "instagram")?.url as string}
-                  className="text-white hover:text-gray-300 transition-colors duration-200"
-                >
-                  <Instagram />
-                </a>
-              )}
-              {cpDetail?.additional?.social.find((item) => item.name === "whatsapp")?.url && (
-                <a
-                  href={cpDetail?.additional?.social.find((item) => item.name === "whatsapp")?.url as string}
-                  className="text-white hover:text-gray-300 transition-colors duration-200"
-                >
-                  <MessageCircle />
-                </a>
-              )}
+              {socialLinks.map(({ name, icon }) => {
+                const url = getSocialUrl(name);
+                return (
+                  url && (
+                    <a key={name} href={url} className="text-white hover:text-gray-300 transition-colors duration-200">
+                      {icon}
+                    </a>
+                  )
+                );
+              })}
             </div>
           </div>
         </div>

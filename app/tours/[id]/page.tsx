@@ -16,6 +16,8 @@ import CmsPostsSection from "../../_components/sections/CmsPostsSection";
 import GallerySection from "../../_components/sections/GallerySection";
 import ContactSection from "../../_components/sections/ContactSection";
 import TextSection from "@/app/_components/sections/TextSection";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type Params = Promise<{ id: string }>;
 
@@ -90,7 +92,17 @@ export default async function TourDetailPage(props: { params: Params }) {
           ))}
       </div>
 
-      <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
+        <div className="flex gap-3 justify-end">
+          <Button size="lg" variant={"secondary"}>
+            <Link href={"/inquiry"}>Inquire now</Link>
+          </Button>
+          <Button size="lg">
+            <Link href={"/booking"}>Book tour</Link>
+          </Button>
+        </div>
+      </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <p>
