@@ -47,7 +47,9 @@ export default function TourDetailPage() {
           <Button size="lg" variant={"secondary"}>
             <Link href={templateUrl("/inquiry")}>Inquire now</Link>
           </Button>
-          <Button size="lg">Inquire now</Button>
+          <Button size="lg">
+            <Link href={templateUrl("/booking")}>Book tour</Link>
+          </Button>
         </div>
       </div>
       <div className="grid md:grid-cols-2 gap-4">
