@@ -7,13 +7,13 @@ import Image from "next/image";
 import { CmsPost } from "@/types/cms";
 import { getFileUrl } from "@/lib/utils";
 import { fetchCmsPosts, fetchMenuList } from "@/lib/fetchCms";
-
+import cpData from "@/data/configs.json";
 const CmsPostsSection = async ({ section }: { section: Section }) => {
   const posts = await fetchCmsPosts({
     perPage: 10,
     page: 1,
     categoryId: section.config.categoryId,
-    clientPortalId: "JiQMw8-_uBQov_jVxwb82",
+    clientPortalId: cpData.cpId,
   });
 
   console.log(posts, "menu in posts");

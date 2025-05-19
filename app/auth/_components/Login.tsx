@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { gql, useMutation } from "@apollo/client"; // import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
-
+import cpData from "@/data/configs.json";
 import Image from "next/image";
 import { LOGIN_MUTATION } from "../_graphql/mutations";
 
@@ -26,7 +26,7 @@ export default function LoginForm() {
       const { data } = await loginFunc({
         variables: {
           login: email,
-          clientPortalId: "JiQMw8-_uBQov_jVxwb82",
+          clientPortalId: cpData.cpId,
           password,
         },
       });
@@ -57,8 +57,9 @@ export default function LoginForm() {
 
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="m@example.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                <Label htmlFor="email">Email / Username</Label>
+
+                <Input id="email" type="text" placeholder="m@example.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">

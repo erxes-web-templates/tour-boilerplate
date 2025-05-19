@@ -195,7 +195,7 @@ export default function InquiryPage() {
 
           {/* Continue Button */}
           <Button className="w-full font-medium py-3 rounded-md" onClick={handleContinue}>
-            Sumbit
+            Submit
           </Button>
         </div>
       </div>

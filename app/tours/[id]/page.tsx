@@ -95,12 +95,13 @@ export default async function TourDetailPage(props: { params: Params }) {
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-4">{tour.name}</h1>
         <div className="flex gap-3 justify-end">
-          <Button size="lg" variant={"secondary"}>
-            <Link href={"/inquiry"}>Inquire now</Link>
-          </Button>
-          <Button size="lg">
-            <Link href={"/booking"}>Book tour</Link>
-          </Button>
+          <Link className="pt-3" href={"/inquiry"}>
+            Inquire now
+          </Link>
+
+          <Link className="bg-slate-800 text-white px-4 pt-3 rounded-md block" href={"/booking?tourId=" + tour._id}>
+            Book tour
+          </Link>
         </div>
       </div>
       <div className="grid md:grid-cols-2 gap-4">

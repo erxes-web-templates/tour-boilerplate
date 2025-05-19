@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { gql, useMutation } from "@apollo/client";
 import * as z from "zod";
-
+import cpData from "@/data/configs.json";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -37,7 +37,7 @@ export default function RegisterForm() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      clientPortalId: "JiQMw8-_uBQov_jVxwb82",
+      clientPortalId: cpData.cpId,
       phone: "",
       email: "",
       username: "",
@@ -70,7 +70,7 @@ export default function RegisterForm() {
       await register({
         variables: {
           ...data,
-          clientPortalId: "JiQMw8-_uBQov_jVxwb82",
+          clientPortalId: cpData.cpId,
         },
       });
     } catch (error) {

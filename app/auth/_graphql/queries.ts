@@ -10,6 +10,9 @@ export const CURRENT_USER = gql`
       lastName
       username
       avatar
+      erxesCustomerId
+      email
+      phone
     }
   }
 `;
