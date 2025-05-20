@@ -7,3 +7,36 @@ export const FORM_SUBMISSION = gql`
     }
   }
 `;
+
+export const ADD_ORDER = gql`
+  mutation BmOrderAdd($order: BmsOrderInput) {
+    bmOrderAdd(order: $order) {
+      _id
+    }
+  }
+`;
+
+export const CREATE_INVOICE = gql`
+  mutation InvoiceCreate(
+    $amount: Float!
+    $contentType: String
+    $contentTypeId: String
+    $customerId: String
+    $customerType: String
+    $paymentIds: [String]
+    $currency: String
+  ) {
+    invoiceCreate(
+      amount: $amount
+      contentType: $contentType
+      contentTypeId: $contentTypeId
+      customerId: $customerId
+      customerType: $customerType
+      paymentIds: $paymentIds
+      currency: $currency
+    ) {
+      _id
+      redirectUri
+    }
+  }
+`;
