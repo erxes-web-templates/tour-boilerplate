@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 
 "use client";
 
@@ -60,14 +60,21 @@ export default function ClientBoilerplateLayout() {
     },
   });
 
-  const customPage = data?.cmsPages?.find((page: any) => page.slug === pageName);
+  const customPage = data?.cmsPages?.find(
+    (page: any) => page.slug === pageName
+  );
 
   const env = getEnv();
-  console.log(env.NEXT_PUBLIC_API_URL, "api");
-  const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin.replace(".api.", ".app.");
+  console.log(cpDetail, "api");
+  const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin.replace(
+    ".api.",
+    ".app."
+  );
   console.log(baseUrl, "base URL");
   // Check if this is a custom page that needs dynamic handling
-  const isCustomCmsPage = Boolean(customPage && !standardComponentRegistry[pageName]);
+  const isCustomCmsPage = Boolean(
+    customPage && !standardComponentRegistry[pageName]
+  );
 
   useEffect(() => {
     if (!isCustomCmsPage) {
@@ -86,10 +93,14 @@ export default function ClientBoilerplateLayout() {
         });
 
         // Create a wrapper component with a proper display name
-        const WrappedComponent = (props) => <DynamicCmsRenderer page={customPage} {...props} />;
+        const WrappedComponent = (props) => (
+          <DynamicCmsRenderer page={customPage} {...props} />
+        );
 
         // Set a display name for the component
-        WrappedComponent.displayName = `CmsPage_${customPage?.slug || "Unknown"}`;
+        WrappedComponent.displayName = `CmsPage_${
+          customPage?.slug || "Unknown"
+        }`;
 
         setCustomPageComponent(() => WrappedComponent);
         setError(null);
@@ -104,6 +115,18 @@ export default function ClientBoilerplateLayout() {
 
     loadCustomComponent();
   }, [customPage, isCustomCmsPage, pageName]);
+
+  useEffect(() => {
+    if (cpDetail && cpDetail.styles) {
+      console.log("Applying theme from cpDetail");
+
+      const root = document.documentElement;
+      root.style.setProperty("--primary", cpDetail.styles.baseColor);
+      root.style.setProperty("--background", cpDetail.styles.backgroundColor);
+      root.style.setProperty("--font-body", cpDetail.styles.fontBody);
+      root.style.setProperty("--font-heading", cpDetail.styles.fontHeading);
+    }
+  }, [cpDetail]);
 
   const renderPageContent = () => {
     if (loading) return <PageLoader />;
