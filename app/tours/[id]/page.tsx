@@ -1,5 +1,10 @@
-import { fetchBmTourDetail } from "@/lib/fetchTours";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { fetchBmTourDetail, fetchBmToursGroup } from "@/lib/fetchTours";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Itinerary } from "@/types/tours";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -55,6 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TourDetailPage(props: { params: Params }) {
   const { id } = await props.params;
   const tour = await fetchBmTourDetail(id);
+  const groupTours = await fetchBmToursGroup();
   const sectionComponents = {
     hero: HeroSection,
     imageText: AboutSection,
@@ -80,14 +86,24 @@ export default async function TourDetailPage(props: { params: Params }) {
     <div className="container mx-auto p-4">
       {tour.imageThumbnail && (
         <div className="relative w-full h-[500px]">
-          <Image src={getFileUrl(tour.imageThumbnail)} alt={tour.name} fill className="rounded-md " />
+          <Image
+            src={getFileUrl(tour.imageThumbnail)}
+            alt={tour.name}
+            fill
+            className="rounded-md "
+          />
         </div>
       )}
       <div className="flex gap-3 my-3">
         {tour.images &&
           tour.images.map((image: any, index: number) => (
             <div key={index} className="relative w-[300px] h-[200px]">
-              <Image src={getFileUrl(image)} alt={tour.name} fill className="rounded-md " />
+              <Image
+                src={getFileUrl(image)}
+                alt={tour.name}
+                fill
+                className="rounded-md "
+              />
             </div>
           ))}
       </div>
@@ -99,7 +115,10 @@ export default async function TourDetailPage(props: { params: Params }) {
             Inquire now
           </Link>
 
-          <Link className="bg-slate-800 text-white px-4 pt-3 rounded-md block" href={"/booking?tourId=" + tour._id}>
+          <Link
+            className="bg-slate-800 text-white px-4 pt-3 rounded-md block"
+            href={"/booking?tourId=" + tour._id}
+          >
             Book tour
           </Link>
         </div>
@@ -113,7 +132,8 @@ export default async function TourDetailPage(props: { params: Params }) {
             <strong>Status:</strong> {tour.status}
           </p>
           <p>
-            <strong>Start Date:</strong> {new Date(tour.startDate).toLocaleDateString()}
+            <strong>Start Date:</strong>{" "}
+            {new Date(tour.startDate).toLocaleDateString()}
           </p>
           <p>
             <strong>Cost:</strong> ${tour.cost.toLocaleString()}
@@ -130,6 +150,23 @@ export default async function TourDetailPage(props: { params: Params }) {
               </Accordion>
             </div>
           )}
+
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Available Dates</h2>
+            <ul className="list-disc pl-5">
+              {groupTours &&
+                groupTours.map((groupTour: any) => (
+                  <li key={groupTour.items[0]._id}>
+                    <Link href={`/tours?tourId=${groupTour.items[0]._id}`}>
+                      {new Date(
+                        groupTour.items[0].startDate
+                      ).toLocaleDateString()}{" "}
+                      - {groupTour.items[0].name}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
 
         <div>

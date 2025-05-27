@@ -31,15 +31,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     query me {
       clientPortalCurrentUser {
         _id
-        details {
-          avatar
-          firstName
-          fullName
-          lastName
-          shortName
-        }
         username
         email
+        erxesCustomerId
       }
     }
   `;
@@ -56,7 +50,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return <div>Loading...</div>;
   }
 
-  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+  );
 };
 
 // Export the context for use in other files

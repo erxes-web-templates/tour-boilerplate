@@ -28,6 +28,8 @@ import { CREATE_INVOICE } from "@/graphql/mutations";
 import { PAYMENTS } from "@/graphql/queries";
 import { SearchableNationalitySelect } from "@/components/common/SearchableNationalitySelect";
 import { nationalities } from "@/lib/utils";
+import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 // Define the GraphQL mutation
 const ADD_ORDER = gql`
@@ -58,6 +60,7 @@ export default function TravelersInfoStep({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [paymentType, setPaymentType] = useState("stripe");
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   console.log(currentUser, formData, "cu ti");
   // Use Apollo Client's useMutation hook
@@ -78,6 +81,13 @@ export default function TravelersInfoStep({
         toast.success(
           "Invoice created successfully! Your order will be confirmed once payment is completed."
         );
+
+        //add data id to url as query params , expect there are other params
+        const invoiceId = data.invoiceCreate._id;
+        const url = new URL(window.location.href);
+        url.searchParams.set("invoiceId", invoiceId);
+        window.history.pushState({}, "", url.toString());
+
         onContinue();
       },
       onError: (error) => {
@@ -486,7 +496,30 @@ export default function TravelersInfoStep({
       >
         + Add Traveler Info (Optional)
       </Button>
-
+      <div className="mb-8">
+        <div className="flex items-start space-x-2">
+          <Checkbox
+            id="terms"
+            checked={termsAccepted}
+            onCheckedChange={(checked) => setTermsAccepted(checked as boolean)}
+            className="mt-1"
+          />
+          <Label htmlFor="terms" className="text-xs">
+            {"I accept TourRider's "}
+            <Link href="#" className="text-yellow-500 hover:underline">
+              Terms & Conditions
+            </Link>{" "}
+            and{" "}
+            <Link href="#" className="text-yellow-500 hover:underline">
+              Privacy Policy
+            </Link>
+            ;{" "}
+            <span className="text-yellow-500">
+              Free payment, cancellation and refund conditions.
+            </span>
+          </Label>
+        </div>
+      </div>
       {/* Navigation Buttons */}
       <div className="grid grid-cols-2 gap-4">
         <Button
@@ -500,7 +533,7 @@ export default function TravelersInfoStep({
         <Button
           className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
           onClick={handleSubmit}
-          disabled={loading}
+          disabled={loading || invoiceLoading || !termsAccepted}
         >
           {loading ? "Submitting..." : "Continue"}
         </Button>

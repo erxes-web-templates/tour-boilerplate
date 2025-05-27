@@ -1,9 +1,14 @@
-import { TOUR_DETAIL_QUERY, TOURS_QUERY } from "@/graphql/queries";
+import {
+  TOUR_DETAIL_QUERY,
+  TOURS_GROUP_QUERY,
+  TOURS_QUERY,
+} from "@/graphql/queries";
 import { getClient } from "./client";
 import {
   BmTourDetail,
   BmTourDetailVariables,
   BmToursData,
+  BmToursGroupVariables,
 } from "@/types/tours";
 
 export async function fetchBmTours(
@@ -76,6 +81,30 @@ export async function fetchBmTourDetail(id: string, branchId?: string) {
     });
 
     return data.bmTourDetail;
+  } catch (error) {
+    console.error("Error fetching BM Tour Detail:", error);
+    return null;
+  }
+}
+
+export async function fetchBmToursGroup() {
+  const client = getClient();
+
+  try {
+    const { data } = await client.query<
+      { bmToursGroup: { list: BmTourDetail[] } },
+      BmToursGroupVariables
+    >({
+      query: TOURS_GROUP_QUERY,
+      variables: { status: "website" },
+      context: {
+        headers: {
+          "erxes-app-token": process.env.ERXES_APP_TOKEN,
+        },
+      },
+    });
+
+    return data.bmToursGroup.list;
   } catch (error) {
     console.error("Error fetching BM Tour Detail:", error);
     return null;
