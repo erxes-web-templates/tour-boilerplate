@@ -35,6 +35,14 @@ interface BmTourDetail {
   imageThumbnail: string;
 }
 
+interface BmToursGroupVariables {
+  status: string;
+  branchId?: string;
+  page?: number;
+  perPage?: number;
+  tags?: string[];
+}
+
 interface BmTourDetailVariables {
   id: string;
   branchId?: string;
@@ -61,4 +69,11 @@ interface Itinerary {
   personCost?: any;
 }
 
-export type { BmTour, BmToursData, BmTourDetail, BmTourDetailVariables, Itinerary };
+export type {
+  BmTour,
+  BmToursData,
+  BmTourDetail,
+  BmTourDetailVariables,
+  Itinerary,
+  BmToursGroupVariables,
+};

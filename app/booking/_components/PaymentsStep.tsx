@@ -5,10 +5,17 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import type { BookingFormData } from "./BookingForm";
+import { useSearchParams } from "next/navigation";
 
 interface PaymentsStepProps {
   formData: BookingFormData;
@@ -18,9 +25,18 @@ interface PaymentsStepProps {
   onSubmit: () => void;
 }
 
-export default function PaymentsStep({ formData, updateFormData, totalPrice, onBack, onSubmit }: PaymentsStepProps) {
+export default function PaymentsStep({
+  formData,
+  updateFormData,
+  totalPrice,
+  onBack,
+  onSubmit,
+}: PaymentsStepProps) {
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const params = useSearchParams();
+  const invoiceId = params.get("invoiceId");
 
+  const invoiceUrl = `${process.env.ERXES_URL}/pl:payment/invoice/${invoiceId}`;
   const updateCardDetails = (field: string, value: string) => {
     updateFormData({
       cardDetails: {
@@ -40,7 +56,11 @@ export default function PaymentsStep({ formData, updateFormData, totalPrice, onB
     <div className="mb-6">
       <div className="mb-6">
         {/* Payment Type Selection */}
-        <RadioGroup value={formData.paymentType} onValueChange={(value) => updateFormData({ paymentType: value })} className="flex gap-4 mb-8">
+        <RadioGroup
+          value={formData.paymentType}
+          onValueChange={(value) => updateFormData({ paymentType: value })}
+          className="flex gap-4 mb-8"
+        >
           <div className="flex items-center">
             <RadioGroupItem value="prepay" id="prepay" className="mr-2" />
             <Label htmlFor="prepay" className="text-sm font-medium uppercase">
@@ -54,18 +74,30 @@ export default function PaymentsStep({ formData, updateFormData, totalPrice, onB
             </Label>
           </div>
         </RadioGroup>
-
+        {/* 
         <div className="flex justify-between items-center mb-4">
           <div>
             <div className="text-xs text-gray-500">Step 03</div>
             <h2 className="text-xl font-medium text-black">Payments</h2>
           </div>
-          <div className="text-2xl font-bold text-yellow-500">${totalPrice}</div>
-        </div>
+          <div className="text-2xl font-bold text-yellow-500">
+            ${totalPrice}
+          </div>
+        </div> */}
 
         {/* Payment Methods */}
         <div className="mb-8">
-          <RadioGroup value={formData.paymentMethod} onValueChange={(value) => updateFormData({ paymentMethod: value })} className="space-y-4">
+          {invoiceId ? (
+            <iframe
+              src={invoiceUrl}
+              className="min-h-[500px] w-full border border-gray-200 rounded-md"
+            ></iframe>
+          ) : (
+            <div className="text-sm text-gray-500 mb-4">
+              <p> Something went wrong, please try again later.</p>
+            </div>
+          )}
+          {/* <RadioGroup value={formData.paymentMethod} onValueChange={(value) => updateFormData({ paymentMethod: value })} className="space-y-4">
             <div className="flex items-center justify-between rounded-md border border-gray-200 p-3">
               <div className="flex items-center">
                 <RadioGroupItem value="card" id="card" className="mr-3" />
@@ -97,11 +129,11 @@ export default function PaymentsStep({ formData, updateFormData, totalPrice, onB
                 <div className="text-white text-[8px] font-bold">G</div>
               </div>
             </div>
-          </RadioGroup>
+          </RadioGroup> */}
         </div>
 
         {/* Credit Card Form - Only shown when Pay by card is selected */}
-        {formData.paymentMethod === "card" && (
+        {/* {formData.paymentMethod === "card" && (
           <div className="mt-4 mb-6 border border-gray-200 rounded-md p-4 bg-gray-50">
             <h3 className="text-base font-medium mb-4">Card Details</h3>
 
@@ -184,35 +216,28 @@ export default function PaymentsStep({ formData, updateFormData, totalPrice, onB
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Terms and Conditions */}
-        <div className="mb-8">
-          <div className="flex items-start space-x-2">
-            <Checkbox id="terms" checked={termsAccepted} onCheckedChange={(checked) => setTermsAccepted(checked as boolean)} className="mt-1" />
-            <Label htmlFor="terms" className="text-xs">
-              {"I accept TourRider's "}
-              <Link href="#" className="text-yellow-500 hover:underline">
-                Terms & Conditions
-              </Link>{" "}
-              and{" "}
-              <Link href="#" className="text-yellow-500 hover:underline">
-                Privacy Policy
-              </Link>
-              ; <span className="text-yellow-500">Free payment, cancellation and refund conditions.</span>
-            </Label>
-          </div>
-        </div>
 
         {/* Navigation Buttons */}
-        <div className="grid grid-cols-2 gap-4">
-          <Button variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black" onClick={onBack}>
+        {/* <div className="grid grid-cols-2 gap-4">
+          <Button
+            variant="outline"
+            className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black"
+            onClick={onBack}
+          >
             Back
           </Button>
-          <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium" disabled={!termsAccepted} onClick={onSubmit}>
-            Book for {formData.travelers} {formData.travelers === 1 ? "space" : "spaces"}
+          <Button
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
+            disabled={!termsAccepted}
+            onClick={onSubmit}
+          >
+            Book for {formData.travelers}{" "}
+            {formData.travelers === 1 ? "space" : "spaces"}
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

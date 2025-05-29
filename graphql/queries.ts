@@ -24,6 +24,24 @@ export const TOURS_QUERY = gql`
   }
 `;
 
+export const TOURS_GROUP_QUERY = gql`
+  query bmToursGroup(
+    $page: Int
+    $perPage: Int
+    $tags: [String]
+    $status: String
+    $branchId: String
+  ) {
+    bmToursGroup(
+      page: $page
+      perPage: $perPage
+      tags: $tags
+      status: $status
+      branchId: $branchId
+    )
+  }
+`;
+
 export const TOUR_DETAIL_QUERY = gql`
   query BmTourDetail($id: String!) {
     bmTourDetail(_id: $id) {
