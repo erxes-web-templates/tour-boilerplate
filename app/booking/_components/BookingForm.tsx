@@ -5,7 +5,6 @@ import GeneralInfoStep from "./GeneralInfoStep";
 import TravelersInfoStep from "./TravelersInfoStep";
 import PaymentsStep from "./PaymentsStep";
 import useCurrentUser from "@/lib/useAuth";
-import { set } from "date-fns";
 
 export type TourDate = {
   id: string;
