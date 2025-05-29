@@ -5,7 +5,9 @@ import GeneralInfoStep from "./GeneralInfoStep";
 import TravelersInfoStep from "./TravelersInfoStep";
 import PaymentsStep from "./PaymentsStep";
 import useCurrentUser from "@/lib/useAuth";
-import { set } from "date-fns";
+import { useSearchParams } from "next/navigation";
+import { useQuery } from "@apollo/client";
+import { TOUR_GROUP_DETAIL_QUERY } from "@/graphql/queries";
 
 export type TourDate = {
   id: string;
@@ -45,8 +47,18 @@ export type BookingFormData = {
 };
 
 export default function BookingForm() {
+  const params = useSearchParams();
+  const selectedTourId = params.get("tourId");
   const [currentStep, setCurrentStep] = useState(1);
   const { currentUser } = useCurrentUser();
+  const { data: groupToursData } = useQuery(TOUR_GROUP_DETAIL_QUERY, {
+    variables: {
+      status: "website",
+      groupCode: selectedTourId || "",
+    },
+  });
+  const groupTourItems = groupToursData?.bmToursGroupDetail?.items || [];
+
   const [formData, setFormData] = useState<BookingFormData>({
     selectedDate: null,
     travelers: 1,
@@ -86,7 +98,7 @@ export default function BookingForm() {
     { id: "jan24", date: "Wednesday, 24th January", days: "04 days tour" },
   ];
 
-  const pricePerPerson = 450;
+  const pricePerPerson = groupTourItems[0]?.cost || 0; // Default to 0 if no cost is available
   const totalPrice = formData.travelers * pricePerPerson;
 
   const handleContinue = () => {
@@ -108,10 +120,13 @@ export default function BookingForm() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
-      <div className="max-w-md mx-auto px-4 py-6">
+      <div className="max-w-3xl mx-auto px-4 py-6">
         <div className="text-center mb-6">
           <h1 className="text-xl font-medium text-black">Book My Tour</h1>
-          <p className="text-sm text-gray-500 mt-1">Thank you for choosing Discover Mongolia! and for your support of responsible tourism.</p>
+          <p className="text-sm text-gray-500 mt-1">
+            Thank you for choosing Discover Mongolia! and for your support of
+            responsible tourism.
+          </p>
         </div>
 
         {/* Progress Steps */}
@@ -119,34 +134,60 @@ export default function BookingForm() {
           <div className="flex items-center">
             <div
               className={`w-7 h-7 rounded-full ${
-                currentStep === 1 ? "bg-yellow-500 text-black" : "bg-yellow-500 text-black"
+                currentStep === 1
+                  ? "bg-yellow-500 text-black"
+                  : "bg-yellow-500 text-black"
               } flex items-center justify-center text-xs font-medium`}
             >
               {currentStep > 1 ? "✓" : "1"}
             </div>
-            <span className={`ml-2 text-sm ${currentStep === 1 ? "font-medium text-black" : "text-gray-500"}`}>General Info</span>
+            <span
+              className={`ml-2 text-sm ${
+                currentStep === 1 ? "font-medium text-black" : "text-gray-500"
+              }`}
+            >
+              General Info
+            </span>
           </div>
           <div className="h-[1px] bg-gray-300 w-8"></div>
           <div className="flex items-center">
             <div
               className={`w-7 h-7 rounded-full ${
-                currentStep === 2 ? "bg-yellow-500 text-black" : currentStep > 2 ? "bg-yellow-500 text-black" : "bg-gray-200 text-gray-500"
+                currentStep === 2
+                  ? "bg-yellow-500 text-black"
+                  : currentStep > 2
+                  ? "bg-yellow-500 text-black"
+                  : "bg-gray-200 text-gray-500"
               } flex items-center justify-center text-xs font-medium`}
             >
               {currentStep > 2 ? "✓" : "2"}
             </div>
-            <span className={`ml-2 text-sm ${currentStep === 2 ? "font-medium text-black" : "text-gray-500"}`}>Travelers Info</span>
+            <span
+              className={`ml-2 text-sm ${
+                currentStep === 2 ? "font-medium text-black" : "text-gray-500"
+              }`}
+            >
+              Travelers Info
+            </span>
           </div>
           <div className="h-[1px] bg-gray-300 w-8"></div>
           <div className="flex items-center">
             <div
               className={`w-7 h-7 rounded-full ${
-                currentStep === 3 ? "bg-yellow-500 text-black" : "bg-gray-200 text-gray-500"
+                currentStep === 3
+                  ? "bg-yellow-500 text-black"
+                  : "bg-gray-200 text-gray-500"
               } flex items-center justify-center text-xs font-medium`}
             >
               3
             </div>
-            <span className={`ml-2 text-sm ${currentStep === 3 ? "font-medium text-black" : "text-gray-500"}`}>Payments</span>
+            <span
+              className={`ml-2 text-sm ${
+                currentStep === 3 ? "font-medium text-black" : "text-gray-500"
+              }`}
+            >
+              Payments
+            </span>
           </div>
         </div>
 
@@ -173,7 +214,13 @@ export default function BookingForm() {
         )}
 
         {currentStep === 3 && (
-          <PaymentsStep formData={formData} updateFormData={updateFormData} totalPrice={totalPrice} onBack={handleBack} onSubmit={handleBooking} />
+          <PaymentsStep
+            formData={formData}
+            updateFormData={updateFormData}
+            totalPrice={totalPrice}
+            onBack={handleBack}
+            onSubmit={handleBooking}
+          />
         )}
       </div>
     </div>

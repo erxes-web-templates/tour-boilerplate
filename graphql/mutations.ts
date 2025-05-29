@@ -1,8 +1,16 @@
 import { gql } from "@apollo/client";
 
 export const FORM_SUBMISSION = gql`
-  mutation WidgetsSaveLead($formId: String!, $browserInfo: JSON!, $submissions: [FieldValueInput]) {
-    widgetsSaveLead(formId: $formId, browserInfo: $browserInfo, submissions: $submissions) {
+  mutation WidgetsSaveLead(
+    $formId: String!
+    $browserInfo: JSON!
+    $submissions: [FieldValueInput]
+  ) {
+    widgetsSaveLead(
+      formId: $formId
+      browserInfo: $browserInfo
+      submissions: $submissions
+    ) {
       status
     }
   }
@@ -11,6 +19,14 @@ export const FORM_SUBMISSION = gql`
 export const ADD_ORDER = gql`
   mutation BmOrderAdd($order: BmsOrderInput) {
     bmOrderAdd(order: $order) {
+      _id
+    }
+  }
+`;
+
+export const UPDATE_ORDER = gql`
+  mutation BmOrderEdit($id: String!, $order: BmsOrderInput) {
+    bmOrderEdit(_id: $id, order: $order) {
       _id
     }
   }

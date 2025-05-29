@@ -1,4 +1,8 @@
-import { fetchBmTourDetail, fetchBmToursGroup } from "@/lib/fetchTours";
+import {
+  fetchBmTourDetail,
+  fetchBmToursGroup,
+  fetchBmToursGroupDetail,
+} from "@/lib/fetchTours";
 import {
   Accordion,
   AccordionContent,
@@ -59,8 +63,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TourDetailPage(props: { params: Params }) {
   const { id } = await props.params;
-  const tour = await fetchBmTourDetail(id);
-  const groupTours = await fetchBmToursGroup();
+  const groupTour = await fetchBmToursGroupDetail(id);
+
+  //@ts-expect-error test
+  const tourId: string = groupTour?.items[0]._id || ""; // Fallback to id if not found in groupTour
+  const tour = await fetchBmTourDetail(tourId);
   const sectionComponents = {
     hero: HeroSection,
     imageText: AboutSection,
@@ -81,7 +88,7 @@ export default async function TourDetailPage(props: { params: Params }) {
   if (!tour) {
     return <div>Tour not found</div>;
   }
-
+  console.log(tour, "detail");
   return (
     <div className="container mx-auto p-4">
       {tour.imageThumbnail && (
@@ -117,7 +124,7 @@ export default async function TourDetailPage(props: { params: Params }) {
 
           <Link
             className="bg-slate-800 text-white px-4 pt-3 rounded-md block"
-            href={"/booking?tourId=" + tour._id}
+            href={"/booking?tourId=" + tour.groupCode}
           >
             Book tour
           </Link>
@@ -151,7 +158,7 @@ export default async function TourDetailPage(props: { params: Params }) {
             </div>
           )}
 
-          <div>
+          {/* <div>
             <h2 className="text-xl font-semibold mb-2">Available Dates</h2>
             <ul className="list-disc pl-5">
               {groupTours &&
@@ -166,7 +173,7 @@ export default async function TourDetailPage(props: { params: Params }) {
                   </li>
                 ))}
             </ul>
-          </div>
+          </div> */}
         </div>
 
         <div>
