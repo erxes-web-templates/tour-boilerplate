@@ -440,7 +440,7 @@ export const PAYMENTS = gql`
 `;
 
 export const INVOICE_DETAIL = gql`
-  query invoiceDetailSda($id: String!) {
+  query invoiceDetail($id: String!) {
     invoiceDetail(_id: $id) {
       _id
       invoiceNumber
