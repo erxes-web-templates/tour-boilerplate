@@ -450,3 +450,56 @@ export const INVOICE_DETAIL = gql`
     }
   }
 `;
+
+export const INQUIRY_FORM = gql`
+  query Forms($type: String, $brandId: String, $searchValue: String) {
+    forms(type: $type, brandId: $brandId, searchValue: $searchValue) {
+      _id
+      name
+      title
+      code
+      type
+      description
+      buttonText
+      createdDate
+      numberOfPages
+      status
+      googleMapApiKey
+      fields {
+        _id
+        contentType
+        contentTypeId
+        name
+        isVisible
+        isVisibleInDetail
+        canHide
+        groupId
+        lastUpdatedUserId
+        optionsValues
+        subFieldIds
+        description
+        options
+        type
+        validation
+        regexValidation
+        text
+        content
+        isRequired
+        order
+        associatedFieldId
+        logicAction
+        column
+        pageNumber
+        code
+        searchable
+        showInCard
+        isVisibleToCreate
+        productCategoryId
+        field
+        isDefinedByErxes
+        relationType
+        isDisabled
+      }
+    }
+  }
+`;
