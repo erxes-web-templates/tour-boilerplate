@@ -24,24 +24,6 @@ export const TOURS_QUERY = gql`
   }
 `;
 
-export const TOURS_GROUP_QUERY = gql`
-  query bmToursGroup(
-    $page: Int
-    $perPage: Int
-    $tags: [String]
-    $status: String
-    $branchId: String
-  ) {
-    bmToursGroup(
-      page: $page
-      perPage: $perPage
-      tags: $tags
-      status: $status
-      branchId: $branchId
-    )
-  }
-`;
-
 export const TOUR_DETAIL_QUERY = gql`
   query BmTourDetail($id: String!, $branchId: String) {
     bmTourDetail(_id: $id, branchId: $branchId) {
@@ -349,6 +331,149 @@ export const GET_FORM_DETAIL = gql`
         options
         optionsValues
         type
+      }
+    }
+  }
+`;
+
+export const INQUIRY_FORM = gql`
+  query Forms($type: String, $brandId: String, $searchValue: String) {
+    forms(type: $type, brandId: $brandId, searchValue: $searchValue) {
+      _id
+      name
+      title
+      code
+      type
+      description
+      buttonText
+      createdDate
+      numberOfPages
+      status
+      googleMapApiKey
+      fields {
+        _id
+        contentType
+        contentTypeId
+        name
+        isVisible
+        isVisibleInDetail
+        canHide
+        groupId
+        lastUpdatedUserId
+        optionsValues
+        subFieldIds
+        description
+        options
+        type
+        validation
+        regexValidation
+        text
+        content
+        isRequired
+        order
+        associatedFieldId
+        logicAction
+        column
+        pageNumber
+        code
+        searchable
+        showInCard
+        isVisibleToCreate
+        productCategoryId
+        field
+        isDefinedByErxes
+        relationType
+        isDisabled
+      }
+    }
+  }
+`;
+
+export const TOURS_GROUP_QUERY = gql`
+  query bmToursGroup(
+    $page: Int
+    $perPage: Int
+    $tags: [String]
+    $status: String
+    $branchId: String
+  ) {
+    bmToursGroup(
+      page: $page
+      perPage: $perPage
+      tags: $tags
+      status: $status
+      branchId: $branchId
+    ) {
+      list {
+        _id
+        items {
+          _id
+          branchId
+          name
+          refNumber
+          groupCode
+          content
+          duration
+          itineraryId
+          startDate
+          endDate
+          groupSize
+          status
+          cost
+          createdAt
+          modifiedAt
+          viewCount
+          advanceCheck
+          advancePercent
+          joinPercent
+          tagIds
+          info1
+          info2
+          info3
+          info4
+          info5
+          extra
+          images
+          imageThumbnail
+        }
+      }
+    }
+  }
+`;
+
+export const TOUR_GROUP_DETAIL_QUERY = gql`
+  query BmToursGroupDetail($groupCode: String, $status: String) {
+    bmToursGroupDetail(groupCode: $groupCode, status: $status) {
+      _id
+      items {
+        _id
+        branchId
+        name
+        refNumber
+        groupCode
+        content
+        duration
+        itineraryId
+        startDate
+        endDate
+        groupSize
+        status
+        cost
+        createdAt
+        modifiedAt
+        viewCount
+        advanceCheck
+        advancePercent
+        joinPercent
+        tagIds
+        info1
+        info2
+        info3
+        info4
+        info5
+        extra
+        images
+        imageThumbnail
       }
     }
   }

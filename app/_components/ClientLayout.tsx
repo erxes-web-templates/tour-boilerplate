@@ -40,6 +40,7 @@ const standardComponentRegistry = {
   post: PostDetailPage,
   inquiry: InquiryPage,
   booking: TourBookingPage,
+  checkout: TourBookingPage,
 };
 
 export default function ClientBoilerplateLayout() {

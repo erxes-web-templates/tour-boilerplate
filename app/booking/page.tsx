@@ -912,7 +912,7 @@ export default function TourBookingPage() {
                   <Checkbox
                     id="terms"
                     checked={termsAccepted}
-                    onCheckedChange={(checked) =>
+                    onCheckedChange={(checked: boolean) =>
                       setTermsAccepted(checked as boolean)
                     }
                     className="mt-1"
