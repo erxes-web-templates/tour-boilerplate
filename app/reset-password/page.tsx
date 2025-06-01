@@ -314,7 +314,7 @@ export default function ResetPasswordPage() {
           className="w-full"
           onClick={() => {
             // Redirect to login page or wherever appropriate
-            router.push("/login"); // Adjust this path as needed
+            router.push("/auth/login"); // Adjust this path as needed
           }}
         >
           Go to Login
