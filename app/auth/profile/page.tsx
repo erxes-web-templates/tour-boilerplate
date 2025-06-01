@@ -49,55 +49,6 @@ const EDIT_USER = gql`
   }
 `;
 
-// Mock data for tours/orders
-const mockOrders = [
-  {
-    id: "ord-001",
-    date: new Date(2023, 10, 15),
-    status: "completed",
-    total: 1299.99,
-    tour: {
-      id: "tour-001",
-      title: "Grand Canyon Adventure",
-      image: "/placeholder.svg?height=200&width=300",
-      location: "Arizona, USA",
-      duration: "5 days",
-      startDate: new Date(2023, 11, 10),
-      endDate: new Date(2023, 11, 15),
-    },
-  },
-  {
-    id: "ord-002",
-    date: new Date(2023, 9, 22),
-    status: "completed",
-    total: 2499.99,
-    tour: {
-      id: "tour-002",
-      title: "Paris City Explorer",
-      image: "/placeholder.svg?height=200&width=300",
-      location: "Paris, France",
-      duration: "7 days",
-      startDate: new Date(2023, 10, 5),
-      endDate: new Date(2023, 10, 12),
-    },
-  },
-  {
-    id: "ord-003",
-    date: new Date(2024, 1, 5),
-    status: "upcoming",
-    total: 1899.99,
-    tour: {
-      id: "tour-003",
-      title: "Tokyo Cultural Tour",
-      image: "/placeholder.svg?height=200&width=300",
-      location: "Tokyo, Japan",
-      duration: "10 days",
-      startDate: new Date(2024, 3, 15),
-      endDate: new Date(2024, 3, 25),
-    },
-  },
-];
-
 export default function ProfilePage() {
   // Fetch current user data
   const { loading, error, data } = useQuery(CURRENT_USER);

@@ -21,7 +21,8 @@
     "main": [
       { "label": "Home", "url": "/", "parentId": null },
       { "label": "About", "url": "/about", "parentId": null },
-      { "label": "Contact", "url": "/contact", "parentId": null }
+      { "label": "Contact", "url": "/contact", "parentId": null },
+      { "label": "Contact s", "url": "#", "parentId": null }
     ],
     "footerMenu": []
   },

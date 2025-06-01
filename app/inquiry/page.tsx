@@ -1,27 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Calendar, Plane, Users } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { Checkbox } from "@/components/ui/checkbox";
-import { format } from "date-fns";
 import { useMutation, useQuery } from "@apollo/client";
 import { INQUIRY_FORM, TOUR_GROUP_DETAIL_QUERY } from "@/graphql/queries";
 import DynamicForm from "@/components/common/DynamicForm";
