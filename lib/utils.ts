@@ -198,3 +198,38 @@ export const nationalities = [
   "Zambian",
   "Zimbabwean",
 ];
+export const menuUrl = (url: string) => {
+  // if url isnot starts with /tour, /tour, /booking then add /custom prefix
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  if (url === "#") {
+    return "#";
+  }
+
+  if (url === "/home") {
+    return "/";
+  }
+
+  const defaultPageSlugs = [
+    "/home",
+    "/about",
+    "/contact",
+    "/privacy",
+    "/terms",
+    "/tours",
+    "/tour",
+    "/checkout",
+    "/confirmation",
+    "/profile",
+    "/login",
+    "/register",
+  ];
+
+  // Check if the URL starts with any of the default page slugs
+
+  if (defaultPageSlugs.some((slug) => url.startsWith(slug))) {
+    return url;
+  }
+  return `/custom${url}`;
+};

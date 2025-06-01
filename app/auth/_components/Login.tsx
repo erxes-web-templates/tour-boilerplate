@@ -92,7 +92,7 @@ export default function LoginForm() {
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
                   <Link
-                    href="#"
+                    href="/auth/forgot-password"
                     className="text-sm underline underline-offset-4 hover:text-primary"
                     prefetch={false}
                   >
