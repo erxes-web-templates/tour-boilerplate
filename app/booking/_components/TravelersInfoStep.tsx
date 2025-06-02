@@ -5,13 +5,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Calendar, Info } from "lucide-react";
 import {
   Popover,
@@ -22,7 +15,6 @@ import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import type { BookingFormData } from "./BookingForm";
-import useCurrentUser from "@/lib/useAuth";
 import { toast } from "sonner";
 import { CREATE_INVOICE } from "@/graphql/mutations";
 import { PAYMENTS } from "@/graphql/queries";
@@ -57,20 +49,15 @@ export default function TravelersInfoStep({
   onContinue,
   currentUser,
 }: TravelersInfoStepProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [paymentType, setPaymentType] = useState("stripe");
   const [termsAccepted, setTermsAccepted] = useState(false);
 
-  console.log(currentUser, formData, "cu ti");
   // Use Apollo Client's useMutation hook
-  const { data: paymentsData } = useQuery(PAYMENTS, {
-    variables: {
-      kind: paymentType,
-    },
-  });
+  const { data: paymentsData } = useQuery(PAYMENTS);
 
-  const stripePayment = paymentsData?.payments[0]?._id;
+  const availablePaymentIds = paymentsData?.payments?.map(
+    (payment: any) => payment._id
+  );
 
   const [createInvoice, { loading: invoiceLoading }] = useMutation(
     CREATE_INVOICE,
@@ -119,8 +106,8 @@ export default function TravelersInfoStep({
           contentTypeId: orderId,
           customerId: currentUser?.erxesCustomerId, // Using the fixed value provided
           customerType: "customer",
-          paymentIds: [stripePayment], // Using the fixed value provided
-          currency: "USD",
+          paymentIds: availablePaymentIds, // Using the fixed value provided
+          currency: "MNT",
         },
       });
     },

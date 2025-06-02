@@ -9,6 +9,7 @@ export const { getClient } = registerApolloClient(() => {
       credentials: "include",
       headers: {
         "Access-Control-Allow-Origin": process.env.ERXES_URL || "",
+        "erxes-app-token": process.env.ERXES_APP_TOKEN || "",
       },
     }),
   });

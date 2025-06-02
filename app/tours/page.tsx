@@ -1,5 +1,12 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { fetchBmTours } from "@/lib/fetchTours";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { fetchBmTours, fetchBmToursGroup } from "@/lib/fetchTours";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -25,7 +32,8 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-  const { list } = await fetchBmTours(1, 100, { status: "website" });
+  const data = await fetchBmToursGroup(1, 100);
+  console.log(data, "data from tours page");
   const sectionComponents = {
     hero: HeroSection,
     imageText: AboutSection,
@@ -44,27 +52,45 @@ const page = async () => {
     components: sectionComponents,
   });
 
+  if (!data) {
+    return (
+      <div className="text-center py-16">
+        <h2 className="text-2xl font-bold mb-4">No tours available</h2>
+        <p className="text-gray-600">
+          Please check back later or contact us for more information.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {list.map((tour) => (
-          <Card key={tour._id}>
+        {data.map((tour: any) => (
+          <Card key={tour.items[0]._id}>
             <CardHeader>
-              {tour.imageThumbnail && (
+              {tour.items[0].imageThumbnail && (
                 <div className="relative w-full h-[200px]">
-                  <Image src={getFileUrl(tour.imageThumbnail)} alt={tour.name} fill className="rounded-md h-[200px]" />
+                  <Image
+                    src={getFileUrl(tour.items[0].imageThumbnail)}
+                    alt={tour.items[0].name}
+                    fill
+                    className="rounded-md h-[200px]"
+                  />
                 </div>
               )}
             </CardHeader>
             <CardContent>
-              <CardTitle>{tour.name}</CardTitle>
+              <CardTitle>{tour.items[0].name}</CardTitle>
               <CardDescription>
-                <p dangerouslySetInnerHTML={{ __html: tour.content }} />
+                <p
+                  dangerouslySetInnerHTML={{ __html: tour.items[0].content }}
+                />
               </CardDescription>
             </CardContent>
             <CardFooter className="flex justify-between items-center">
-              <span className="text-lg font-bold">{tour.cost}</span>
-              <Link href={`tours/${tour._id}`}>
+              <span className="text-lg font-bold">{tour.items[0].cost}</span>
+              <Link href={`/tours/${tour._id}`}>
                 {" "}
                 <Button>Read more</Button>
               </Link>

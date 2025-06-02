@@ -33,6 +33,8 @@ interface BmTourDetail {
   itinerary: any;
   images: string[];
   imageThumbnail: string;
+  groupCode?: string;
+  items?: BmTour[];
 }
 
 interface BmToursGroupVariables {
@@ -46,6 +48,11 @@ interface BmToursGroupVariables {
 interface BmTourDetailVariables {
   id: string;
   branchId?: string;
+}
+
+interface BmTourGroupDetailVariables {
+  groupCode: string;
+  status: string;
 }
 
 interface Itinerary {
@@ -76,4 +83,5 @@ export type {
   BmTourDetailVariables,
   Itinerary,
   BmToursGroupVariables,
+  BmTourGroupDetailVariables,
 };

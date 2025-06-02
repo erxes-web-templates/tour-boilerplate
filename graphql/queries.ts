@@ -38,7 +38,79 @@ export const TOURS_GROUP_QUERY = gql`
       tags: $tags
       status: $status
       branchId: $branchId
-    )
+    ) {
+      list {
+        _id
+        items {
+          _id
+          branchId
+          name
+          refNumber
+          groupCode
+          content
+          duration
+          itineraryId
+          startDate
+          endDate
+          groupSize
+          status
+          cost
+          createdAt
+          modifiedAt
+          viewCount
+          advanceCheck
+          advancePercent
+          joinPercent
+          tagIds
+          info1
+          info2
+          info3
+          info4
+          info5
+          extra
+          images
+          imageThumbnail
+        }
+      }
+    }
+  }
+`;
+
+export const TOUR_GROUP_DETAIL_QUERY = gql`
+  query BmToursGroupDetail($groupCode: String, $status: String) {
+    bmToursGroupDetail(groupCode: $groupCode, status: $status) {
+      _id
+      items {
+        _id
+        branchId
+        name
+        refNumber
+        groupCode
+        content
+        duration
+        itineraryId
+        startDate
+        endDate
+        groupSize
+        status
+        cost
+        createdAt
+        modifiedAt
+        viewCount
+        advanceCheck
+        advancePercent
+        joinPercent
+        tagIds
+        info1
+        info2
+        info3
+        info4
+        info5
+        extra
+        images
+        imageThumbnail
+      }
+    }
   }
 `;
 
@@ -56,6 +128,7 @@ export const TOUR_DETAIL_QUERY = gql`
       images
       imageThumbnail
       viewCount
+      groupCode
     }
   }
 `;
@@ -362,6 +435,71 @@ export const PAYMENTS = gql`
       kind
       status
       config
+    }
+  }
+`;
+
+export const INVOICE_DETAIL = gql`
+  query invoiceDetail($id: String!) {
+    invoiceDetail(_id: $id) {
+      _id
+      invoiceNumber
+      amount
+      currency
+      status
+    }
+  }
+`;
+
+export const INQUIRY_FORM = gql`
+  query Forms($type: String, $brandId: String, $searchValue: String) {
+    forms(type: $type, brandId: $brandId, searchValue: $searchValue) {
+      _id
+      name
+      title
+      code
+      type
+      description
+      buttonText
+      createdDate
+      numberOfPages
+      status
+      googleMapApiKey
+      fields {
+        _id
+        contentType
+        contentTypeId
+        name
+        isVisible
+        isVisibleInDetail
+        canHide
+        groupId
+        lastUpdatedUserId
+        optionsValues
+        subFieldIds
+        description
+        options
+        type
+        validation
+        regexValidation
+        text
+        content
+        isRequired
+        order
+        associatedFieldId
+        logicAction
+        column
+        pageNumber
+        code
+        searchable
+        showInCard
+        isVisibleToCreate
+        productCategoryId
+        field
+        isDefinedByErxes
+        relationType
+        isDisabled
+      }
     }
   }
 `;

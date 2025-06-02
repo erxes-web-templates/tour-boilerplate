@@ -1,5 +1,6 @@
 import {
   TOUR_DETAIL_QUERY,
+  TOUR_GROUP_DETAIL_QUERY,
   TOURS_GROUP_QUERY,
   TOURS_QUERY,
 } from "@/graphql/queries";
@@ -7,6 +8,7 @@ import { getClient } from "./client";
 import {
   BmTourDetail,
   BmTourDetailVariables,
+  BmTourGroupDetailVariables,
   BmToursData,
   BmToursGroupVariables,
 } from "@/types/tours";
@@ -87,7 +89,7 @@ export async function fetchBmTourDetail(id: string, branchId?: string) {
   }
 }
 
-export async function fetchBmToursGroup() {
+export async function fetchBmToursGroup(page: number, perPage: number) {
   const client = getClient();
 
   try {
@@ -96,7 +98,7 @@ export async function fetchBmToursGroup() {
       BmToursGroupVariables
     >({
       query: TOURS_GROUP_QUERY,
-      variables: { status: "website" },
+      variables: { status: "website", page, perPage },
       context: {
         headers: {
           "erxes-app-token": process.env.ERXES_APP_TOKEN,
@@ -107,6 +109,30 @@ export async function fetchBmToursGroup() {
     return data.bmToursGroup.list;
   } catch (error) {
     console.error("Error fetching BM Tour Detail:", error);
+    return null;
+  }
+}
+
+export async function fetchBmToursGroupDetail(groupCode: string) {
+  const client = getClient();
+
+  try {
+    const { data } = await client.query<
+      { bmToursGroupDetail: BmTourDetail[] },
+      BmTourGroupDetailVariables
+    >({
+      query: TOUR_GROUP_DETAIL_QUERY,
+      variables: { groupCode, status: "website" },
+      context: {
+        headers: {
+          "erxes-app-token": process.env.ERXES_APP_TOKEN,
+        },
+      },
+    });
+
+    return data.bmToursGroupDetail;
+  } catch (error) {
+    console.error("Error fetching BM Tours Group Detail:", error);
     return null;
   }
 }

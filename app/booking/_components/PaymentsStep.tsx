@@ -1,21 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import Link from "next/link";
 import type { BookingFormData } from "./BookingForm";
 import { useSearchParams } from "next/navigation";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { INVOICE_DETAIL } from "@/graphql/queries";
+import { Button } from "@/components/ui/button";
 
 interface PaymentsStepProps {
   formData: BookingFormData;
@@ -25,6 +17,231 @@ interface PaymentsStepProps {
   onSubmit: () => void;
 }
 
+// const useInvoiceStatusPolling = (invoiceId: string) => {
+//   const [initialStatus, setInitialStatus] = useState(null);
+//   const [hasStatusChanged, setHasStatusChanged] = useState(false);
+//   const [sessionExpired, setSessionExpired] = useState(false);
+//   const [isPolling, setIsPolling] = useState(false);
+//   const [invoiceData, setInvoiceData] = useState(null);
+
+//   const intervalRef = useRef(null);
+//   const sessionTimeoutRef = useRef(null);
+//   const startTimeRef = useRef(null);
+
+//   const [getInvoiceDetail, { loading, error }] = useLazyQuery(INVOICE_DETAIL, {
+//     fetchPolicy: "cache-and-network",
+//     errorPolicy: "all",
+//     onCompleted: (data) => {
+//       console.log("Query completed with data:", data);
+
+//       if (data?.invoiceDetail) {
+//         const currentStatus = data.invoiceDetail.status;
+//         setInvoiceData(data.invoiceDetail);
+
+//         // Set initial status on first successful fetch
+//         if (initialStatus === null) {
+//           setInitialStatus(currentStatus);
+//           console.log("Initial status set to:", currentStatus);
+//         }
+//         // Check if status has changed
+//         else if (initialStatus !== currentStatus) {
+//           console.log(
+//             `Status changed from "${initialStatus}" to "${currentStatus}"`
+//           );
+//           setHasStatusChanged(true);
+//           stopPolling();
+//         }
+//       }
+//     },
+//     onError: (error) => {
+//       console.error("Query error:", error);
+//     },
+//   });
+
+//   const fetchInvoiceData = useCallback(() => {
+//     if (invoiceId && !hasStatusChanged && !sessionExpired) {
+//       console.log("Fetching invoice data for ID:", invoiceId);
+//       getInvoiceDetail({
+//         variables: { id: invoiceId },
+//       });
+//     }
+//   }, [invoiceId, hasStatusChanged, sessionExpired, getInvoiceDetail]);
+
+//   const startPolling = useCallback(() => {
+//     if (!invoiceId || isPolling) return;
+
+//     console.log("Starting polling for invoice:", invoiceId);
+//     setIsPolling(true);
+//     startTimeRef.current = Date.now();
+
+//     // Initial fetch
+//     fetchInvoiceData();
+
+//     // Set up interval for subsequent fetches (every 5 seconds)
+//     intervalRef.current = setInterval(() => {
+//       fetchInvoiceData();
+//     }, 5000);
+
+//     // Set up 10-minute session timeout
+//     sessionTimeoutRef.current = setTimeout(() => {
+//       console.log("Session expired after 10 minutes");
+//       setSessionExpired(true);
+//       stopPolling();
+//     }, 10 * 60 * 1000); // 10 minutes
+//   }, [invoiceId, isPolling, fetchInvoiceData]);
+
+//   const stopPolling = useCallback(() => {
+//     console.log("Stopping polling");
+//     setIsPolling(false);
+
+//     if (intervalRef.current) {
+//       clearInterval(intervalRef.current);
+//       intervalRef.current = null;
+//     }
+
+//     if (sessionTimeoutRef.current) {
+//       clearTimeout(sessionTimeoutRef.current);
+//       sessionTimeoutRef.current = null;
+//     }
+//   }, []);
+
+//   // Auto-start polling when invoiceId is provided
+//   useEffect(() => {
+//     if (invoiceId && !hasStatusChanged && !sessionExpired) {
+//       startPolling();
+//     }
+
+//     return () => {
+//       stopPolling();
+//     };
+//   }, [invoiceId, startPolling, stopPolling, hasStatusChanged, sessionExpired]);
+
+//   // Cleanup on unmount
+//   useEffect(() => {
+//     return () => {
+//       stopPolling();
+//     };
+//   }, [stopPolling]);
+
+//   // Get elapsed time
+//   const getElapsedTime = () => {
+//     if (!startTimeRef.current) return 0;
+//     return Math.floor((Date.now() - startTimeRef.current) / 1000);
+//   };
+
+//   // Reset function to restart polling
+//   const resetPolling = useCallback(() => {
+//     setInitialStatus(null);
+//     setHasStatusChanged(false);
+//     setSessionExpired(false);
+//     setInvoiceData(null);
+//     startTimeRef.current = null;
+
+//     if (invoiceId) {
+//       startPolling();
+//     }
+//   }, [invoiceId, startPolling]);
+
+//   return {
+//     invoiceData,
+//     loading,
+//     error,
+//     initialStatus,
+//     hasStatusChanged,
+//     sessionExpired,
+//     isPolling,
+//     startPolling,
+//     stopPolling,
+//     resetPolling,
+//     elapsedTime: getElapsedTime(),
+//   };
+// };
+
+const InvoiceMonitor = ({ invoiceId }: { invoiceId: string }) => {
+  const {
+    data: invoiceDetailData,
+    startPolling,
+    stopPolling,
+    loading,
+    error,
+  } = useQuery(INVOICE_DETAIL, {
+    variables: {
+      id: invoiceId || "",
+    },
+    skip: !invoiceId,
+    // Do not automatically poll, we'll control it manually
+    pollInterval: 0,
+  });
+
+  const pollingRef = useRef(null);
+  const sessionDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
+
+  useEffect(() => {
+    if (invoiceId) {
+      // Start polling immediately when the component mounts and invoiceId is available
+      console.log("Starting initial poll for invoice:", invoiceId);
+      startPolling(3000); // Poll every 3 seconds initially
+
+      // @ts-expect-error tsms
+      pollingRef.current = setTimeout(() => {
+        console.log("Session duration ended. Stopping polling.");
+        stopPolling();
+      }, sessionDuration);
+    }
+
+    return () => {
+      // Clean up the timeout and stop polling when the component unmounts
+      if (pollingRef.current) {
+        clearTimeout(pollingRef.current);
+      }
+      stopPolling();
+      console.log("Component unmounted or invoiceId changed. Polling stopped.");
+    };
+  }, [invoiceId, startPolling, stopPolling]);
+
+  useEffect(() => {
+    if (invoiceDetailData && invoiceDetailData.invoiceDetail) {
+      const currentStatus = invoiceDetailData.invoiceDetail.status;
+      console.log("Current Invoice Status:", currentStatus);
+
+      // Define your "changed" statuses here.
+      // For example, if you want to stop polling when the status is 'PAID' or 'CANCELLED'.
+      const terminalStatuses = ["PAID", "CANCELLED", "COMPLETED"];
+
+      if (terminalStatuses.includes(currentStatus)) {
+        console.log(
+          `Invoice status changed to a terminal state (${currentStatus}). Stopping polling.`
+        );
+        stopPolling();
+        if (pollingRef.current) {
+          clearTimeout(pollingRef.current);
+        }
+      }
+    }
+  }, [invoiceDetailData, stopPolling]);
+
+  if (loading) return <p>Loading invoice details...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!invoiceDetailData || !invoiceDetailData.invoiceDetail)
+    return <p>No invoice data available.</p>;
+
+  const { _id, invoiceNumber, amount, currency, status } =
+    invoiceDetailData.invoiceDetail;
+
+  return (
+    <div>
+      {/* <h2>Invoice Detail</h2>
+      <p>Invoice ID: {_id}</p>
+      <p>Invoice Number: {invoiceNumber}</p>
+      <p>
+        Amount: {amount} {currency}
+      </p>
+      <p>Status: {status}</p>
+      <p>Remaining time: </p> */}
+    </div>
+  );
+};
+
 export default function PaymentsStep({
   formData,
   updateFormData,
@@ -32,26 +249,12 @@ export default function PaymentsStep({
   onBack,
   onSubmit,
 }: PaymentsStepProps) {
-  const [termsAccepted, setTermsAccepted] = useState(false);
   const params = useSearchParams();
   const invoiceId = params.get("invoiceId");
 
   const invoiceUrl = `${process.env.ERXES_URL}/pl:payment/invoice/${invoiceId}`;
-  const updateCardDetails = (field: string, value: string) => {
-    updateFormData({
-      cardDetails: {
-        ...(formData.cardDetails || {
-          cardNumber: "",
-          cardholderName: "",
-          expiryMonth: "",
-          expiryYear: "",
-          cvv: "",
-        }),
-        [field]: value,
-      },
-    });
-  };
 
+  console.log(invoiceId, "invoiceId");
   return (
     <div className="mb-6">
       <div className="mb-6">
@@ -74,170 +277,38 @@ export default function PaymentsStep({
             </Label>
           </div>
         </RadioGroup>
-        {/* 
-        <div className="flex justify-between items-center mb-4">
-          <div>
-            <div className="text-xs text-gray-500">Step 03</div>
-            <h2 className="text-xl font-medium text-black">Payments</h2>
-          </div>
-          <div className="text-2xl font-bold text-yellow-500">
-            ${totalPrice}
-          </div>
-        </div> */}
-
-        {/* Payment Methods */}
+        {/* Payment Methods */}{" "}
+        {invoiceId && <InvoiceMonitor invoiceId={invoiceId} />}
         <div className="mb-8">
           {invoiceId ? (
             <iframe
               src={invoiceUrl}
-              className="min-h-[500px] w-full border border-gray-200 rounded-md"
+              className="min-h-[600px] w-full border border-gray-200 rounded-md"
             ></iframe>
           ) : (
             <div className="text-sm text-gray-500 mb-4">
               <p> Something went wrong, please try again later.</p>
             </div>
           )}
-          {/* <RadioGroup value={formData.paymentMethod} onValueChange={(value) => updateFormData({ paymentMethod: value })} className="space-y-4">
-            <div className="flex items-center justify-between rounded-md border border-gray-200 p-3">
-              <div className="flex items-center">
-                <RadioGroupItem value="card" id="card" className="mr-3" />
-                <Label htmlFor="card" className="text-sm font-normal">
-                  Pay by card
-                </Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-5 bg-red-500 rounded flex items-center justify-center">
-                  <div className="w-4 h-4 bg-yellow-500 rounded-full opacity-80"></div>
-                </div>
-                <div className="w-8 h-5 bg-blue-900 rounded flex items-center justify-center">
-                  <div className="text-white text-[8px] font-bold">VISA</div>
-                </div>
-                <div className="w-10 h-5 bg-blue-500 rounded flex items-center justify-center">
-                  <div className="text-white text-[6px] font-bold">AMERICAN EXPRESS</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between rounded-md border border-gray-200 p-3">
-              <div className="flex items-center">
-                <RadioGroupItem value="golomt" id="golomt" className="mr-3" />
-                <Label htmlFor="golomt" className="text-sm font-normal">
-                  Pay with Golomt
-                </Label>
-              </div>
-              <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center">
-                <div className="text-white text-[8px] font-bold">G</div>
-              </div>
-            </div>
-          </RadioGroup> */}
-        </div>
-
-        {/* Credit Card Form - Only shown when Pay by card is selected */}
-        {/* {formData.paymentMethod === "card" && (
-          <div className="mt-4 mb-6 border border-gray-200 rounded-md p-4 bg-gray-50">
-            <h3 className="text-base font-medium mb-4">Card Details</h3>
-
-            <div className="mb-4">
-              <Label htmlFor="cardNumber" className="text-sm mb-1.5 block">
-                Card Number<span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="cardNumber"
-                placeholder="1234 5678 9012 3456"
-                className="border-gray-200 text-sm"
-                value={formData.cardDetails?.cardNumber || ""}
-                onChange={(e) => updateCardDetails("cardNumber", e.target.value)}
-              />
-            </div>
-
-            <div className="mb-4">
-              <Label htmlFor="cardholderName" className="text-sm mb-1.5 block">
-                Cardholder Name<span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="cardholderName"
-                placeholder="Name as it appears on card"
-                className="border-gray-200 text-sm"
-                value={formData.cardDetails?.cardholderName || ""}
-                onChange={(e) => updateCardDetails("cardholderName", e.target.value)}
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="expiryDate" className="text-sm mb-1.5 block">
-                  Expiry Date<span className="text-red-500">*</span>
-                </Label>
-                <div className="grid grid-cols-2 gap-2">
-                  <Select value={formData.cardDetails?.expiryMonth || ""} onValueChange={(value) => updateCardDetails("expiryMonth", value)}>
-                    <SelectTrigger className="border-gray-200 text-sm">
-                      <SelectValue placeholder="MM" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Array.from({ length: 12 }, (_, i) => {
-                        const month = i + 1;
-                        return (
-                          <SelectItem key={month} value={month.toString().padStart(2, "0")}>
-                            {month.toString().padStart(2, "0")}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                  <Select value={formData.cardDetails?.expiryYear || ""} onValueChange={(value) => updateCardDetails("expiryYear", value)}>
-                    <SelectTrigger className="border-gray-200 text-sm">
-                      <SelectValue placeholder="YY" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Array.from({ length: 10 }, (_, i) => {
-                        const year = new Date().getFullYear() + i;
-                        return (
-                          <SelectItem key={year} value={year.toString().slice(-2)}>
-                            {year.toString().slice(-2)}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="cvv" className="text-sm mb-1.5 block">
-                  CVV<span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="cvv"
-                  placeholder="123"
-                  className="border-gray-200 text-sm"
-                  maxLength={4}
-                  value={formData.cardDetails?.cvv || ""}
-                  onChange={(e) => updateCardDetails("cvv", e.target.value)}
-                />
-              </div>
-            </div>
+          {/* Terms and Conditions */}
+          {/* Navigation Buttons */}
+          <div className="grid grid-cols-2 gap-4">
+            <Button
+              variant="outline"
+              className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black"
+              onClick={onBack}
+            >
+              Back
+            </Button>
+            <Button
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
+              // disabled={!termsAccepted}
+              onClick={onSubmit}
+            >
+              Check payment
+            </Button>
           </div>
-        )} */}
-
-        {/* Terms and Conditions */}
-
-        {/* Navigation Buttons */}
-        {/* <div className="grid grid-cols-2 gap-4">
-          <Button
-            variant="outline"
-            className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black"
-            onClick={onBack}
-          >
-            Back
-          </Button>
-          <Button
-            className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
-            disabled={!termsAccepted}
-            onClick={onSubmit}
-          >
-            Book for {formData.travelers}{" "}
-            {formData.travelers === 1 ? "space" : "spaces"}
-          </Button>
-        </div> */}
+        </div>
       </div>
     </div>
   );

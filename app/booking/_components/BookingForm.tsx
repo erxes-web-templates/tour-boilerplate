@@ -5,6 +5,9 @@ import GeneralInfoStep from "./GeneralInfoStep";
 import TravelersInfoStep from "./TravelersInfoStep";
 import PaymentsStep from "./PaymentsStep";
 import useCurrentUser from "@/lib/useAuth";
+import { useSearchParams } from "next/navigation";
+import { useQuery } from "@apollo/client";
+import { TOUR_GROUP_DETAIL_QUERY } from "@/graphql/queries";
 
 export type TourDate = {
   id: string;
@@ -44,8 +47,18 @@ export type BookingFormData = {
 };
 
 export default function BookingForm() {
+  const params = useSearchParams();
+  const selectedTourId = params.get("tourId");
   const [currentStep, setCurrentStep] = useState(1);
   const { currentUser } = useCurrentUser();
+  const { data: groupToursData } = useQuery(TOUR_GROUP_DETAIL_QUERY, {
+    variables: {
+      status: "website",
+      groupCode: selectedTourId || "",
+    },
+  });
+  const groupTourItems = groupToursData?.bmToursGroupDetail?.items || [];
+
   const [formData, setFormData] = useState<BookingFormData>({
     selectedDate: null,
     travelers: 1,
@@ -85,7 +98,7 @@ export default function BookingForm() {
     { id: "jan24", date: "Wednesday, 24th January", days: "04 days tour" },
   ];
 
-  const pricePerPerson = 450;
+  const pricePerPerson = groupTourItems[0]?.cost || 0; // Default to 0 if no cost is available
   const totalPrice = formData.travelers * pricePerPerson;
 
   const handleContinue = () => {
@@ -107,7 +120,7 @@ export default function BookingForm() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
-      <div className="max-w-md mx-auto px-4 py-6">
+      <div className="max-w-3xl mx-auto px-4 py-6">
         <div className="text-center mb-6">
           <h1 className="text-xl font-medium text-black">Book My Tour</h1>
           <p className="text-sm text-gray-500 mt-1">Thank you for choosing Discover Mongolia! and for your support of responsible tourism.</p>

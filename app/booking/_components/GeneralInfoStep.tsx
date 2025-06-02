@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import type { BookingFormData, TourDate } from "./BookingForm";
 import { useQuery } from "@apollo/client";
-import { TOURS_GROUP_QUERY } from "@/graphql/queries";
+import { TOUR_GROUP_DETAIL_QUERY, TOURS_GROUP_QUERY } from "@/graphql/queries";
 import dayjs from "dayjs";
+import { useSearchParams } from "next/navigation";
 interface GeneralInfoStepProps {
   formData: BookingFormData;
   updateFormData: (data: Partial<BookingFormData>) => void;
@@ -27,15 +28,17 @@ export default function GeneralInfoStep({
   totalPrice,
   onContinue,
 }: GeneralInfoStepProps) {
+  const params = useSearchParams();
+  const selectedTourId = params.get("tourId");
   const [showTravelersDropdown, setShowTravelersDropdown] = useState(false);
-  console.log("formData", formData);
-  const { data: groupToursData } = useQuery(TOURS_GROUP_QUERY, {
+  const { data: groupToursData } = useQuery(TOUR_GROUP_DETAIL_QUERY, {
     variables: {
       status: "website",
+      groupCode: selectedTourId || "",
     },
   });
-  const groupTours = groupToursData?.bmToursGroup?.list || [];
-  console.log("groupTours", groupTours);
+  const groupTourItems = groupToursData?.bmToursGroupDetail?.items || [];
+  console.log("groupTours", groupTourItems);
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-4">
@@ -44,7 +47,7 @@ export default function GeneralInfoStep({
           <h2 className="text-xl font-medium text-black">General Info</h2>
         </div>
         <div className="text-2xl font-bold text-yellow-500">
-          ${groupTours[0]?.items[0].cost * formData.travelers}
+          ${groupTourItems[0]?.cost * formData.travelers}
         </div>
       </div>
 
@@ -53,7 +56,7 @@ export default function GeneralInfoStep({
         <div className="flex justify-between items-center mb-3">
           <h3 className="text-sm">Choose your tour</h3>
           <span className="text-yellow-500 text-sm">
-            ${groupTours[0]?.items[0].cost} per person
+            ${groupTourItems[0]?.cost} per person
           </span>
         </div>
 
@@ -62,7 +65,7 @@ export default function GeneralInfoStep({
           onValueChange={(value) => updateFormData({ selectedDate: value })}
           className="space-y-3"
         >
-          {groupTours[0]?.items?.map((tour: any) => (
+          {groupTourItems?.map((tour: any) => (
             <div
               key={tour._id}
               className="flex items-center justify-between rounded-md border border-gray-200 p-3"
@@ -138,7 +141,7 @@ export default function GeneralInfoStep({
         className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-medium py-3 rounded-md"
         onClick={onContinue}
       >
-        Continue (Total: ${totalPrice})
+        Continue (Total: ${groupTourItems[0]?.cost * formData.travelers})
       </Button>
     </div>
   );
