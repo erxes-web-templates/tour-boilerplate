@@ -1,29 +1,11 @@
-import {
-  TOUR_DETAIL_QUERY,
-  TOUR_GROUP_DETAIL_QUERY,
-  TOURS_GROUP_QUERY,
-  TOURS_QUERY,
-} from "@/graphql/queries";
+import { TOUR_DETAIL_QUERY, TOUR_GROUP_DETAIL_QUERY, TOURS_GROUP_QUERY, TOURS_QUERY } from "@/graphql/queries";
 import { getClient } from "./client";
-import {
-  BmTourDetail,
-  BmTourDetailVariables,
-  BmTourGroupDetailVariables,
-  BmToursData,
-  BmToursGroupVariables,
-} from "@/types/tours";
+import { BmTourDetail, BmTourDetailVariables, BmTourGroupDetailVariables, BmToursData, BmToursGroupVariables } from "@/types/tours";
 
-export async function fetchBmTours(
-  page: number,
-  perPage: number,
-  config?: any
-) {
+export async function fetchBmTours(page: number, perPage: number, config?: any) {
   const client = getClient();
 
-  console.log(
-    `[BM Tours] Request params - page: ${page}, perPage: ${perPage}, config:`,
-    JSON.stringify(config)
-  );
+  console.log(`[BM Tours] Request params - page: ${page}, perPage: ${perPage}, config:`, JSON.stringify(config));
 
   try {
     const { data } = await client.query<BmToursData>({
@@ -42,22 +24,13 @@ export async function fetchBmTours(
 
     // Log more detailed error information
     if ((error as any).graphQLErrors) {
-      console.error(
-        "[BM Tours] GraphQL errors:",
-        JSON.stringify((error as any).graphQLErrors)
-      );
+      console.error("[BM Tours] GraphQL errors:", JSON.stringify((error as any).graphQLErrors));
     }
     if ((error as any).networkError) {
-      console.error(
-        "[BM Tours] Network error details:",
-        (error as any).networkError
-      );
+      console.error("[BM Tours] Network error details:", (error as any).networkError);
       // For 400 errors, the response might contain more information
       if ((error as any).networkError.result) {
-        console.error(
-          "[BM Tours] Error response:",
-          JSON.stringify((error as any).networkError.result)
-        );
+        console.error("[BM Tours] Error response:", JSON.stringify((error as any).networkError.result));
       }
     }
 
@@ -69,10 +42,7 @@ export async function fetchBmTourDetail(id: string, branchId?: string) {
   const client = getClient();
 
   try {
-    const { data } = await client.query<
-      { bmTourDetail: BmTourDetail },
-      BmTourDetailVariables
-    >({
+    const { data } = await client.query<{ bmTourDetail: BmTourDetail }, BmTourDetailVariables>({
       query: TOUR_DETAIL_QUERY,
       variables: { id, branchId },
       context: {
@@ -93,10 +63,7 @@ export async function fetchBmToursGroup(page: number, perPage: number) {
   const client = getClient();
 
   try {
-    const { data } = await client.query<
-      { bmToursGroup: { list: BmTourDetail[] } },
-      BmToursGroupVariables
-    >({
+    const { data } = await client.query<{ bmToursGroup: { list: BmTourDetail[] } }, BmToursGroupVariables>({
       query: TOURS_GROUP_QUERY,
       variables: { status: "website", page, perPage },
       context: {
@@ -105,6 +72,8 @@ export async function fetchBmToursGroup(page: number, perPage: number) {
         },
       },
     });
+
+    console.log(data, "data");
 
     return data.bmToursGroup.list;
   } catch (error) {
@@ -117,10 +86,7 @@ export async function fetchBmToursGroupDetail(groupCode: string) {
   const client = getClient();
 
   try {
-    const { data } = await client.query<
-      { bmToursGroupDetail: BmTourDetail[] },
-      BmTourGroupDetailVariables
-    >({
+    const { data } = await client.query<{ bmToursGroupDetail: BmTourDetail[] }, BmTourGroupDetailVariables>({
       query: TOUR_GROUP_DETAIL_QUERY,
       variables: { groupCode, status: "website" },
       context: {

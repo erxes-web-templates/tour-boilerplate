@@ -5,11 +5,10 @@
     {
       "type": "hero",
       "content": "Welcome to Adventure Awaits!",
-      "order": null,
       "contentType": "imageText",
       "contentTypeId": "",
       "config": {
-        "image": { "file": { "name": "hero.jpg", "size": 0, "type": "image/jpeg" }, "initUrl": "/images/hero.jpg" },
+        "image": { "file": { "path": "./hero.jpg", "relativePath": "./hero.jpg" }, "url": "erxes-saas/xB4iGgOle3K3wTRftD1vChero.jpg" },
         "title": "Discover Your Next Great Adventure",
         "description": "Explore breathtaking destinations and unforgettable experiences.",
         "primaryCta": "Explore Tours",
@@ -17,41 +16,54 @@
       }
     },
     {
+      "type": "imageText",
+      "content": "About Us",
+      "contentType": "imageText",
+      "contentTypeId": "",
+      "config": {
+        "image": {
+          "file": { "path": "./images (2).jpeg", "relativePath": "./images (2).jpeg" },
+          "url": "erxes-saas/JOwG6S4Jk7njOkMsf2IBximages (2).jpeg"
+        },
+        "title": "Who We Are",
+        "description": "<h5>At Adventure Awaits, we are passionate about crafting unforgettable travel experiences. With years of expertise, we specialize in curating unique tours that connect you with culture, nature, and adventure.</h5>",
+        "primaryCta": "Learn More",
+        "primaryCtaUrl": "/about",
+        "imagePosition": "right"
+      }
+    },
+    { "type": "tours", "content": "Featured Tours", "contentType": "bms:tours", "contentTypeId": "", "config": null },
+    {
       "type": "gallery",
-      "content": "test",
-      "order": null,
+      "content": "Explore the world through vivid travel photos and videos.\nOur tour gallery brings destinations to life—get inspired for your next adventure!",
       "contentType": "hero",
       "contentTypeId": "",
       "config": {
         "images": [
           {
-            "file": { "path": "./pexels-pixabay-247599.jpg", "relativePath": "./pexels-pixabay-247599.jpg" },
-            "url": "erxes-saas/KczWEeTMfOKQGFw5WKrjApexels-pixabay-247599.jpg"
+            "file": { "path": "./Cover_0b4d486cff.jpg", "relativePath": "./Cover_0b4d486cff.jpg" },
+            "url": "erxes-saas/htKdwdLUE5NFOGKK7hpiECover_0b4d486cff.jpg"
+          },
+          { "file": { "path": "./images.jpeg", "relativePath": "./images.jpeg" }, "url": "erxes-saas/happZck9Br73TOEspmHqdimages.jpeg" },
+          { "file": { "path": "./images (1).jpeg", "relativePath": "./images (1).jpeg" }, "url": "erxes-saas/FWQ2R1rbMjnzmfhc6auIbimages (1).jpeg" },
+          {
+            "file": { "path": "./khaluunrashaan1.jpg", "relativePath": "./khaluunrashaan1.jpg" },
+            "url": "erxes-saas/VRpL5w5hk9U1Lb17ekm7tkhaluunrashaan1.jpg"
+          },
+          { "file": { "path": "./shinider1.jpg", "relativePath": "./shinider1.jpg" }, "url": "erxes-saas/ZuTQpvuhbXsM6r0rDZeZ6shinider1.jpg" },
+          {
+            "file": { "path": "./thumb__9001472800139832646056f3a91cd70783.jpg", "relativePath": "./thumb__9001472800139832646056f3a91cd70783.jpg" },
+            "url": "erxes-saas/0X2Br5M55hBb7VKqBCisZthumb__9001472800139832646056f3a91cd70783.jpg"
           },
           {
-            "file": { "path": "./pexels-bri-schneiter-28802-346529.jpg", "relativePath": "./pexels-bri-schneiter-28802-346529.jpg" },
-            "url": "erxes-saas/wFRb8Qca68gVqfn6GUVhspexels-bri-schneiter-28802-346529.jpg"
-          },
-          {
-            "file": { "path": "./pexels-apasaric-1285625.jpg", "relativePath": "./pexels-apasaric-1285625.jpg" },
-            "url": "erxes-saas/lKmw6FEj4GnmdWq9uwagvpexels-apasaric-1285625.jpg"
-          },
-          {
-            "file": { "path": "./pexels-wanderer-731217.jpg", "relativePath": "./pexels-wanderer-731217.jpg" },
-            "url": "erxes-saas/4fZ4yrsu94AmgAtALpbLIpexels-wanderer-731217.jpg"
+            "file": { "path": "./thumb__9001472800139998427156f3a99ff3f6e2.jpg", "relativePath": "./thumb__9001472800139998427156f3a99ff3f6e2.jpg" },
+            "url": "erxes-saas/eLcWjqwl6l3R00mJ14nLDthumb__9001472800139998427156f3a99ff3f6e2.jpg"
           }
         ],
-        "title": "Galley test ",
-        "description": "test"
+        "title": "Gallery ",
+        "description": "Explore the world through vivid travel photos and videos.\nOur tour gallery brings destinations to life—get inspired for your next adventure!"
       }
     },
-    {
-      "type": "contact",
-      "content": "You can ...",
-      "order": 2,
-      "contentType": "contact",
-      "contentTypeId": null,
-      "config": { "title": "Contact us", "description": "You can ...", "formId": "89wZm3TEtBsh8NkvH" }
-    }
+    { "type": "tours", "content": "tours", "contentType": "bm:tours", "contentTypeId": "bm:tours", "config": { "limit": 6 } }
   ]
 }

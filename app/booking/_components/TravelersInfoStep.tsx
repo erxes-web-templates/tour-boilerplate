@@ -6,11 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar, Info } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { gql, useMutation, useQuery } from "@apollo/client";
@@ -41,67 +37,47 @@ interface TravelersInfoStepProps {
   currentUser: any;
 }
 
-export default function TravelersInfoStep({
-  formData,
-  updateFormData,
-  totalPrice,
-  onBack,
-  onContinue,
-  currentUser,
-}: TravelersInfoStepProps) {
+export default function TravelersInfoStep({ formData, updateFormData, totalPrice, onBack, onContinue, currentUser }: TravelersInfoStepProps) {
   const [error, setError] = useState<string | null>(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
 
   // Use Apollo Client's useMutation hook
   const { data: paymentsData } = useQuery(PAYMENTS);
 
-  const availablePaymentIds = paymentsData?.payments?.map(
-    (payment: any) => payment._id
-  );
+  const availablePaymentIds = paymentsData?.payments?.map((payment: any) => payment._id);
 
-  const [createInvoice, { loading: invoiceLoading }] = useMutation(
-    CREATE_INVOICE,
-    {
-      onCompleted: (data) => {
-        console.log("Invoice created successfully:", data);
-        // Move to the next step after successful submission
-        toast.success(
-          "Invoice created successfully! Your order will be confirmed once payment is completed."
-        );
+  const [createInvoice, { loading: invoiceLoading }] = useMutation(CREATE_INVOICE, {
+    onCompleted: (data) => {
+      console.log("Invoice created successfully:", data);
+      // Move to the next step after successful submission
+      toast.success("Invoice created successfully! Your order will be confirmed once payment is completed.");
 
-        //add data id to url as query params , expect there are other params
-        const invoiceId = data.invoiceCreate._id;
-        const url = new URL(window.location.href);
-        url.searchParams.set("invoiceId", invoiceId);
-        window.history.pushState({}, "", url.toString());
+      //add data id to url as query params , expect there are other params
+      const invoiceId = data.invoiceCreate._id;
+      const url = new URL(window.location.href);
+      url.searchParams.set("invoiceId", invoiceId);
+      window.history.pushState({}, "", url.toString());
 
-        onContinue();
-      },
-      onError: (error) => {
-        console.error("Error creating invoice:", error);
-        toast.error(
-          "An error occurred while creating the invoice. Please try again."
-        );
-        setError(
-          "An error occurred while creating the invoice. Please try again."
-        );
-      },
-    }
-  );
+      onContinue();
+    },
+    onError: (error) => {
+      console.error("Error creating invoice:", error);
+      toast.error("An error occurred while creating the invoice. Please try again.");
+      setError("An error occurred while creating the invoice. Please try again.");
+    },
+  });
 
   const [createOrder, { loading }] = useMutation(ADD_ORDER, {
     onCompleted: (data) => {
       console.log("Order created successfully:", data);
       // Move to the next step after successful submission
-      toast.success(
-        "Order created successfully! Your order will be confirmed once payment is completed."
-      );
+      toast.success("Order created successfully! Your order will be confirmed once payment is completed.");
       onContinue();
       const orderId = data.bmOrderAdd._id;
 
       createInvoice({
         variables: {
-          amount: totalPrice,
+          amount: totalPrice || 100,
           contentType: "bm:order",
           contentTypeId: orderId,
           customerId: currentUser?.erxesCustomerId, // Using the fixed value provided
@@ -113,9 +89,7 @@ export default function TravelersInfoStep({
     },
     onError: (error) => {
       console.error("Error creating order:", error);
-      toast.error(
-        "An error occurred while creating the order. Please try again."
-      );
+      toast.error("An error occurred while creating the order. Please try again.");
       setError("An error occurred while creating the order. Please try again.");
     },
   });
@@ -142,11 +116,7 @@ export default function TravelersInfoStep({
     });
   };
 
-  const updateAdditionalTraveler = (
-    index: number,
-    field: string,
-    value: any
-  ) => {
+  const updateAdditionalTraveler = (index: number, field: string, value: any) => {
     const updatedTravelers = [...formData.additionalTravelers];
     updatedTravelers[index] = {
       ...updatedTravelers[index],
@@ -165,9 +135,7 @@ export default function TravelersInfoStep({
           ? formData.additionalTravelers.map((traveler) => ({
               firstName: traveler.firstName,
               lastName: traveler.lastName,
-              birthDate: traveler.birthDate
-                ? format(traveler.birthDate, "yyyy-MM-dd")
-                : null,
+              birthDate: traveler.birthDate ? format(traveler.birthDate, "yyyy-MM-dd") : null,
               gender: traveler.gender,
               nationality: traveler.nationality,
             }))
@@ -176,7 +144,7 @@ export default function TravelersInfoStep({
       // Prepare the mutation variables
       const orderInput = {
         additionalCustomers,
-        amount: totalPrice,
+        amount: totalPrice || 100,
         branchId: null,
         customerId: currentUser?.erxesCustomerId,
         isChild: false,
@@ -193,11 +161,7 @@ export default function TravelersInfoStep({
         },
       });
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "An error occurred during submission"
-      );
+      setError(err instanceof Error ? err.message : "An error occurred during submission");
       console.error("Submission error:", err);
     }
   };
@@ -216,28 +180,18 @@ export default function TravelersInfoStep({
       <div className="bg-yellow-50 border border-yellow-200 rounded-md p-3 mb-6 flex items-start">
         <Info className="h-5 w-5 text-yellow-500 mr-2 flex-shrink-0 mt-0.5" />
         <div>
-          <span className="text-yellow-700 font-medium text-sm">
-            Please note:
-          </span>{" "}
-          <span className="text-sm text-gray-700">
-            Traveler details should match information on passport
-          </span>
+          <span className="text-yellow-700 font-medium text-sm">Please note:</span>{" "}
+          <span className="text-sm text-gray-700">Traveler details should match information on passport</span>
         </div>
       </div>
 
       {/* Error message if submission fails */}
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-6 text-red-700 text-sm">
-          {error}
-        </div>
-      )}
+      {error && <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-6 text-red-700 text-sm">{error}</div>}
 
       {/* Lead Traveler */}
       <div className="mb-6">
         <h3 className="text-base font-medium mb-1">Lead Traveler</h3>
-        <p className="text-xs text-gray-500 mb-4">
-          This traveler will serve as the contact person for the booking.
-        </p>
+        <p className="text-xs text-gray-500 mb-4">This traveler will serve as the contact person for the booking.</p>
 
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
@@ -300,14 +254,9 @@ export default function TravelersInfoStep({
           </Label>
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full justify-start text-left font-normal border-gray-200 text-gray-500 text-sm"
-              >
+              <Button variant="outline" className="w-full justify-start text-left font-normal border-gray-200 text-gray-500 text-sm">
                 <Calendar className="mr-2 h-4 w-4" />
-                {formData.leadTraveler.birthDate
-                  ? format(formData.leadTraveler.birthDate, "PPP")
-                  : "Enter your birth date"}
+                {formData.leadTraveler.birthDate ? format(formData.leadTraveler.birthDate, "PPP") : "Enter your birth date"}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
@@ -325,11 +274,7 @@ export default function TravelersInfoStep({
           <Label className="text-sm mb-1.5 block">
             Gender<span className="text-red-500">*</span>
           </Label>
-          <RadioGroup
-            value={formData.leadTraveler.gender}
-            onValueChange={(value) => updateLeadTraveler("gender", value)}
-            className="flex gap-4 mt-1"
-          >
+          <RadioGroup value={formData.leadTraveler.gender} onValueChange={(value) => updateLeadTraveler("gender", value)} className="flex gap-4 mt-1">
             <div className="flex items-center">
               <RadioGroupItem value="male" id="male" className="mr-2" />
               <Label htmlFor="male" className="text-sm font-normal">
@@ -360,10 +305,7 @@ export default function TravelersInfoStep({
 
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <Label
-                htmlFor={`firstName${index}`}
-                className="text-sm mb-1.5 block"
-              >
+              <Label htmlFor={`firstName${index}`} className="text-sm mb-1.5 block">
                 First Name<span className="text-red-500">*</span>
               </Label>
               <Input
@@ -371,16 +313,11 @@ export default function TravelersInfoStep({
                 placeholder="Enter first name"
                 className="border-gray-200 text-sm"
                 value={traveler.firstName}
-                onChange={(e) =>
-                  updateAdditionalTraveler(index, "firstName", e.target.value)
-                }
+                onChange={(e) => updateAdditionalTraveler(index, "firstName", e.target.value)}
               />
             </div>
             <div>
-              <Label
-                htmlFor={`lastName${index}`}
-                className="text-sm mb-1.5 block"
-              >
+              <Label htmlFor={`lastName${index}`} className="text-sm mb-1.5 block">
                 Last Name<span className="text-red-500">*</span>
               </Label>
               <Input
@@ -388,39 +325,27 @@ export default function TravelersInfoStep({
                 placeholder="Enter last name"
                 className="border-gray-200 text-sm"
                 value={traveler.lastName}
-                onChange={(e) =>
-                  updateAdditionalTraveler(index, "lastName", e.target.value)
-                }
+                onChange={(e) => updateAdditionalTraveler(index, "lastName", e.target.value)}
               />
             </div>
           </div>
 
           <div className="mb-4">
-            <Label
-              htmlFor={`birthDate${index}`}
-              className="text-sm mb-1.5 block"
-            >
+            <Label htmlFor={`birthDate${index}`} className="text-sm mb-1.5 block">
               Date of Birth<span className="text-red-500">*</span>
             </Label>
             <Popover>
               <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-full justify-start text-left font-normal border-gray-200 text-gray-500 text-sm"
-                >
+                <Button variant="outline" className="w-full justify-start text-left font-normal border-gray-200 text-gray-500 text-sm">
                   <Calendar className="mr-2 h-4 w-4" />
-                  {traveler.birthDate
-                    ? format(traveler.birthDate, "PPP")
-                    : "Enter birth date"}
+                  {traveler.birthDate ? format(traveler.birthDate, "PPP") : "Enter birth date"}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <CalendarComponent
                   mode="single"
                   selected={traveler.birthDate}
-                  onSelect={(date) =>
-                    updateAdditionalTraveler(index, "birthDate", date)
-                  }
+                  onSelect={(date) => updateAdditionalTraveler(index, "birthDate", date)}
                   initialFocus
                 />
               </PopoverContent>
@@ -433,31 +358,18 @@ export default function TravelersInfoStep({
             </Label>
             <RadioGroup
               value={traveler.gender}
-              onValueChange={(value) =>
-                updateAdditionalTraveler(index, "gender", value)
-              }
+              onValueChange={(value) => updateAdditionalTraveler(index, "gender", value)}
               className="flex gap-4 mt-1"
             >
               <div className="flex items-center">
-                <RadioGroupItem
-                  value="male"
-                  id={`male${index}`}
-                  className="mr-2"
-                />
+                <RadioGroupItem value="male" id={`male${index}`} className="mr-2" />
                 <Label htmlFor={`male${index}`} className="text-sm font-normal">
                   Male
                 </Label>
               </div>
               <div className="flex items-center">
-                <RadioGroupItem
-                  value="female"
-                  id={`female${index}`}
-                  className="mr-2"
-                />
-                <Label
-                  htmlFor={`female${index}`}
-                  className="text-sm font-normal"
-                >
+                <RadioGroupItem value="female" id={`female${index}`} className="mr-2" />
+                <Label htmlFor={`female${index}`} className="text-sm font-normal">
                   Female
                 </Label>
               </div>
@@ -467,30 +379,19 @@ export default function TravelersInfoStep({
           <SearchableNationalitySelect
             nationalities={nationalities}
             value={traveler.nationality}
-            onValueChange={(value) =>
-              updateAdditionalTraveler(index, "nationality", value)
-            }
+            onValueChange={(value) => updateAdditionalTraveler(index, "nationality", value)}
             required={true}
           />
         </div>
       ))}
 
       {/* Add Traveler Button */}
-      <Button
-        variant="outline"
-        className="w-full mb-8 border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black"
-        onClick={addTraveler}
-      >
+      <Button variant="outline" className="w-full mb-8 border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black" onClick={addTraveler}>
         + Add Traveler Info (Optional)
       </Button>
       <div className="mb-8">
         <div className="flex items-start space-x-2">
-          <Checkbox
-            id="terms"
-            checked={termsAccepted}
-            onCheckedChange={(checked) => setTermsAccepted(checked as boolean)}
-            className="mt-1"
-          />
+          <Checkbox id="terms" checked={termsAccepted} onCheckedChange={(checked) => setTermsAccepted(checked as boolean)} className="mt-1" />
           <Label htmlFor="terms" className="text-xs">
             {"I accept TourRider's "}
             <Link href="#" className="text-yellow-500 hover:underline">
@@ -500,21 +401,13 @@ export default function TravelersInfoStep({
             <Link href="#" className="text-yellow-500 hover:underline">
               Privacy Policy
             </Link>
-            ;{" "}
-            <span className="text-yellow-500">
-              Free payment, cancellation and refund conditions.
-            </span>
+            ; <span className="text-yellow-500">Free payment, cancellation and refund conditions.</span>
           </Label>
         </div>
       </div>
       {/* Navigation Buttons */}
       <div className="grid grid-cols-2 gap-4">
-        <Button
-          variant="outline"
-          className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black"
-          onClick={onBack}
-          disabled={loading}
-        >
+        <Button variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black" onClick={onBack} disabled={loading}>
           Back
         </Button>
         <Button

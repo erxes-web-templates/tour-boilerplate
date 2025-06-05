@@ -209,9 +209,7 @@ const InvoiceMonitor = ({ invoiceId }: { invoiceId: string }) => {
       const terminalStatuses = ["PAID", "CANCELLED", "COMPLETED"];
 
       if (terminalStatuses.includes(currentStatus)) {
-        console.log(
-          `Invoice status changed to a terminal state (${currentStatus}). Stopping polling.`
-        );
+        console.log(`Invoice status changed to a terminal state (${currentStatus}). Stopping polling.`);
         stopPolling();
         if (pollingRef.current) {
           clearTimeout(pollingRef.current);
@@ -222,11 +220,9 @@ const InvoiceMonitor = ({ invoiceId }: { invoiceId: string }) => {
 
   if (loading) return <p>Loading invoice details...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  if (!invoiceDetailData || !invoiceDetailData.invoiceDetail)
-    return <p>No invoice data available.</p>;
+  if (!invoiceDetailData || !invoiceDetailData.invoiceDetail) return <p>No invoice data available.</p>;
 
-  const { _id, invoiceNumber, amount, currency, status } =
-    invoiceDetailData.invoiceDetail;
+  const { _id, invoiceNumber, amount, currency, status } = invoiceDetailData.invoiceDetail;
 
   return (
     <div>
@@ -242,28 +238,18 @@ const InvoiceMonitor = ({ invoiceId }: { invoiceId: string }) => {
   );
 };
 
-export default function PaymentsStep({
-  formData,
-  updateFormData,
-  totalPrice,
-  onBack,
-  onSubmit,
-}: PaymentsStepProps) {
+export default function PaymentsStep({ formData, updateFormData, totalPrice, onBack, onSubmit }: PaymentsStepProps) {
   const params = useSearchParams();
   const invoiceId = params.get("invoiceId");
 
   const invoiceUrl = `${process.env.ERXES_URL}/pl:payment/invoice/${invoiceId}`;
 
-  console.log(invoiceId, "invoiceId");
+  console.log(invoiceId, "invoiceId", invoiceUrl);
   return (
     <div className="mb-6">
       <div className="mb-6">
         {/* Payment Type Selection */}
-        <RadioGroup
-          value={formData.paymentType}
-          onValueChange={(value) => updateFormData({ paymentType: value })}
-          className="flex gap-4 mb-8"
-        >
+        <RadioGroup value={formData.paymentType} onValueChange={(value) => updateFormData({ paymentType: value })} className="flex gap-4 mb-8">
           <div className="flex items-center">
             <RadioGroupItem value="prepay" id="prepay" className="mr-2" />
             <Label htmlFor="prepay" className="text-sm font-medium uppercase">
@@ -277,14 +263,10 @@ export default function PaymentsStep({
             </Label>
           </div>
         </RadioGroup>
-        {/* Payment Methods */}{" "}
-        {invoiceId && <InvoiceMonitor invoiceId={invoiceId} />}
+        {/* Payment Methods */} {invoiceId && <InvoiceMonitor invoiceId={invoiceId} />}
         <div className="mb-8">
           {invoiceId ? (
-            <iframe
-              src={invoiceUrl}
-              className="min-h-[600px] w-full border border-gray-200 rounded-md"
-            ></iframe>
+            <iframe src={invoiceUrl} className="min-h-[600px] w-full border border-gray-200 rounded-md"></iframe>
           ) : (
             <div className="text-sm text-gray-500 mb-4">
               <p> Something went wrong, please try again later.</p>
@@ -293,11 +275,7 @@ export default function PaymentsStep({
           {/* Terms and Conditions */}
           {/* Navigation Buttons */}
           <div className="grid grid-cols-2 gap-4">
-            <Button
-              variant="outline"
-              className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black"
-              onClick={onBack}
-            >
+            <Button variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black" onClick={onBack}>
               Back
             </Button>
             <Button
