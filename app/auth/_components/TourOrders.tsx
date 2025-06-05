@@ -5,14 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import {
-  CalendarDays,
-  Users,
-  DollarSign,
-  MapPin,
-  FileText,
-  AlertCircle,
-} from "lucide-react";
+import { CalendarDays, Users, DollarSign, MapPin, FileText, AlertCircle } from "lucide-react";
 
 const BM_ORDERS_QUERY = gql`
   query BmOrders($customerId: String) {
@@ -64,7 +57,7 @@ interface TourOrdersProps {
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case "confirmed":
+    case "halfPaid":
       return "bg-green-100 text-green-800 border-green-200";
     case "notPaid":
       return "bg-yellow-100 text-yellow-800 border-yellow-200";
@@ -114,9 +107,7 @@ export default function TourOrders({ customerId }: TourOrdersProps) {
     return (
       <Alert variant="destructive">
         <AlertCircle className="h-4 w-4" />
-        <AlertDescription>
-          Failed to load tour orders: {error.message}
-        </AlertDescription>
+        <AlertDescription>Failed to load tour orders: {error.message}</AlertDescription>
       </Alert>
     );
   }
@@ -127,9 +118,7 @@ export default function TourOrders({ customerId }: TourOrdersProps) {
         <CardContent className="flex flex-col items-center justify-center py-12">
           <CalendarDays className="h-12 w-12 text-muted-foreground mb-4" />
           <h3 className="text-lg font-semibold mb-2">No Tour Orders Found</h3>
-          <p className="text-muted-foreground text-center">
-            {`This customer hasn't made any tour bookings yet.`}
-          </p>
+          <p className="text-muted-foreground text-center">{`This customer hasn't made any tour bookings yet.`}</p>
         </CardContent>
       </Card>
     );
@@ -148,10 +137,7 @@ export default function TourOrders({ customerId }: TourOrdersProps) {
 
       <div className="grid gap-4">
         {orders.map((order) => (
-          <Card
-            key={order._id}
-            className="hover:shadow-md transition-shadow rounded-lg"
-          >
+          <Card key={order._id} className="hover:shadow-md transition-shadow rounded-lg">
             <CardHeader className="p-3 pb-3">
               <div className="flex items-start justify-between">
                 {/* <div>
@@ -163,17 +149,12 @@ export default function TourOrders({ customerId }: TourOrdersProps) {
                   </p>
                 </div> */}
                 <div className="flex gap-2">
-                  <Badge className={getStatusColor(order.status)}>
-                    Pending
-                  </Badge>
+                  <Badge className={getStatusColor(order.status)}>{order.status.charAt(0).toUpperCase() + order.status.slice(1)}</Badge>
                   {/* <Badge className={getTypeColor(order.type)}>
                     {order.type}
                   </Badge> */}
                   {order.isChild && (
-                    <Badge
-                      variant="outline"
-                      className="bg-orange-50 text-orange-700 border-orange-200"
-                    >
+                    <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
                       Child Order
                     </Badge>
                   )}
@@ -187,9 +168,7 @@ export default function TourOrders({ customerId }: TourOrdersProps) {
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                   <div>
                     <p className="text-sm text-muted-foreground">Amount</p>
-                    <p className="font-semibold">
-                      ${order.amount.toLocaleString()}
-                    </p>
+                    <p className="font-semibold">${order.amount.toLocaleString()}</p>
                   </div>
                 </div>
 
@@ -209,20 +188,15 @@ export default function TourOrders({ customerId }: TourOrdersProps) {
                   </div>
                 </div>
 
-                {order.additionalCustomers &&
-                  order.additionalCustomers.length > 0 && (
-                    <div className="flex items-center gap-2">
-                      <Users className="h-4 w-4 text-muted-foreground" />
-                      <div>
-                        <p className="text-sm text-muted-foreground">
-                          Additional
-                        </p>
-                        <p className="font-semibold">
-                          {order.additionalCustomers.length} customers
-                        </p>
-                      </div>
+                {order.additionalCustomers && order.additionalCustomers.length > 0 && (
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4 text-muted-foreground" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Additional</p>
+                      <p className="font-semibold">{order.additionalCustomers.length} customers</p>
                     </div>
-                  )}
+                  </div>
+                )}
               </div>
 
               {order.note && (
@@ -235,11 +209,7 @@ export default function TourOrders({ customerId }: TourOrdersProps) {
                 </div>
               )}
 
-              {order.parent && (
-                <div className="text-sm text-muted-foreground">
-                  Parent Order: {order.parent}
-                </div>
-              )}
+              {order.parent && <div className="text-sm text-muted-foreground">Parent Order: {order.parent}</div>}
             </CardContent>
           </Card>
         ))}

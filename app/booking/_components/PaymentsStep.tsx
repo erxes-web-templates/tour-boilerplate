@@ -206,7 +206,7 @@ const InvoiceMonitor = ({ invoiceId }: { invoiceId: string }) => {
 
       // Define your "changed" statuses here.
       // For example, if you want to stop polling when the status is 'PAID' or 'CANCELLED'.
-      const terminalStatuses = ["PAID", "CANCELLED", "COMPLETED"];
+      const terminalStatuses = ["paid", "cancelled"];
 
       if (terminalStatuses.includes(currentStatus)) {
         console.log(`Invoice status changed to a terminal state (${currentStatus}). Stopping polling.`);
@@ -224,16 +224,22 @@ const InvoiceMonitor = ({ invoiceId }: { invoiceId: string }) => {
 
   const { _id, invoiceNumber, amount, currency, status } = invoiceDetailData.invoiceDetail;
 
+  function getElapsedTime() {
+    const startTime = new Date(invoiceDetailData.invoiceDetail.createdAt).getTime();
+    const currentTime = Date.now();
+    return Math.floor((currentTime - startTime) / 1000); // Return elapsed time in seconds
+  }
+
   return (
     <div>
-      {/* <h2>Invoice Detail</h2>
+      <h2>Invoice Detail</h2>
       <p>Invoice ID: {_id}</p>
       <p>Invoice Number: {invoiceNumber}</p>
       <p>
         Amount: {amount} {currency}
       </p>
       <p>Status: {status}</p>
-      <p>Remaining time: </p> */}
+      <p>Remaining time: {getElapsedTime()} seconds</p>
     </div>
   );
 };
@@ -266,7 +272,7 @@ export default function PaymentsStep({ formData, updateFormData, totalPrice, onB
         {/* Payment Methods */} {invoiceId && <InvoiceMonitor invoiceId={invoiceId} />}
         <div className="mb-8">
           {invoiceId ? (
-            <iframe src={invoiceUrl} className="min-h-[600px] w-full border border-gray-200 rounded-md"></iframe>
+            <iframe src={invoiceUrl} className="min-h-[600px] w-full border border-gray-200 rounded-md mb-6"></iframe>
           ) : (
             <div className="text-sm text-gray-500 mb-4">
               <p> Something went wrong, please try again later.</p>
@@ -278,13 +284,13 @@ export default function PaymentsStep({ formData, updateFormData, totalPrice, onB
             <Button variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-black" onClick={onBack}>
               Back
             </Button>
-            <Button
+            {/* <Button
               className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
               // disabled={!termsAccepted}
               onClick={onSubmit}
             >
               Check payment
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
