@@ -3,7 +3,14 @@ import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { GET_MENUS } from "../../../../projects/_graphql/queries";
 import { templateUrl } from "../../../../../../lib/utils";
-import { Twitter, Linkedin, Youtube, Instagram, Facebook, MessageCircle } from "lucide-react";
+import {
+  Twitter,
+  Linkedin,
+  Youtube,
+  Instagram,
+  Facebook,
+  MessageCircle,
+} from "lucide-react";
 
 export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
   const { data } = useQuery(GET_MENUS, {
@@ -30,7 +37,10 @@ export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
             <ul>
               {menus.map((menu: MenuItem) => (
                 <li key={menu._id}>
-                  <Link href={templateUrl(menu.url)} className="hover:underline">
+                  <Link
+                    href={templateUrl(menu.url || "/")}
+                    className="hover:underline"
+                  >
                     {menu.label}
                   </Link>
                 </li>
@@ -44,37 +54,55 @@ export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
             <p>Address: {cpDetail?.externalLinks?.address} </p>
             <div className="flex space-x-4">
               {cpDetail?.externalLinks?.facebook && (
-                <a href={cpDetail?.externalLinks?.facebook} className="text-white hover:text-gray-300 transition-colors duration-200">
+                <a
+                  href={cpDetail?.externalLinks?.facebook}
+                  className="text-white hover:text-gray-300 transition-colors duration-200"
+                >
                   {" "}
                   <Facebook />{" "}
                 </a>
               )}
               {cpDetail?.externalLinks?.twitter && (
-                <a href={cpDetail?.externalLinks?.twitter} className="text-white hover:text-gray-300 transition-colors duration-200">
+                <a
+                  href={cpDetail?.externalLinks?.twitter}
+                  className="text-white hover:text-gray-300 transition-colors duration-200"
+                >
                   {" "}
                   <Twitter />{" "}
                 </a>
               )}
               {cpDetail?.externalLinks?.linkedin && (
-                <a href={cpDetail?.externalLinks?.linkedin} className="text-white hover:text-gray-300 transition-colors duration-200">
+                <a
+                  href={cpDetail?.externalLinks?.linkedin}
+                  className="text-white hover:text-gray-300 transition-colors duration-200"
+                >
                   {" "}
                   <Linkedin />{" "}
                 </a>
               )}
               {cpDetail?.externalLinks?.youtube && (
-                <a href={cpDetail?.externalLinks?.youtube} className="text-white hover:text-gray-300 transition-colors duration-200">
+                <a
+                  href={cpDetail?.externalLinks?.youtube}
+                  className="text-white hover:text-gray-300 transition-colors duration-200"
+                >
                   {" "}
                   <Youtube />{" "}
                 </a>
               )}
               {cpDetail?.externalLinks?.instagram && (
-                <a href={cpDetail?.externalLinks?.instagram} className="text-white hover:text-gray-300 transition-colors duration-200">
+                <a
+                  href={cpDetail?.externalLinks?.instagram}
+                  className="text-white hover:text-gray-300 transition-colors duration-200"
+                >
                   {" "}
                   <Instagram />{" "}
                 </a>
               )}
               {cpDetail?.externalLinks?.whatsapp && (
-                <a href={cpDetail?.externalLinks?.whatsapp} className="text-white hover:text-gray-300 transition-colors duration-200">
+                <a
+                  href={cpDetail?.externalLinks?.whatsapp}
+                  className="text-white hover:text-gray-300 transition-colors duration-200"
+                >
                   {" "}
                   <MessageCircle />{" "}
                 </a>

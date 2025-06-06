@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 
 "use client";
 
@@ -40,6 +40,7 @@ const standardComponentRegistry = {
   post: PostDetailPage,
   inquiry: InquiryPage,
   booking: TourBookingPage,
+  checkout: TourBookingPage,
 };
 
 export default function ClientBoilerplateLayout() {
@@ -63,7 +64,7 @@ export default function ClientBoilerplateLayout() {
   const customPage = data?.cmsPages?.find((page: any) => page.slug === pageName);
 
   const env = getEnv();
-  console.log(env.NEXT_PUBLIC_API_URL, "api");
+  console.log(cpDetail, "api");
   const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin.replace(".api.", ".app.");
   console.log(baseUrl, "base URL");
   // Check if this is a custom page that needs dynamic handling
@@ -104,6 +105,19 @@ export default function ClientBoilerplateLayout() {
 
     loadCustomComponent();
   }, [customPage, isCustomCmsPage, pageName]);
+
+  useEffect(() => {
+    if (cpDetail && cpDetail.styles) {
+      console.log("Applying theme from cpDetail");
+
+      const root = document.documentElement;
+      root.style.setProperty("--primary", cpDetail.styles.baseColor);
+      root.style.setProperty("--background", cpDetail.styles.backgroundColor);
+      root.style.setProperty("--accent", cpDetail.styles.activeTabColor);
+      root.style.setProperty("--font-body", cpDetail.styles.fontBody);
+      root.style.setProperty("--font-heading", cpDetail.styles.fontHeading);
+    }
+  }, [cpDetail]);
 
   const renderPageContent = () => {
     if (loading) return <PageLoader />;

@@ -13,6 +13,7 @@ interface BmTour {
   };
   images: string[];
   imageThumbnail: string;
+  items: any[];
 }
 
 interface BmToursData {

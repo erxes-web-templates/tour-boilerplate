@@ -12,7 +12,7 @@ export default function TourBoilerPlateHome() {
 
   console.log("about", pageName);
   return (
-    <div>
+    <div className="bg-background">
       <PageContent />
     </div>
   );
