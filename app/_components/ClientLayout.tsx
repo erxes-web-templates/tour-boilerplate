@@ -132,7 +132,7 @@ export default function ClientBoilerplateLayout() {
     }
 
     // Page not found case
-    return <div>Page not found</div>;
+    return <div>Page not found.</div>;
   };
 
   return (

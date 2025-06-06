@@ -45,7 +45,6 @@ const ToursSection = ({ section }: { section: Section }) => {
                 <span className="text-lg font-bold">{tour.cost}</span>
                 <span className="text-lg font-bold">{dayjs(tour.startDate).format("YYYY-MM-DD")}</span>
                 <Link href={templateUrl(`/tour&tourId=${tour._id}`)}>
-                  {" "}
                   <Button>{`Book Now`}</Button>
                 </Link>
               </CardFooter>

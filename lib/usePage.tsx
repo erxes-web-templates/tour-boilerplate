@@ -12,10 +12,11 @@ import FormSection from "../app/_components/sections/FormSection";
 import TextSection from "../app/_components/sections/TextSection";
 import YoutubeSection from "../app/_components/sections/YoutubeSection";
 import CmsPostsSection from "../app/_components/sections/CmsPostsSection";
-import CircleLoader from "../../../../../components/common/CircleLoader";
-import EmptyState from "../../../../../components/common/EmptyState";
+import CircleLoader from "@/components/common/CircleLoader";
+import EmptyState from "@/components/common/EmptyState";
 import GallerySection from "../app/_components/sections/GallerySection.tsx";
 import ContactSection from "../app/_components/sections/ContactSection";
+
 const usePage = (slug: string | null) => {
   const params = useParams<{ id: string }>();
   const { data: pageData, loading } = useQuery(GET_CMS_PAGE, {
@@ -30,8 +31,6 @@ const usePage = (slug: string | null) => {
   });
 
   const sections = pageData?.cmsPage?.pageItems || [];
-
-  console.log("slug --------------- glus", slug);
 
   const renderSection = (section: Section) => {
     switch (section.type) {

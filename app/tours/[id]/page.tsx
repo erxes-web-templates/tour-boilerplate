@@ -13,7 +13,8 @@ export default function TourDetailPage() {
   const searchParams = useSearchParams();
 
   const pageName = searchParams.get("pageName"); //pageName = about, tours, contact etc
-
+  const pageNameFromUrl = pageName?.split("&")[0];
+  console.log(pageNameFromUrl, pageName, "pageNameFromUrl");
   const PageContent = usePage(pageName);
 
   const tourId = searchParams.get("tourId");
