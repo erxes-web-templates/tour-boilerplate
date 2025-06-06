@@ -8,8 +8,16 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CalendarDays, Users, DollarSign, MapPin, FileText, AlertCircle } from "lucide-react";
 
 const BM_ORDERS_QUERY = gql`
-  query BmOrders($customerId: String) {
-    bmOrders(customerId: $customerId) {
+  query BmOrders($branchId: String, $status: String, $sortField: String, $sortDirection: Int, $customerId: String, $perPage: Int, $page: Int) {
+    bmOrders(
+      branchId: $branchId
+      status: $status
+      sortField: $sortField
+      sortDirection: $sortDirection
+      customerId: $customerId
+      perPage: $perPage
+      page: $page
+    ) {
       total
       list {
         _id
@@ -72,7 +80,7 @@ const getStatusColor = (status: string) => {
 
 export default function TourOrders({ customerId }: TourOrdersProps) {
   const { loading, error, data } = useQuery<BmOrdersData>(BM_ORDERS_QUERY, {
-    variables: { customerId },
+    variables: { customerId, sortField: "createdAt", sortDirection: 1, page: 1, perPage: 20 },
     skip: !customerId,
   });
 

@@ -230,18 +230,7 @@ const InvoiceMonitor = ({ invoiceId }: { invoiceId: string }) => {
     return Math.floor((currentTime - startTime) / 1000); // Return elapsed time in seconds
   }
 
-  return (
-    <div>
-      <h2>Invoice Detail</h2>
-      <p>Invoice ID: {_id}</p>
-      <p>Invoice Number: {invoiceNumber}</p>
-      <p>
-        Amount: {amount} {currency}
-      </p>
-      <p>Status: {status}</p>
-      <p>Remaining time: {getElapsedTime()} seconds</p>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default function PaymentsStep({ formData, updateFormData, totalPrice, onBack, onSubmit }: PaymentsStepProps) {
