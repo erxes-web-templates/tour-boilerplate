@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -106,7 +107,7 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ formData, submitForm }) => {
   };
 
   // Initialize react-hook-form with shadcn Form
-  const form = useForm({
+  const form = useForm<Record<string, any>>({
     resolver: zodResolver(formSchema),
     defaultValues: getDefaultValues(),
   });

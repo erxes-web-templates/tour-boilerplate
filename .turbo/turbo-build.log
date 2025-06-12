@@ -1,6 +1,37 @@
 
 [2K[1G[1myarn run v1.22.21[22m
 [2K[1G[2m$ next build[22m
-  [1m[38;2;173;127;168m▲ Next.js 14.2.11[39m[22m
+   [1m[38;2;173;127;168m▲ Next.js 15.1.2[39m[22m
 
  [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully
+ [37m[1m [22m[39m Skipping linting
+[?25l [37m[1m [22m[39m Checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Checking validity of types  [36m..[39m[2K[1G[?25h [37m[1m [22m[39m Checking validity of types     [32m[1m✓[22m[39m Checking validity of types 
+[?25l [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data     [32m[1m✓[22m[39m Collecting page data 
+[?25l [37m[1m [22m[39m Generating static pages (0/12)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/12)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/12)  [36m[==  ][39m[2K[1G [37m[1m [22m[39m Generating static pages (6/12)  [36m[=== ][39m[2K[1G[?25h [32m[1m✓[22m[39m Generating static pages (12/12)
+[?25l [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[?25l [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G[?25h [37m[1m [22m[39m Collecting build traces     [32m[1m✓[22m[39m Collecting build traces 
+[2K[1G[?25h [37m[1m [22m[39m Finalizing page optimization     [32m[1m✓[22m[39m Finalizing page optimization 
+
+[4mRoute (app)[24m                              [4mSize[24m     [4mFirst Load JS[24m
+┌ ○ /                                    363 B           [37m[1m226 kB[22m[39m
+├ ○ /_not-found                          982 B           [37m[1m106 kB[22m[39m
+├ ○ /about                               368 B           [37m[1m226 kB[22m[39m
+├ ○ /auth/login                          2.4 kB          [37m[1m135 kB[22m[39m
+├ ○ /auth/register                       3.56 kB         [37m[1m117 kB[22m[39m
+├ ○ /blog                                828 B           [37m[1m227 kB[22m[39m
+├ ƒ /blog/[id]                           604 B           [37m[1m226 kB[22m[39m
+├ ○ /contact                             392 B           [37m[1m226 kB[22m[39m
+├ ○ /custom                              263 B           [37m[1m106 kB[22m[39m
+├ ○ /legal                               3.37 kB         [37m[1m127 kB[22m[39m
+├ ○ /tours                               856 B           [37m[1m227 kB[22m[39m
+└ ƒ /tours/[id]                          1.6 kB          [37m[1m230 kB[22m[39m
++ First Load JS shared by all            [37m[1m105 kB[22m[39m
+  ├ chunks/4bd1b696-f774972466a7e937.js  53 kB
+  ├ chunks/517-62b7bc06c68b4699.js       50.4 kB
+  └ other shared chunks (total)          1.94 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+[?25h[2K[1G✨  Done in 14.92s.

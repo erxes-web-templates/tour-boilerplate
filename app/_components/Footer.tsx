@@ -1,3 +1,5 @@
+"use client";
+
 import { CPDetail, MenuItem } from "../../types/cms";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
@@ -21,9 +23,7 @@ export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h3 className="text-xl font-bold mb-2">
-              <Link href={templateUrl("/")}>{cpDetail?.name}</Link>
-            </h3>
+            <h3 className="text-xl font-bold mb-2">{/* <Link href={templateUrl("/")}>{cpDetail?.name || "Website"}</Link> */}</h3>
             <p>{cpDetail?.description}</p>
           </div>
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
@@ -31,7 +31,7 @@ export default function Footer({ cpDetail }: { cpDetail: CPDetail }) {
             <ul>
               {menus.map((menu: MenuItem) => (
                 <li key={menu._id}>
-                  <Link href={templateUrl(menu.url)} className="hover:underline">
+                  <Link href={templateUrl(menu.url || "#")} className="hover:underline">
                     {menu.label}
                   </Link>
                 </li>
