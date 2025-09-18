@@ -37,7 +37,7 @@ export default async function Blogs() {
   });
 
   return (
-    <div className="min-h-screen bg-primary">
+    <div className="min-h-screen bg-background">
       <div>{renderedSections}</div>
     </div>
   )
