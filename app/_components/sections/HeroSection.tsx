@@ -21,7 +21,7 @@ const HeroSection = ({ section }: { section: Section }) => {
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-5xl font-bold mb-4">{section.config.title}</h1>
-          {section.config.description && <p className="text-xl mb-8 max-w-[800px] mx-auto" dangerouslySetInnerHTML={{ __html: section.config.description }}></p>}
+          {section.config.description && <p className="text-xl mb-8 max-w-[600px] mx-auto" dangerouslySetInnerHTML={{ __html: section.config.description }}></p>}
           {section.config.primaryCtaUrl && (
             <Link href={section.config.primaryCtaUrl}>
               <Button size="lg" variant="secondary">
