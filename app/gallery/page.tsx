@@ -1,5 +1,5 @@
 import React from "react";
-import pageData from "@/data/pages/about.json";
+import pageData from "@/data/pages/gallery.json";
 import { renderSections } from "@/lib/renderSections";
 import ToursSection from "../_components/sections/ToursSection";
 import HeroSection from "../_components/sections/HeroSection";
