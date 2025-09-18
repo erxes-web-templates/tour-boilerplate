@@ -25,7 +25,7 @@ const GallerySection = ({ section }: { section: Section }) => {
               className="overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-lg"
             >
               <CardContent className="p-0">
-                <div className="relative aspect-[4/3] w-full">
+                <div className="relative aspect-square w-full">
                   <CustomImage src={getFileUrl(image.url)} alt="image" fill />
                 </div>
               </CardContent>
