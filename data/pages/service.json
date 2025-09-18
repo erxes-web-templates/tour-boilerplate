@@ -1,0 +1,102 @@
+{
+  "title": "service",
+  "description": "service",
+  "pageItems": [
+    {
+      "type": "text",
+      "content": "<p style=\"text-align: left\">ййй</p>",
+      "order": 0,
+      "contentType": "text",
+      "contentTypeId": null,
+      "config": {
+        "title": "Үйлчилгээ",
+        "description": "<p style=\"text-align: justify\">Аялал жуулчлалын цогцолбор бүхий түүх, соёлын хосгүй үнэт өв болох. 16 метр 4 давхар соёл үйлчилгээний талбайн зохион байгуулалттайгаар цагаан гантиг чулуугаар бүрж шөнийн цагаар неон гэрлээр гэрэлтэнэ.</p>",
+        "primaryCta": "",
+        "primaryCtaUrl": ""
+      }
+    },
+    {
+      "type": "imageText",
+      "content": "<p style=\"text-align: left\">Шашин төрийн хүндэтгэлийн үйл ажиллагаа болон гэрлэх ёслол, хүүхдийн даахь үргээх ёслол</p>",
+      "order": 1,
+      "contentType": "imageText",
+      "contentTypeId": null,
+      "config": {
+        "image": {
+          "file": {
+            "path": "./DSC03632.jpg",
+            "relativePath": "./DSC03632.jpg"
+          },
+          "url": "erxes-saas/YpGshje8JDFMluGs5jzOCDSC03632.jpg"
+        },
+        "title": "1 ДАВХАРТ ЁСЛОЛ ХҮНДЭТГЭЛИЙН ТАНХИМ",
+        "description": "<p style=\"text-align: left\">Шашин төрийн хүндэтгэлийн үйл ажиллагаа болон гэрлэх ёслол, хүүхдийн даахь үргээх ёслол</p>",
+        "primaryCta": "",
+        "primaryCtaUrl": "",
+        "imagePosition": "left"
+      }
+    },
+    {
+      "type": "imageText",
+      "content": "<p style=\"text-align: left\">Монголын урчуудын эвлэлийн шагналт зураач Л.Гүрсэдийн тусгаар тогтнол, эх орон, байгалийн сэдэвт 30 бүтээлийн үзэсгэлэнг дэлгэлээ.Түүний бүтээлүүд ихэвчлэн эх орончдын гавьяаг мөнхжүүлсэн утга</p><p style=\"text-align: left\">агуулгатай, мөн эх орныхоо үзэсгэлэнт байгаль, түүх, хувьсгал, хөрөг зураг, аж байдлын сэдэвтэй байдаг.</p>",
+      "order": 2,
+      "contentType": "imageText",
+      "contentTypeId": null,
+      "config": {
+        "image": {
+          "file": {
+            "path": "./DSC00306.jpg",
+            "relativePath": "./DSC00306.jpg"
+          },
+          "url": "erxes-saas/4nWgikBtsIocA8NXR8jHgDSC00306.jpg"
+        },
+        "title": "2 ДАВХАРТ УРАН ЗУРГИЙН ТАНХИМ “ГАЛЕРЕЙ",
+        "description": "<p style=\"text-align: left\">Монголын урчуудын эвлэлийн шагналт зураач Л.Гүрсэдийн тусгаар тогтнол, эх орон, байгалийн сэдэвт 30 бүтээлийн үзэсгэлэнг дэлгэлээ.Түүний бүтээлүүд ихэвчлэн эх орончдын гавьяаг мөнхжүүлсэн утга</p><p style=\"text-align: left\">агуулгатай, мөн эх орныхоо үзэсгэлэнт байгаль, түүх, хувьсгал, хөрөг зураг, аж байдлын сэдэвтэй байдаг.</p>",
+        "primaryCta": "",
+        "primaryCtaUrl": "",
+        "imagePosition": "left"
+      }
+    },
+    {
+      "type": "imageText",
+      "content": "<p style=\"text-align: justify\">Богд хааны ордон музейгээс “Оройн дээдсийн адислал” үзэсгэлэнг дэлгэн үзүүлж байна. “Оройн дээдсийн адислал” үзэсгэлэнд хаан хатны ямбаны хувцас эдлэл хэрэглэл, ховор цутгуур, “Хааны хачин”</p><p style=\"text-align: justify\">цуглуулга тэргүүт нийт 40 үзмэр дэлгэв.</p>",
+      "order": 3,
+      "contentType": "imageText",
+      "contentTypeId": null,
+      "config": {
+        "image": {
+          "file": {
+            "path": "./DSC00790 (1).jpg",
+            "relativePath": "./DSC00790 (1).jpg"
+          },
+          "url": "erxes-saas/Zdbf9tUNBhERrl9MzooehDSC00790 (1).jpg"
+        },
+        "title": "3 ДАВХАРТ ҮЗМЭРИЙН ТАМХИМ “МУЗЕЙ”",
+        "description": "<p style=\"text-align: justify\">Богд хааны ордон музейгээс “Оройн дээдсийн адислал” үзэсгэлэнг дэлгэн үзүүлж байна. “Оройн дээдсийн адислал” үзэсгэлэнд хаан хатны ямбаны хувцас эдлэл хэрэглэл, ховор цутгуур, “Хааны хачин”</p><p style=\"text-align: justify\">цуглуулга тэргүүт нийт 40 үзмэр дэлгэв.</p>",
+        "primaryCta": "",
+        "primaryCtaUrl": "",
+        "imagePosition": "left"
+      }
+    },
+    {
+      "type": "imageText",
+      "content": "<p style=\"text-align: left\">Бурхан багш бодитоор залрах адил адис жинлавтай ариун чандар эрдэнийн ринсрэл шүтээн эв нэгдлийн их цагаан суварга шашин соёлын цогцолборт нийт 1024 алтан бурхан</p>",
+      "order": 4,
+      "contentType": "imageText",
+      "config": {
+        "image": {
+          "file": {
+            "path": "./gallery 4 (1).jpg",
+            "relativePath": "./gallery 4 (1).jpg"
+          },
+          "url": "erxes-saas/epD7Qy8Ke3Q1T8I2q7JCcgallery 4 (1).jpg"
+        },
+        "title": "4 ДАВХАРТ ШАШИН СОЁЛЫН ТАНХИМ",
+        "description": "<p style=\"text-align: left\">Бурхан багш бодитоор залрах адил адис жинлавтай ариун чандар эрдэнийн ринсрэл шүтээн эв нэгдлийн их цагаан суварга шашин соёлын цогцолборт нийт 1024 алтан бурхан</p>",
+        "primaryCta": "",
+        "primaryCtaUrl": "",
+        "imagePosition": "left"
+      }
+    }
+  ]
+}

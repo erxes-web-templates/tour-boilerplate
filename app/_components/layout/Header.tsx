@@ -22,7 +22,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-background text-foreground">
+    <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
           {data.meta.logo ? (
@@ -36,7 +36,7 @@ export default function Header() {
             data.meta.title
           )}
         </Link>
-        <div className="space-x-4">
+        <div className="space-x-10">
           {data.menus.main.map((menu) => (
             <Link
               key={menu.url}

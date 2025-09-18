@@ -222,6 +222,7 @@ export const menuUrl = (url: string) => {
     "/checkout",
     "/confirmation",
     "/profile",
+    "/service",
     "/login",
     "/register",
   ];
