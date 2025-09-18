@@ -1,6 +1,6 @@
-import CustomImage from "../../../components/common/CustomImage";
+import CustomImage from "@/components/common/CustomImage";
 import { Section } from "@/types/section";
-import { Card, CardContent } from "../../../components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { getFileUrl } from "@/lib/utils";
 
 // interface GalleryImage {
