@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header className="bg-background text-primary">
-      <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
+      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
           {data.meta.logo ? (
             <Image
