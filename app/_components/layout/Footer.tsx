@@ -53,13 +53,16 @@ export default function Footer() {
             </ul>
           </div>
           <div className="w-full md:w-1/3">
-            <h4 className="text-lg font-semibold mb-2">Contact Us</h4>
-            <p>Email: {getSocialUrl("emails")}</p>
-            <p>Phone: {getSocialUrl("phones")}</p>
-            <p>Address: {getSocialUrl("address")}</p>
+            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <div className="space-y-3">
+              <p className="leading-relaxed">Email: {getSocialUrl("emails")}</p>
+              <p className="leading-relaxed">Phone: {getSocialUrl("phones")}</p>
+              <p className="leading-relaxed">Address: {getSocialUrl("address")}</p>
+            </div>
           </div>
         </div>
-        <div className="mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-gray-700 mt-8 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex space-x-4">
             {socialLinks.map(({ name, icon }) => {
               const url = getSocialUrl(name);
@@ -72,7 +75,8 @@ export default function Footer() {
               );
             })}
           </div>
-          <p className="text-center md:text-right">{cpDetail?.additional?.copyright?.text}</p>
+            <p className="text-center md:text-right">{cpDetail?.additional?.copyright?.text}</p>
+          </div>
         </div>
       </div>
     </footer>
