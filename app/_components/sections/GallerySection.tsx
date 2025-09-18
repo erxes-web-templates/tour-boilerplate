@@ -2,13 +2,11 @@
 
 import React from "react";
 import CustomImage from "@/components/common/CustomImage";
-import Image from "next/image";
 import { Section } from "@/types/section";
 import { getFileUrl } from "@/lib/utils";
 
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 
 const GallerySection = ({ section }: { section: Section }) => {
@@ -22,48 +20,46 @@ const GallerySection = ({ section }: { section: Section }) => {
 
   return (
     <section className="py-12 px-4 md:px-6 lg:px-8">
-      uhubhub
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">{section.config.title}</h2>
         <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">{section.config.description}</p>
 
-        <Carousel className="w-full mx-auto">
-          <CarouselContent>
-            {section.config.images.map((image: any) => (
-              <CarouselItem key={image.url} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
-                  <Card
-                    className="overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-lg"
-                    onClick={() => handleImageClick(image.url)}
-                  >
-                    <CardContent className="p-0">
-                      <div className="relative aspect-[4/3] w-full">
-                        <CustomImage src={getFileUrl(image.url)} alt="image" fill />
-                      </div>
-                      {/* <div className="p-4">
-                      <h3 className="font-medium">{image.title}</h3>
-                    </div> */}
-                    </CardContent>
-                  </Card>
+        {/* Masonry Grid Layout */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6">
+          {section.config.images.map((image: any, index: number) => (
+            <div key={image.url} className="break-inside-avoid mb-6">
+              <div
+                className="overflow-hidden rounded-xl cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.02] bg-white shadow-md"
+                onClick={() => handleImageClick(image.url)}
+              >
+                <div className="relative w-full">
+                  <CustomImage 
+                    src={getFileUrl(image.url)} 
+                    alt={`Gallery image ${index + 1}`} 
+                    width={400}
+                    height={300}
+                    className="w-full h-auto object-cover rounded-xl"
+                  />
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="flex justify-center mt-4">
-            <CarouselPrevious className="relative mr-2" />
-            <CarouselNext className="relative ml-2" />
-          </div>
-        </Carousel>
+              </div>
+            </div>
+          ))}
+        </div>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           {selectedImage && (
             <DialogContent className="max-w-4xl">
               <DialogHeader>
-                <DialogTitle>{selectedImage}</DialogTitle>
-                <DialogDescription>{selectedImage}</DialogDescription>
+                <DialogTitle>Gallery Image</DialogTitle>
+                <DialogDescription>Click outside to close</DialogDescription>
               </DialogHeader>
               <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-                <CustomImage src={getFileUrl(selectedImage) || "/placeholder.svg"} alt={selectedImage} fill className="object-cover" />
+                <CustomImage 
+                  src={getFileUrl(selectedImage) || "/placeholder.svg"} 
+                  alt="Gallery image" 
+                  fill 
+                  className="object-cover" 
+                />
               </div>
             </DialogContent>
           )}
