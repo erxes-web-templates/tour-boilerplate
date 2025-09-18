@@ -18,8 +18,6 @@ export const metadata = {
 
 const page = () => {
   const sectionComponents = {
-    hero: HeroSection,
-    imageText: AboutSection,
     form: FormSection,
     tours: ToursSection,
     youtube: YoutubeSection,
