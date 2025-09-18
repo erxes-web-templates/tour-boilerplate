@@ -18,6 +18,7 @@ export const metadata = {
 
 const Page = () => {
   const sectionComponents = {
+    hero: HeroSection,
     form: FormSection,
     tours: ToursSection,
     youtube: YoutubeSection,
@@ -33,7 +34,7 @@ const Page = () => {
     components: sectionComponents,
   });
 
-  return <div>yggygv{renderedSections}</div>;
+  return <div>{renderedSections}</div>;
 };
 
 export default Page;
