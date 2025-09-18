@@ -22,6 +22,7 @@ const GallerySection = ({ section }: { section: Section }) => {
 
   return (
     <section className="py-12 px-4 md:px-6 lg:px-8">
+      uhubhub
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">{section.config.title}</h2>
         <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">{section.config.description}</p>
