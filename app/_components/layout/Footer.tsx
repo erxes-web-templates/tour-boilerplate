@@ -59,20 +59,20 @@ export default function Footer() {
             <p>Address: {getSocialUrl("address")}</p>
           </div>
         </div>
-        <div className="mt-8 text-center">
-        <div className="flex space-x-4">
-              {socialLinks.map(({ name, icon }) => {
-                const url = getSocialUrl(name);
-                return (
-                  url && (
-                    <a key={name} href={url} className="text-white hover:text-gray-300 transition-colors duration-200">
-                      {icon}
-                    </a>
-                  )
-                );
-              })}
-            </div>
-          <p>{cpDetail?.additional?.copyright?.text}</p>
+        <div className="mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex space-x-4">
+            {socialLinks.map(({ name, icon }) => {
+              const url = getSocialUrl(name);
+              return (
+                url && (
+                  <a key={name} href={url} className="text-white hover:text-gray-300 transition-colors duration-200">
+                    {icon}
+                  </a>
+                )
+              );
+            })}
+          </div>
+          <p className="text-center md:text-right">{cpDetail?.additional?.copyright?.text}</p>
         </div>
       </div>
     </footer>
