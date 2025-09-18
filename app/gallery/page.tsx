@@ -1,41 +1,41 @@
-import CustomImage from "@/components/common/CustomImage";
-import { Section } from "@/types/section";
-import { Card, CardContent } from "@/components/ui/card";
-import { getFileUrl } from "@/lib/utils";
+import React from "react";
+import pageData from "@/data/pages/about.json";
+import { renderSections } from "@/lib/renderSections";
+import ToursSection from "../_components/sections/ToursSection";
+import HeroSection from "../_components/sections/HeroSection";
+import AboutSection from "../_components/sections/AboutSection";
+import FormSection from "../_components/sections/FormSection";
+import YoutubeSection from "../_components/sections/YoutubeSection";
+import CmsPostsSection from "../_components/sections/CmsPostsSection";
+import GallerySection from "../_components/sections/GallerySection";
+import ContactSection from "../_components/sections/ContactSection";
+import TextSection from "../_components/sections/TextSection";
 
-// interface GalleryImage {
-//   id: number;
-//   src: string;
-//   alt: string;
-//   title: string;
-// }
+export const metadata = {
+  title: pageData.title,
+  description: pageData.description,
+};
 
+const page = () => {
+  const sectionComponents = {
+    hero: HeroSection,
+    imageText: AboutSection,
+    form: FormSection,
+    tours: ToursSection,
+    youtube: YoutubeSection,
+    cmsPosts: CmsPostsSection,
+    gallery: GallerySection,
+    contact: ContactSection,
+    text: TextSection,
+  };
 
-export default function GallerySection({ section }: { section: Section }) {
-  return (
-    <section className=" w-full max-w-[90rem] mx-auto py-8 bg-background">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-8 text-primary">{section.config.title}</h2>
-        <div className="flex flex-wrap justify-center mb-8">
-          <p>{section.config.description}</p>
-        </div>
+  // Use the function to render sections
+  const renderedSections = renderSections({
+    sections: pageData.pageItems,
+    components: sectionComponents,
+  });
 
-        <div className="w-full mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {section.config.images.map((image: any) => (
-              <div key={image.src}>
-                <Card className="overflow-hidden border-none">
-                  <CardContent className="p-0">
-                    <div className="relative aspect-[4/3] w-full">
-                      <CustomImage src={getFileUrl(image.url)} alt="image" fill className="object-cover" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+  return <div>{renderedSections}</div>;
+};
+
+export default page;
