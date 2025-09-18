@@ -40,24 +40,12 @@ export default function Footer() {
             </h3>
             <p>{cpDetail.meta.description}</p>
           </div>
-          <div className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h4 className="text-lg font-semibold mb-2">Quick Links</h4>
-            <ul>
-              {cpDetail.menus.footerMenu.map((menu: any) => (
-                <li key={menu._id}>
-                  <Link href={menu.url} className="hover:underline">
-                    {menu.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="w-full md:w-1/3">
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-lg font-semibold mb-4">Бидэнтэй холбогдох</h4>
             <div className="space-y-3">
-              <p className="leading-relaxed">Email: {getSocialUrl("emails")}</p>
-              <p className="leading-relaxed">Phone: {getSocialUrl("phones")}</p>
-              <p className="leading-relaxed">Address: {getSocialUrl("address")}</p>
+              <p className="leading-relaxed">Цахим шуудан: {getSocialUrl("emails")}</p>
+              <p className="leading-relaxed">Утас: {getSocialUrl("phones")}</p>
+              <p className="leading-relaxed">Хаяг: {getSocialUrl("address")}</p>
             </div>
           </div>
         </div>
