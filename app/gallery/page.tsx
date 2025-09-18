@@ -16,7 +16,7 @@ export const metadata = {
   description: pageData.description,
 };
 
-const page = () => {
+const Page = () => {
   const sectionComponents = {
     form: FormSection,
     tours: ToursSection,
@@ -36,4 +36,4 @@ const page = () => {
   return <div>{renderedSections}</div>;
 };
 
-export default page;
+export default Page;

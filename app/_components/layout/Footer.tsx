@@ -57,7 +57,10 @@ export default function Footer() {
             <p>Email: {getSocialUrl("emails")}</p>
             <p>Phone: {getSocialUrl("phones")}</p>
             <p>Address: {getSocialUrl("address")}</p>
-            <div className="flex space-x-4">
+          </div>
+        </div>
+        <div className="mt-8 text-center">
+        <div className="flex space-x-4">
               {socialLinks.map(({ name, icon }) => {
                 const url = getSocialUrl(name);
                 return (
@@ -69,9 +72,6 @@ export default function Footer() {
                 );
               })}
             </div>
-          </div>
-        </div>
-        <div className="mt-8 text-center">
           <p>{cpDetail?.additional?.copyright?.text}</p>
         </div>
       </div>
