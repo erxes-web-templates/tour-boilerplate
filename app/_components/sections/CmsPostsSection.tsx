@@ -12,7 +12,7 @@ const CmsPostsSection = async ({ section }: { section: Section }) => {
   const posts = await fetchCmsPosts({
     perPage: 10,
     page: 1,
-    // categoryId: section.config.categoryId,
+    categoryId: section.config.categoryId,
     // clientPortalId: cpData.cpId,
     clientPortalId: "dltgJ7iINsGyNvwchEY6C"
   });
@@ -20,7 +20,7 @@ const CmsPostsSection = async ({ section }: { section: Section }) => {
   return (
     <section className="py-16 bg-gray-100">
       aaa
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" onClick={()=>{console.log({variables: section.config.categoryId})}}>
         <h2 className="text-3xl font-bold mb-8 text-center">{section.config.title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post: CmsPost) => (
