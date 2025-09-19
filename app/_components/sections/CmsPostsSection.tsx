@@ -7,38 +7,21 @@ import Image from "next/image";
 import { CmsPost } from "@/types/cms";
 import { getFileUrl } from "@/lib/utils";
 import { fetchCmsPosts, fetchMenuList } from "@/lib/fetchCms";
-import { getClient } from "@/lib/client";
-import { GET_CMS_POSTS } from "@/graphql/queries";
 import cpData from "@/data/configs.json";
 const CmsPostsSection = async ({ section }: { section: Section }) => {
-  // const posts = fetchCmsPosts({
-  //   perPage: 10,
-  //   page: 1,
-  //   categoryId: section.config.categoryId,
-  //   // clientPortalId: cpData.cpId,
-  //   clientPortalId: "dltgJ7iINsGyNvwchEY6C"
-  // });
-  const client= getClient()
-  let data
-  try {
-  const {data: response } = await client.query({query: GET_CMS_POSTS, variables: {
-        perPage: 10,
+  const posts = await fetchCmsPosts({
+    perPage: 10,
     page: 1,
     categoryId: section.config.categoryId,
-    // clientPortalId: cpData.cpId,
-    clientPortalId: "dltgJ7iINsGyNvwchEY6C"
-  }})
-  data = response
-  } catch (e) {
-   data = e
-  }
+    clientPortalId: cpData.cpId,
+  });
+
   return (
     <section className="py-16 bg-gray-100">
-      <pre>{JSON.stringify(data)}</pre>
       <div className="container mx-auto px-4" onClick={()=>{console.log({variables: section.config.categoryId})}}>
         <h2 className="text-3xl font-bold mb-8 text-center">{section.config.title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* {posts.map((post: CmsPost) => (
+          {posts.map((post: CmsPost) => (
         <Card key={post._id}>
           <CardHeader>
             {post.thumbnail && <Image src={getFileUrl(post.thumbnail.url)} alt={post.title} width={300} height={300} className="rounded-t-lg" />}
@@ -55,7 +38,7 @@ const CmsPostsSection = async ({ section }: { section: Section }) => {
             </Link>
           </CardFooter>
         </Card>
-      ))} */}
+      ))}
         </div>
         <div className=" text-center mt-6 ">
           <Link className="underline" href={"/blog"}>
