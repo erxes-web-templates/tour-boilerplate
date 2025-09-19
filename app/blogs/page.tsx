@@ -7,7 +7,6 @@ import ContactSection from "../_components/sections/AboutSection";
 import YoutubeSection from "../_components/sections/YoutubeSection";
 import ToursSection from "../_components/sections/ToursSection";
 import CmsPostsSection from "../_components/sections/CmsPostsSection";
-import PostsSection from "../_components/sections/PostsSection";
 import GallerySection from "../_components/sections/GallerySection";
 import pageData from "@/data/pages/blogs.json";
 import { renderSections } from "@/lib/renderSections";
