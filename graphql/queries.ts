@@ -326,67 +326,60 @@ export const GET_CMS_PAGES = gql`
 
 export const GET_CMS_POSTS = gql`
   query CmsPosts(
-  $clientPortalId: String
-  $featured: Boolean
-  $categoryId: String
-  $searchValue: String
-  $status: PostStatus
-  $page: Int
-  $perPage: Int
-  $tagIds: [String]
-) {
-  cmsPosts(
-    clientPortalId: $clientPortalId
-    featured: $featured
-    categoryId: $categoryId
-    searchValue: $searchValue
-    status: $status
-    page: $page
-    perPage: $perPage
-    tagIds: $tagIds
+    $clientPortalId: String
+    $featured: Boolean
+    $categoryIds: String
+    $searchValue: String
+    $status: PostStatus
+    $page: Int
+    $perPage: Int
+    $tagIds: [String]
   ) {
-    _id
-    authorKind
-    authorId
-    author {
-      ... on User {
-        details {
-          fullName
-          __typename
+    cmsPosts(
+      clientPortalId: $clientPortalId
+      featured: $featured
+      categoryIds: $categoryIds
+      searchValue: $searchValue
+      status: $status
+      page: $page
+      perPage: $perPage
+      tagIds: $tagIds
+    ) {
+      _id
+      authorKind
+      authorId
+      author {
+        ... on User {
+          details {
+            fullName
+          }
         }
-        __typename
       }
-      __typename
+      clientPortalId
+      title
+      slug
+      content
+      excerpt
+      categoryIds
+      status
+      tagIds
+      featured
+      thumbnail {
+        url
+        name
+      }
+      createdAt
+      updatedAt
+      categories {
+        _id
+        name
+      }
+      tags {
+        _id
+        name
+      }
     }
-    clientPortalId
-    title
-    slug
-    content
-    excerpt
-    categoryIds
-    status
-    tagIds
-    featured
-    thumbnail {
-      url
-      name
-      __typename
-    }
-    createdAt
-    updatedAt
-    categories {
-      _id
-      name
-      __typename
-    }
-    tags {
-      _id
-      name
-      __typename
-    }
-    __typename
   }
-}
 `;
 
 export const GET_CMS_POST = gql`
