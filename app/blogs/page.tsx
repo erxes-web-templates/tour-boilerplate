@@ -26,7 +26,7 @@ export default async function Blogs() {
 		form: FormSection,
 		tours: ToursSection,
 		youtube: YoutubeSection,
-		cmsPosts: PostsSection,
+		cmsPosts: CmsPostsSection,
 		gallery: GallerySection,
 		text: TextSection,
 		contact: ContactSection,
