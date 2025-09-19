@@ -328,7 +328,7 @@ export const GET_CMS_POSTS = gql`
   query CmsPosts(
     $clientPortalId: String
     $featured: Boolean
-    $categoryIds: String
+    $categoryIds: [String]
     $searchValue: String
     $status: PostStatus
     $page: Int
