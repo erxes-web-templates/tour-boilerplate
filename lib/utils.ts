@@ -198,6 +198,38 @@ export const nationalities = [
   "Zambian",
   "Zimbabwean",
 ];
+
+export const hexToRgb = (hex: string) => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+};
+
+export const addOpacity = (hex: string, opacity: number) => {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return hex;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+};
+
+export const getThemeColors = (appearance: any) => {
+  const { baseColor, backgroundColor, activeTabColor } = appearance;
+
+  return {
+    primary: baseColor,
+    text: baseColor,
+    primaryHover: addOpacity(baseColor, 0.8),
+    primaryLight: addOpacity(baseColor, 0.1),
+    background: backgroundColor,
+    accentColor: activeTabColor,
+    textLight: addOpacity(baseColor, 0.7),
+  };
+};
+
 export const menuUrl = (url: string) => {
   // if url isnot starts with /tour, /tour, /booking then add /custom prefix
   if (url.startsWith("http://") || url.startsWith("https://")) {

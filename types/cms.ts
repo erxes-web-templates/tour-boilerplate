@@ -19,6 +19,9 @@ type CmsPost = {
   _id: string;
   slug: string;
   title: string;
+  category: string
+  excerpt: any
+  createdAt: any
   content: string;
   thumbnail: {
     url: string;
