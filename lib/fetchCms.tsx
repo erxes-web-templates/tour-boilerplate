@@ -20,6 +20,7 @@ export async function fetchMenuList(cpId: string, kind: string) {
 
 export async function fetchCmsPosts(variables: any) {
   const client = getClient();
+  console.log(variables)
   try {
     const { data } = await client.query({
       query: GET_CMS_POSTS,

@@ -9,15 +9,15 @@ import { getFileUrl } from "@/lib/utils";
 import { fetchCmsPosts, fetchMenuList } from "@/lib/fetchCms";
 import cpData from "@/data/configs.json";
 const CmsPostsSection = async ({ section }: { section: Section }) => {
+  console.log("aaaaa")
   const posts = await fetchCmsPosts({
     perPage: 10,
     page: 1,
     categoryId: section.config.categoryId,
     clientPortalId: cpData.cpId,
   });
-
+  
   console.log(posts, "menu in posts");
-  console.log("aaaaa")
   return (
     <section className="py-16 bg-gray-100">
       aaa
