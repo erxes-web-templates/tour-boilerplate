@@ -23,14 +23,14 @@ export default function Header() {
 
   return (
     <header className="bg-background text-primary">
-      <nav className="container mx-auto px-4 flex justify-between items-center">
+      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
           {data.meta.logo ? (
             <Image
               alt={data.meta.title}
               src={getFileUrl(data.meta.logo)}
-              width={90}
-              height={70}
+              width={50}
+              height={30}
             />
           ) : (
             data.meta.title

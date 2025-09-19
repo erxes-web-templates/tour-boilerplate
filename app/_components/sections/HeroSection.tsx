@@ -16,7 +16,7 @@ const HeroSection = ({ section }: { section: Section }) => {
   };
 
   return (
-    <section className="relative h-[735px]">
+    <section className="relative h-[600px]">
       {renderImage()}
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div className="text-center text-white">

@@ -31,7 +31,7 @@ export default function Footer() {
     { name: "whatsapp", icon: <MessageCircle /> },
   ];
   return (
-    <footer className="bg-[#652046] text-white">
+    <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
@@ -47,6 +47,7 @@ export default function Footer() {
               <p className="leading-relaxed">Утас: {getSocialUrl("phones")}</p>
               <p className="leading-relaxed">Хаяг: {getSocialUrl("address")}</p>
             </div>
+            
           </div>
         </div>
         <div className="border-t border-white mt-8 pt-6">
