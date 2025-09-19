@@ -31,7 +31,7 @@ export default function Footer() {
     { name: "whatsapp", icon: <MessageCircle /> },
   ];
   return (
-    <footer className="bg-gray-800 text-white">
+    <footer className="bg-[#652046] text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
@@ -49,7 +49,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t border-gray-700 mt-8 pt-6">
+        <div className="border-t border-white mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex space-x-4">
             {socialLinks.map(({ name, icon }) => {
